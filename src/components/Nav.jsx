@@ -4,11 +4,10 @@ export default function Nav() {
 
   return (
     <nav>
-      <Link to="/">Home</Link>
-      <Link to="login">Login/Register</Link>
-      <Link to="my-page">Username</Link> {/*Ska ersätta Login med if-sats*/}
-      {/* <Link to="Item">Game</Link> */}
-      <Link to="new-item">Sell</Link>
+      <Link to="/">Home</Link> |&nbsp;
+      <Link to="login">Login/Register</Link> |&nbsp;
+      <Link to="my-page">Username</Link> |&nbsp; {/*Ska ersätta Login med if-sats*/}
+      <Link to="new-item">Sell</Link> {/*Ska bara synas som inloggad*/}
     </nav>
   )
 
