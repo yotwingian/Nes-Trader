@@ -1,13 +1,8 @@
+import Router from "./components/Router.jsx"
 
 
-function App() {
- 
+export default function App() {
 
-  return (
-    <>
- 
-    </>
-  )
+  return <Router />
+  
 }
-
-export default App
