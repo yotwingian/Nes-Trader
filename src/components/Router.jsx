@@ -10,6 +10,7 @@ import NoPage from '../pages/NoPage.jsx'
 import About from '../pages/About.jsx'
 import HowTo from '../pages/HowTo.jsx'
 import Contact from '../pages/Contact.jsx'
+import Items from './Items.jsx'
 
 export default function Router() {
 
@@ -29,6 +30,7 @@ export default function Router() {
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} />
           <Route path="how-to" element={<HowTo />} />
+          <Route path="items" element={<Items />} />
 
         </Routes>
       </main>
