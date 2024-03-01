@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react"
 import { formatDateString } from './formatDate.js'
+import Countdown from "react-countdown"
 
 
 export default function Items() {
@@ -28,7 +29,7 @@ export default function Items() {
       {
         items.map(item => <section key={item.id}>
           <img src={item.img} width="100" />
-          <p>{item.title} | {item.releaseYear} | {item.genre} | Start price: {item.startPrice} | Ending: {formatDateString(item.endDateTime)} </p>
+          <p>{item.title} | {item.releaseYear} | {item.genre} | Start price: {item.startPrice} | Ending: <Countdown date={new Date(formatDateString(item.endDateTime))}/> </p>
         </section>)
       }
     </>
