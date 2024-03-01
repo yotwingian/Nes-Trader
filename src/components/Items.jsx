@@ -11,7 +11,6 @@ export default function Items() {
       try {
         const response = await fetch("/api/items")
         const items = await response.json()
-        console.log(items)
         setItems(items)
       } catch (error) {
         console.error("Error message: ", error)
@@ -39,6 +38,7 @@ export default function Items() {
           <p>{item.title} | {item.releaseYear} | {item.genre} | Start price: {item.startPrice} | Game ends in: <Countdown date={new Date(item.endDateTime)} renderer={renderer} /> </p>
         </section>)
       }
+      
     </>
   )
 

@@ -1,4 +1,5 @@
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom'
+import { GlobalProvider } from './GlobalContext.jsx'
 import React from "react"
 import Nav from './Nav.jsx'
 import Home from '../pages/Home.jsx'
@@ -15,6 +16,7 @@ import Items from './Items.jsx'
 export default function Router() {
 
   return (
+    <GlobalProvider>
     <BrowserRouter>
       <header>
         <Nav />
@@ -40,6 +42,7 @@ export default function Router() {
         <Link to="how-to">How to</Link>
       </footer>
     </BrowserRouter>
+    </GlobalProvider >
   )
   
 }
