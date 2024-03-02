@@ -1,24 +1,11 @@
-import { useState, useEffect } from "react"
+import React, { useContext } from "react"
 import Countdown from "react-countdown"
+import { GlobalContext } from "../components/GlobalContext.jsx";
 
 export default function Items() {
 
-  const [items, setItems] = useState([])
 
-  useEffect(() => {
-
-    async function load() {
-      try {
-        const response = await fetch("/api/items")
-        const items = await response.json()
-        setItems(items)
-      } catch (error) {
-        console.error("Error message: ", error)
-      }
-    }
-    load()
-
-  }, [])
+  const { items } = useContext(GlobalContext);
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -38,7 +25,7 @@ export default function Items() {
           <p>{item.title} | {item.releaseYear} | {item.genre} | Start price: {item.startPrice} | Game ends in: <Countdown date={new Date(item.endDateTime)} renderer={renderer} /> </p>
         </section>)
       }
-      
+
     </>
   )
 

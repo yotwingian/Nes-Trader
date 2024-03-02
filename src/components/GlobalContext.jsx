@@ -2,7 +2,7 @@ import React, { createContext, useState, useEffect } from 'react';
 
 const GlobalContext = createContext();
 
-function GlobalProvider({ props, children }) {
+function GlobalProvider({  children }) {
   const [items, setItems] = useState([]);
 
   useEffect(() => {
@@ -23,7 +23,7 @@ function GlobalProvider({ props, children }) {
 
 
   return (
-    <GlobalContext.Provider value={{ items, setItems }}>
+    <GlobalContext.Provider value={{ items }}>
       {children}
     </GlobalContext.Provider>
   );
