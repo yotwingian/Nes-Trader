@@ -2,11 +2,11 @@ import React, { createContext, useState, useEffect } from 'react';
 
 const GlobalContext = createContext();
 
-function GlobalProvider({  children }) {
+function GlobalProvider({ children }) {
   const [items, setItems] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
-
     async function load() {
       try {
         const response = await fetch("/api/items")
@@ -18,12 +18,14 @@ function GlobalProvider({  children }) {
       }
     }
     load()
-
   }, [])
 
+  const login = () => {
+    setIsLoggedIn(true);
+  };
 
   return (
-    <GlobalContext.Provider value={{ items }}>
+    <GlobalContext.Provider value={{ items, isLoggedIn, login }}>
       {children}
     </GlobalContext.Provider>
   );
