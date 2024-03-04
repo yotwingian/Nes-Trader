@@ -1,11 +1,10 @@
-import React, { useContext } from "react"
+import { useContext } from "react"
 import Countdown from "react-countdown"
-import { GlobalContext } from "../components/GlobalContext.jsx";
+import { GlobalContext } from "./GlobalContext.jsx"
 
 export default function Items() {
 
-
-  const { items, filtered, setFiltered } = useContext(GlobalContext);
+  const { items, filtered, setFiltered } = useContext(GlobalContext)
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -15,10 +14,17 @@ export default function Items() {
     }
 
   }
+
   function filter(event) {
-    const search_text = event.target.value
-    const new_list = items.filter(item => item.title.toLowerCase().includes(search_text))
-    setFiltered(new_list)
+    const searchString = event.target.value.toLowerCase()
+
+    const searchResult = items.filter(item =>
+      item.title.toLowerCase().includes(searchString) ||
+      item.releaseYear.toString().includes(searchString) ||
+      item.genre.toLowerCase().includes(searchString) ||
+      item.description.toLowerCase().includes(searchString))
+    
+    setFiltered(searchResult)
   }
 
   return (
@@ -34,7 +40,6 @@ export default function Items() {
           <p>{item.title} | {item.releaseYear} | {item.genre} | Start price: {item.startPrice} | Game ends in: <Countdown date={new Date(item.endDateTime)} renderer={renderer} /> </p>
         </section>)
       }
-
     </>
   )
 
