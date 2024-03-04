@@ -22,7 +22,9 @@ export default function Items() {
       <h1>Games</h1>
       {
         items.map(item => <section key={item.id}>
-          <Link to={`/item-details/${item.id}`}>
+          <Link to={{
+            pathname: `/item-details/${item.id}`,
+          }}>
 
             <img src={item.img} width="100" />
             <p>{item.title} | {item.releaseYear} | {item.genre} | Start price: {item.startPrice} | Game ends in: <Countdown date={new Date(item.endDateTime)} renderer={renderer} /> </p>
