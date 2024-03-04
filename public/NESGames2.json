@@ -179,6 +179,18 @@
       "endDateTime": "2024-06-15T10:00:00+01:00",
       "startPrice": "75",
       "reservePrice": "112"
+    },
+    {
+      "id": 0,
+      "title": "hej",
+      "releaseYear": "",
+      "genre": "",
+      "description": "",
+      "img": "",
+      "startDateTime": "",
+      "endDateTime": "",
+      "startPrice": "",
+      "reservePrice": ""
     }
   ]
 }

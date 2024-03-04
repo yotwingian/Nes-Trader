@@ -1,7 +1,9 @@
+import AddItem from '../components/Additem'
+
 export default function NewItem() {
 
   return (
-    <h1>NewItem</h1>
+      <AddItem />
   )
 
 }

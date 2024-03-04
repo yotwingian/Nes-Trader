@@ -1,0 +1,84 @@
+import { useState, useContext } from "react"
+import { GlobalContext } from "../components/GlobalContext.jsx";
+
+
+export default function AddItem() {
+  const { items } = useContext(GlobalContext);
+  let itemsLength = items.length
+  console.log(itemsLength)
+
+  const [formData, setFormData] = useState({
+    id: itemsLength,
+    title: '',
+    releaseYear: '',
+    genre: '',
+    description: '',
+    img: '',
+    startDateTime: '',
+    endDateTime: '',
+    startPrice: '',
+    reservePrice: ''
+  });
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({
+      ...formData,
+      [name]: value
+    });
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const response = await fetch('/api/items', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+      if (response.ok) {
+        console.log("OK!")
+      } else {
+        // Handle error
+        console.log("Fel!")
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <label>Title:</label>
+      <input type="text" name="title" value={formData.title} onChange={handleChange} />
+
+      <label>Release Year:</label>
+      <input type="text" name="releaseYear" value={formData.releaseYear} onChange={handleChange} />
+
+      <label>Genre:</label>
+      <input type="text" name="genre" value={formData.genre} onChange={handleChange}  />
+
+      <label>Description:</label>
+      <textarea name="description" value={formData.description} onChange={handleChange}  />
+
+      <label>Image URL:</label>
+      <input type="url" name="img" value={formData.img} onChange={handleChange}  />
+
+      <label>Start Date:</label>
+      <input type="datetime-local" name="startDateTime" value={formData.startDateTime} onChange={handleChange}  />
+
+      <label>End Date:</label>
+      <input type="datetime-local" name="endDateTime" value={formData.endDateTime} onChange={handleChange}  />
+
+      <label>Start Price:</label>
+      <input type="number" name="startPrice" value={formData.startPrice} onChange={handleChange}  />
+
+      <label>Reserve Price:</label>
+      <input type="number" name="reservePrice" value={formData.reservePrice} onChange={handleChange}  />
+
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
