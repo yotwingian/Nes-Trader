@@ -1,14 +1,11 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../components/GlobalContext.jsx";
-
 
 export default function AddItem() {
   const { items } = useContext(GlobalContext);
-  let itemsLength = items.length
-  console.log(itemsLength)
 
   const [formData, setFormData] = useState({
-    id: itemsLength,
+    id: 0,
     title: '',
     releaseYear: '',
     genre: '',
@@ -19,6 +16,14 @@ export default function AddItem() {
     startPrice: '',
     reservePrice: ''
   });
+
+  useEffect(() => {
+    const newId = items.length > 0 ? items[items.length - 1].id + 1 : 1;
+    setFormData(prevFormData => ({
+      ...prevFormData,
+      id: newId
+    }));
+  }, [items]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -39,10 +44,23 @@ export default function AddItem() {
         body: JSON.stringify(formData)
       });
       if (response.ok) {
-        console.log("OK!")
+        console.log("OK!");
+
+        setFormData({
+          id: formData.id + 1, 
+          title: '',
+          releaseYear: '',
+          genre: '',
+          description: '',
+          img: '',
+          startDateTime: '',
+          endDateTime: '',
+          startPrice: '',
+          reservePrice: ''
+        });
       } else {
-        // Handle error
-        console.log("Fel!")
+        
+        console.log("Fel!");
       }
     } catch (error) {
       console.error('Error:', error);
@@ -58,25 +76,25 @@ export default function AddItem() {
       <input type="text" name="releaseYear" value={formData.releaseYear} onChange={handleChange} />
 
       <label>Genre:</label>
-      <input type="text" name="genre" value={formData.genre} onChange={handleChange}  />
+      <input type="text" name="genre" value={formData.genre} onChange={handleChange} />
 
       <label>Description:</label>
-      <textarea name="description" value={formData.description} onChange={handleChange}  />
+      <textarea name="description" value={formData.description} onChange={handleChange} />
 
       <label>Image URL:</label>
-      <input type="url" name="img" value={formData.img} onChange={handleChange}  />
+      <input type="url" name="img" value={formData.img} onChange={handleChange} />
 
       <label>Start Date:</label>
-      <input type="datetime-local" name="startDateTime" value={formData.startDateTime} onChange={handleChange}  />
+      <input type="datetime-local" name="startDateTime" value={formData.startDateTime} onChange={handleChange} />
 
       <label>End Date:</label>
-      <input type="datetime-local" name="endDateTime" value={formData.endDateTime} onChange={handleChange}  />
+      <input type="datetime-local" name="endDateTime" value={formData.endDateTime} onChange={handleChange} />
 
       <label>Start Price:</label>
-      <input type="number" name="startPrice" value={formData.startPrice} onChange={handleChange}  />
+      <input type="number" name="startPrice" value={formData.startPrice} onChange={handleChange} />
 
       <label>Reserve Price:</label>
-      <input type="number" name="reservePrice" value={formData.reservePrice} onChange={handleChange}  />
+      <input type="number" name="reservePrice" value={formData.reservePrice} onChange={handleChange} />
 
       <button type="submit">Submit</button>
     </form>
