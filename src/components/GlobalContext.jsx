@@ -5,6 +5,7 @@ const GlobalContext = createContext();
 function GlobalProvider({ children }) {
   const [items, setItems] = useState([]);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [filtered, setFiltered] = useState([])
 
   useEffect(() => {
     async function load() {
@@ -13,6 +14,8 @@ function GlobalProvider({ children }) {
         const itemsData = await response.json()
 
         setItems(itemsData)
+        setFiltered(itemsData)
+
       } catch (error) {
         console.error("Error message: ", error)
       }
@@ -25,7 +28,7 @@ function GlobalProvider({ children }) {
   };
 
   return (
-    <GlobalContext.Provider value={{ items, isLoggedIn, login }}>
+    <GlobalContext.Provider value={{ items, setItems, filtered, setFiltered, isLoggedIn, login }}>
       {children}
     </GlobalContext.Provider>
   );
