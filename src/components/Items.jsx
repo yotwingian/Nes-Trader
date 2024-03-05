@@ -1,11 +1,11 @@
-import React, { useContext } from "react"
+import { useContext } from "react"
+import { Link } from "react-router-dom"
 import Countdown from "react-countdown"
-import { GlobalContext } from "../components/GlobalContext.jsx";
+import { GlobalContext } from "./GlobalContext.jsx"
 
 export default function Items() {
 
-
-  const { items } = useContext(GlobalContext);
+  const { items, filtered, setFiltered } = useContext(GlobalContext)
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -16,16 +16,36 @@ export default function Items() {
 
   }
 
+  function filter(event) {
+    const searchString = event.target.value.toLowerCase()
+
+    const searchResult = items.filter(item =>
+      item.title.toLowerCase().includes(searchString) ||
+      item.releaseYear.toString().includes(searchString) ||
+      item.genre.toLowerCase().includes(searchString) ||
+      item.description.toLowerCase().includes(searchString))
+    
+    setFiltered(searchResult)
+  }
+
   return (
     <>
+      <search>
+        <input type="text" onChange={filter} placeholder="Enter search here..." />
+      </search>
+
       <h1>Games</h1>
       {
-        items.map(item => <section key={item.id}>
-          <img src={item.img} width="100" />
-          <p>{item.title} | {item.releaseYear} | {item.genre} | Start price: {item.startPrice} | Game ends in: <Countdown date={new Date(item.endDateTime)} renderer={renderer} /> </p>
+        filtered.map(item => <section key={item.id}>
+          <Link to={{
+            pathname: `/item-details/${item.id}`,
+          }}>
+
+            <img src={item.img} width="100" />
+            <p>{item.title} | {item.releaseYear} | {item.genre} | Start price: {item.startPrice} | Game ends in: <Countdown date={new Date(item.endDateTime)} renderer={renderer} /> </p>
+          </Link>
         </section>)
       }
-
     </>
   )
 
