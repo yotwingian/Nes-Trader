@@ -5,7 +5,6 @@ const GlobalContext = createContext()
 function GlobalProvider({ children }) {
 
   const [items, setItems] = useState([])
-  const [filtered, setFiltered] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   useEffect(() => {
@@ -15,7 +14,6 @@ function GlobalProvider({ children }) {
         const itemsData = await response.json()
 
         setItems(itemsData)
-        setFiltered(itemsData)
       } catch (error) {
         console.error("Error message: ", error)
       }
@@ -28,7 +26,7 @@ function GlobalProvider({ children }) {
   }
 
   return (
-    <GlobalContext.Provider value={{ items, setItems, filtered, setFiltered, isLoggedIn, login }}>
+    <GlobalContext.Provider value={{ items, setItems, isLoggedIn, login }}>
       {children}
     </GlobalContext.Provider>
   )
