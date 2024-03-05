@@ -70,31 +70,31 @@ export default function AddItem() {
   return (
     <form onSubmit={handleSubmit}>
       <label>Title:</label>
-      <input type="text" name="title" value={formData.title} onChange={handleChange} />
+      <input type="text" name="title" value={formData.title} onChange={handleChange} required />
 
       <label>Release Year:</label>
-      <input type="text" name="releaseYear" value={formData.releaseYear} onChange={handleChange} />
+      <input type="text" name="releaseYear" value={formData.releaseYear} onChange={handleChange} required />
 
       <label>Genre:</label>
-      <input type="text" name="genre" value={formData.genre} onChange={handleChange} />
+      <input type="text" name="genre" value={formData.genre} onChange={handleChange} required />
 
       <label>Description:</label>
-      <textarea name="description" value={formData.description} onChange={handleChange} />
+      <textarea name="description" value={formData.description} onChange={handleChange} required />
 
       <label>Image URL:</label>
-      <input type="url" name="img" value={formData.img} onChange={handleChange} />
+      <input type="url" name="img" value={formData.img} onChange={handleChange} required />
 
       <label>Start Date:</label>
-      <input type="datetime-local" name="startDateTime" value={formData.startDateTime} onChange={handleChange} />
+      <input type="datetime-local" name="startDateTime" value={formData.startDateTime} onChange={handleChange} required />
 
       <label>End Date:</label>
-      <input type="datetime-local" name="endDateTime" value={formData.endDateTime} onChange={handleChange} />
+      <input type="datetime-local" name="endDateTime" value={formData.endDateTime} onChange={handleChange} required />
 
       <label>Start Price:</label>
-      <input type="number" name="startPrice" value={formData.startPrice} onChange={handleChange} />
+      <input type="number" name="startPrice" value={formData.startPrice} onChange={handleChange} required />
 
       <label>Reserve Price:</label>
-      <input type="number" name="reservePrice" value={formData.reservePrice} onChange={handleChange} />
+      <input type="number" name="reservePrice" value={formData.reservePrice} onChange={handleChange} required />
 
       <button type="submit">Submit</button>
     </form>

@@ -18,7 +18,7 @@ function GlobalProvider({ children }) {
       }
     }
     load()
-  }, [])
+  }, [items])
 
   const login = () => {
     setIsLoggedIn(true);
