@@ -10,7 +10,19 @@
       "startDateTime": "2024-02-24T10:00:00+01:00",
       "endDateTime": "2024-03-10T10:07:00+01:00",
       "startPrice": "70",
-      "reservePrice": "105"
+      "reservePrice": "105",
+      "bids": [
+        {
+          "bidder": "test",
+          "amount": 80,
+          "timestamp": "2024-03-07T12:15:00+01:00"
+        },
+        {
+          "bidder": "test2",
+          "amount": 90,
+          "timestamp": "2024-03-07T12:17:00+01:00"
+        }
+      ]
     },
     {
       "id": 2,
@@ -22,7 +34,8 @@
       "startDateTime": "2024-03-01T10:00:00+01:00",
       "endDateTime": "2024-03-15T10:08:00+01:00",
       "startPrice": "50",
-      "reservePrice": "75"
+      "reservePrice": "75",
+      "bids": []
     },
     {
       "id": 3,
@@ -34,7 +47,8 @@
       "startDateTime": "2024-03-08T10:00:00+01:00",
       "endDateTime": "2024-03-22T10:00:00+01:00",
       "startPrice": "60",
-      "reservePrice": "90"
+      "reservePrice": "90",
+      "bids": []
     },
     {
       "id": 4,
@@ -46,7 +60,8 @@
       "startDateTime": "2024-03-15T10:00:00+01:00",
       "endDateTime": "2024-03-29T10:00:00+01:00",
       "startPrice": "40",
-      "reservePrice": "60"
+      "reservePrice": "60",
+      "bids": []
     },
     {
       "id": 5,
@@ -58,7 +73,8 @@
       "startDateTime": "2024-03-22T10:00:00+01:00",
       "endDateTime": "2024-04-05T10:00:00+01:00",
       "startPrice": "75",
-      "reservePrice": "113"
+      "reservePrice": "113",
+      "bids": []
     },
     {
       "id": 6,
@@ -70,7 +86,8 @@
       "startDateTime": "2024-03-29T10:00:00+01:00",
       "endDateTime": "2024-04-12T10:00:00+01:00",
       "startPrice": "30",
-      "reservePrice": "45"
+      "reservePrice": "45",
+      "bids": []
     },
     {
       "id": 7,
@@ -82,7 +99,8 @@
       "startDateTime": "2024-04-05T10:00:00+01:00",
       "endDateTime": "2024-04-19T10:00:00+01:00",
       "startPrice": "80",
-      "reservePrice": "120"
+      "reservePrice": "120",
+      "bids": []
     },
     {
       "id": 8,
@@ -94,7 +112,8 @@
       "startDateTime": "2024-04-12T10:00:00+01:00",
       "endDateTime": "2024-04-26T10:00:00+01:00",
       "startPrice": "55",
-      "reservePrice": "83"
+      "reservePrice": "83",
+      "bids": []
     },
     {
       "id": 9,
@@ -106,7 +125,8 @@
       "startDateTime": "2024-04-19T10:00:00+01:00",
       "endDateTime": "2024-05-03T10:00:00+01:00",
       "startPrice": "45",
-      "reservePrice": "68"
+      "reservePrice": "68",
+      "bids": []
     },
     {
       "id": 10,
@@ -118,7 +138,8 @@
       "startDateTime": "2024-04-26T10:00:00+01:00",
       "endDateTime": "2024-05-10T10:00:00+01:00",
       "startPrice": "50",
-      "reservePrice": "75"
+      "reservePrice": "75",
+      "bids": []
     },
     {
       "id": 11,
@@ -130,7 +151,8 @@
       "startDateTime": "2024-05-03T10:00:00+01:00",
       "endDateTime": "2024-05-17T10:00:00+01:00",
       "startPrice": "35",
-      "reservePrice": "53"
+      "reservePrice": "53",
+      "bids": []
     },
     {
       "id": 12,
@@ -142,7 +164,8 @@
       "startDateTime": "2024-05-10T10:00:00+01:00",
       "endDateTime": "2024-05-24T10:00:00+01:00",
       "startPrice": "40",
-      "reservePrice": "60"
+      "reservePrice": "60",
+      "bids": []
     },
     {
       "id": 13,
@@ -154,7 +177,8 @@
       "startDateTime": "2024-05-17T10:00:00+01:00",
       "endDateTime": "2024-05-31T10:00:00+01:00",
       "startPrice": "60",
-      "reservePrice": "90"
+      "reservePrice": "90",
+      "bids": []
     },
     {
       "id": 14,
@@ -166,7 +190,8 @@
       "startDateTime": "2024-05-24T10:00:00+01:00",
       "endDateTime": "2024-06-07T10:00:00+01:00",
       "startPrice": "40",
-      "reservePrice": "60"
+      "reservePrice": "60",
+      "bids": []
     },
     {
       "id": 15,
@@ -178,7 +203,29 @@
       "startDateTime": "2024-06-01T10:00:00+01:00",
       "endDateTime": "2024-06-15T10:00:00+01:00",
       "startPrice": "75",
-      "reservePrice": "112"
+      "reservePrice": "112",
+      "bids": []
+    }
+  ],
+  "bids": [
+    {
+      "id": 1,
+      "bidder": "",
+      "amount": 20,
+      "timestamp": ""
+    },
+    {
+      "id": "dfaf",
+      "bidder": "1",
+      "amount": "1",
+      "timestamp": "1",
+      "itemId": 1
+    },
+    {
+      "id": "0c32",
+      "bidder": "Mustafa",
+      "amount": "20000",
+      "timestamp": "yeey"
     }
   ]
 }

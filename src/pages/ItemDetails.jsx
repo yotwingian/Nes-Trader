@@ -1,6 +1,7 @@
-import React, { useContext } from "react"
+import { useContext } from "react"
 import Countdown from "react-countdown"
 import { GlobalContext } from "../components/GlobalContext.jsx";
+import BidForm from "../components/AddBid.jsx";
 
 import { useParams } from "react-router-dom";
 
@@ -23,7 +24,8 @@ export default function ItemDetails() {
   }
 
   return (
-    <>
+    <>  
+      <BidForm />
       <h1>ItemDetails</h1>
       <img src={item.img} width="300" />
       <p>{item.title} | {item.releaseYear} | {item.genre} | Start price: {item.startPrice} | Game ends in: <Countdown date={new Date(item.endDateTime)} renderer={renderer} /> </p>
