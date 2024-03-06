@@ -1,29 +1,55 @@
+import { useState, useEffect } from 'react';
+
 function BidForm() {
+  const [currentDateTime, setCurrentDateTime] = useState(formatDateTime(new Date()));
 
-  const timestampNow = new Date();
-  console.log(timestampNow)
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentDateTime(formatDateTime(new Date()));
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  function formatDateTime(dateTime) {
+    const options = {
+      year: 'numeric',
+      month: 'numeric',
+      day: 'numeric',
+      hour: 'numeric',
+      minute: 'numeric',
+      second: 'numeric',
+      hour12: false,
+      timeZone: 'Europe/Stockholm' // Tidszon för Sverige
+    };
+
+    return dateTime.toLocaleString('sv-SE', options);
+  }
+
+  return (
+    <form onSubmit={PostBid}>
+      <label>Bidder:</label>
+      <input type="text" name="bidder" required />
+
+      <label>Amount:</label>
+      <input type="number" name="amount" required />
+
+      <label>Time:</label>
+      <input type="text" name="timespan" value={currentDateTime} readOnly />
 
 
-  
-  return <form onSubmit={PostBid}>
-    <label>Bidder:</label>
-    <input type="text" name="bidder" required />
-
-    <label>Amount:</label>
-    <input type="number" name="amount" required />
-
-    <label>Time:</label>
-    <input type="dateTime-locall" name="timestamp" required />
-
-    <input type="submit" />
-  </form>
-
+      <input type="submit" />
+    </form>
+  );
 }
 
 async function PostBid(event) {
   event.preventDefault();
   const data = new FormData(event.target);
   const info = Object.fromEntries(data);
+
+  info.timespan = new Date(info.timespan).toISOString();
+  
   await fetch("/api/bids", {
     method: "POST",
     headers: {
@@ -33,7 +59,6 @@ async function PostBid(event) {
   });
 
   event.target.reset();
-
 }
 
-export default BidForm
+export default BidForm;

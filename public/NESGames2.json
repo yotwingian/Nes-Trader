@@ -208,24 +208,18 @@
     }
   ],
   "bids": [
+    {},
     {
-      "id": 1,
-      "bidder": "",
-      "amount": 20,
-      "timestamp": ""
+      "id": "4997",
+      "bidder": "test",
+      "amount": "100",
+      "timespan": "2024-03-06 15:50:08"
     },
     {
-      "id": "dfaf",
-      "bidder": "1",
-      "amount": "1",
-      "timestamp": "1",
-      "itemId": 1
-    },
-    {
-      "id": "0c32",
-      "bidder": "Mustafa",
-      "amount": "20000",
-      "timestamp": "yeey"
+      "id": "167e",
+      "bidder": "Steef",
+      "amount": "2000",
+      "timespan": "2024-03-06T14:56:05.000Z"
     }
   ]
 }
