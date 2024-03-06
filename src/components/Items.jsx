@@ -5,11 +5,7 @@ import { GlobalContext } from "./GlobalContext.jsx";
 
 export default function Items() {
   const { items } = useContext(GlobalContext);
-  const [searchTerm, setSearchTerm] = useState(""); 
-
-  const handleSearchChange = (event) => {
-    setSearchTerm(event.target.value); 
-  };
+  const [filteredItems, setFilteredItems] = useState(items);
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -24,27 +20,27 @@ export default function Items() {
     }
   };
 
+  function filter(event) {
+    const searchString = event.target.value.toLowerCase();
 
-  const filteredItems = items.filter((item) =>
-    item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.releaseYear.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.genre.toLowerCase().includes(searchTerm.toLowerCase()) ||
-    item.description.toLowerCase().includes(searchTerm.toLocaleLowerCase)
-  );
+    const searchResult = items.filter(item =>
+        item.title.toLowerCase().includes(searchString) ||
+        item.releaseYear.toString().includes(searchString) ||
+        item.genre.toLowerCase().includes(searchString) ||
+        item.description.toLowerCase().includes(searchString)
+    );
+
+    setFilteredItems(searchResult);
+  }
 
   return (
     <>
       <search>
-        <input
-          type="text"
-          placeholder="Enter search here..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-        />
+        <input type="text" onChange={filter} placeholder="Enter search here..." />
       </search>
 
       <h1>Games</h1>
-      {filteredItems.map((item) => (
+      {filteredItems.map(item => (
         <section key={item.id}>
           <Link to={{ pathname: `/item-details/${item.id}` }}>
             <img src={item.img} width="100" alt={item.title} />
