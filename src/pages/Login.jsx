@@ -1,31 +1,82 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react'
+import { GlobalContext } from "../components/GlobalContext.jsx";
+
 export default function Login() {
-  const [register, setRegister] = useState(false)
+  const { items } = useContext(GlobalContext);
+  const [login, setLogin] = useState(true)
+  const [loginData, setLoginData] = useState({
+    email: '',
+    password: ''
+  })
 
   const handleSwitchForm = () => {
-    setRegister((prevRegister) => !prevRegister);
+    setLogin((prevRegister) => !prevRegister);
+
   }
 
   const handleSubmit = (event) => {
     event.preventDefault()
-  }
+
+    if (login) {
+      const user = items.find(item => item.user && item.user.email === loginData.email && item.user.password === loginData.password);
+
+      if (user) {
+        // Successfully logged in, you can navigate to your 'my page' or set some state to indicate login
+        console.log('Successfully logged in:', user);
+
+      } else {
+        // Display an error message or handle the unsuccessful login attempt
+        console.log('Invalid email or password');
+      }
+    } else {
+      // Handle registration logic if needed
+      console.log('Registering...');
+
+
+    }
+
+  };
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setLoginData(prevLoginData => ({
+      ...prevLoginData,
+      [name]: value
+    }));
+  };
+
 
   return (
     <>
-      <h1>{register ? 'Login' : 'Register'}</h1>
+      <h1>{login ? 'Login' : 'Register'}</h1>
       <form onSubmit={handleSubmit}>
-        {register ? (
+        {login ? (
           <>
             <div cclassName="form-group row">
               <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
               <div className="col-sm-10">
-                <input type="email" className="form-control" id="inputEmail3" placeholder="Email" />
+                <input
+                  type="email"
+                  className="form-control"
+                  id="inputEmail3"
+                  placeholder="Email"
+                  name="email"
+                  value={loginData.email}
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
             <div className="form-group row">
               <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
               <div className="col-sm-10">
-                <input type="password" className="form-control" id="inputPassword3" placeholder="Password" />
+                <input
+                  type="password"
+                  className="form-control"
+                  id="inputPassword3"
+                  placeholder="Password"
+                  name="password"
+                  value={loginData.password}
+                  onChange={handleInputChange}
+                />
               </div>
             </div>
             <div className="form-group row">
@@ -83,7 +134,7 @@ export default function Login() {
             <button type="submit" className="btn btn-primary">Sign in</button>
           </>
         )}
-        <h3 onClick={handleSwitchForm}>{register ? 'Go To Login' : 'Go To Register'}</h3>
+        <h3 onClick={handleSwitchForm}>{!login ? 'Go To Login' : 'Go To Register'}</h3>
       </form >
 
     </>

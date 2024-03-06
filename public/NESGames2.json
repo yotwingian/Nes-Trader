@@ -10,7 +10,11 @@
       "startDateTime": "2024-02-24T10:00:00+01:00",
       "endDateTime": "2024-03-10T10:07:00+01:00",
       "startPrice": "70",
-      "reservePrice": "105"
+      "reservePrice": "105",
+      "user": {
+        "email": "mario@example.com",
+        "password": "mario123"
+      }
     },
     {
       "id": 2,
@@ -22,7 +26,11 @@
       "startDateTime": "2024-03-01T10:00:00+01:00",
       "endDateTime": "2024-03-15T10:08:00+01:00",
       "startPrice": "50",
-      "reservePrice": "75"
+      "reservePrice": "75",
+      "user": {
+        "email": "donkey@example.com",
+        "password": "donkey123"
+      }
     },
     {
       "id": 3,
