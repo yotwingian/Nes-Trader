@@ -17,7 +17,7 @@ export default function Nav() {
       ) : (
         <>
           <Link to="login">Login/Register</Link>
-            <button style={{ marginLeft: '10px' }} onClick={login}>Login</button>  {/*tillf'llig styling*/}
+          <button style={{ marginLeft: '10px' }} onClick={login}>Login</button>  {/*tillf'llig styling*/}
         </>
       )}
     </nav>
