@@ -236,6 +236,13 @@
       "amount": "500",
       "timespan": "2024-03-06T21:09:38.000Z",
       "itemId": "5"
+    },
+    {
+      "id": "2b68",
+      "bidder": "steef",
+      "amount": "4000",
+      "timespan": "2024-03-06T21:11:44.000Z",
+      "itemId": 5
     }
   ]
 }

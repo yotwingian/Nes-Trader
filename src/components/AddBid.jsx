@@ -51,6 +51,7 @@ async function PostBid(event) {
   const data = new FormData(event.target);
   const info = Object.fromEntries(data);
   info.timespan = new Date(info.timespan).toISOString();
+  info.itemId = parseInt(info.itemId)
   
   await fetch("/api/bids", {
     method: "POST",
