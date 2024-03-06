@@ -12,16 +12,14 @@ function GlobalProvider({ children }) {
       try {
         const response = await fetch("/api/items")
         const itemsData = await response.json()
-
-        console.log(itemsData)
-
+        
         setItems(itemsData)
       } catch (error) {
         console.error("Error message: ", error)
       }
     }
     load()
-  }, [items])
+  }, [])
 
   const login = () => {
     setIsLoggedIn(true)
