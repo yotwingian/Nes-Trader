@@ -13,6 +13,8 @@ function GlobalProvider({ children }) {
         const response = await fetch("/api/items")
         const itemsData = await response.json()
 
+        console.log(itemsData)
+
         setItems(itemsData)
       } catch (error) {
         console.error("Error message: ", error)

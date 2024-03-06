@@ -5,7 +5,11 @@ import { GlobalContext } from "./GlobalContext.jsx";
 
 export default function Items() {
   const { items } = useContext(GlobalContext);
-  const [filteredItems, setFilteredItems] = useState(items);
+  const [searchTerm, setSearchTerm] = useState(""); 
+
+  const handleSearchChange = (event) => {
+    setSearchTerm(event.target.value); 
+  };
 
   const renderer = ({ days, hours, minutes, seconds, completed }) => {
     if (completed) {
@@ -20,23 +24,23 @@ export default function Items() {
     }
   };
 
-  function filter(event) {
-    const searchString = event.target.value.toLowerCase();
 
-    const searchResult = items.filter(item =>
-        item.title.toLowerCase().includes(searchString) ||
-        item.releaseYear.toString().includes(searchString) ||
-        item.genre.toLowerCase().includes(searchString) ||
-        item.description.toLowerCase().includes(searchString)
-    );
-
-    setFilteredItems(searchResult);
-  }
+  const filteredItems = items.filter((item) =>
+    item.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item.releaseYear.toString().toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item.genre.toLowerCase().includes(searchTerm.toLowerCase()) ||
+    item.description.toLowerCase().includes(searchTerm.toLocaleLowerCase)
+  );
 
   return (
     <>
       <search>
-        <input type="text" onChange={filter} placeholder="Enter search here..." />
+        <input
+          type="text"
+          placeholder="Enter search here..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+        />
       </search>
 
       <h1>Games</h1>
