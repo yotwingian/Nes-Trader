@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Countdown from "react-countdown";
 import { GlobalContext } from "./GlobalContext.jsx";
@@ -19,6 +19,10 @@ export default function Items() {
       );
     }
   };
+
+  useEffect(() => {
+    setFilteredItems(items);
+  }, [items]);
 
   function filter(event) {
     const searchString = event.target.value.toLowerCase();
