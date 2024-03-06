@@ -43,7 +43,6 @@ export default function Items() {
         <input type="text" onChange={filter} placeholder="Enter search here..." />
       </search>
 
-      <h1>Games</h1>
       {filteredItems.map(item => (
         <section key={item.id}>
           <Link to={{ pathname: `/item-details/${item.id}` }}>
