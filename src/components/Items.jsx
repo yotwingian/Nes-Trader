@@ -1,24 +1,28 @@
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Countdown from "react-countdown";
-import { GlobalContext } from "./GlobalContext.jsx";
+import { useContext, useState, useEffect } from "react"
+import { Link } from "react-router-dom"
+import Countdown from "react-countdown"
+import { GlobalContext } from "./GlobalContext.jsx"
+import CountdownRenderer from "./CountdownRenderer.jsx"
 
 export default function Items() {
-  const { items } = useContext(GlobalContext);
-  const [filteredItems, setFilteredItems] = useState(items);
 
-  const renderer = ({ days, hours, minutes, seconds, completed }) => {
-    if (completed) {
-      return <span>Game over!</span>;
-    } else {
-      return (
-        <span>
-          {days} days, {hours} hours, {minutes} minutes och {seconds} seconds Bid
-          now!
-        </span>
-      );
+  const { items, setItems } = useContext(GlobalContext)
+  const [ filteredItems, setFilteredItems ] = useState(items)
+
+  useEffect(() => {
+
+    async function load() {
+      try {
+        const response = await fetch("/api/items")
+        const itemsData = await response.json()
+        setItems(itemsData)
+      } catch (error) {
+        console.error("Error message: ", error)
+      }
     }
-  };
+    load()
+
+  }, [])
 
   useEffect(() => {
     setFilteredItems(items);
@@ -50,7 +54,7 @@ export default function Items() {
             <p>
               {item.title} | {item.releaseYear} | {item.genre} | Start price:{" "}
               {item.startPrice} | Game ends in:{" "}
-              <Countdown date={new Date(item.endDateTime)} renderer={renderer} />{" "}
+              <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
             </p>
           </Link>
         </section>
