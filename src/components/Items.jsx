@@ -25,20 +25,20 @@ export default function Items() {
   }, [])
 
   useEffect(() => {
-    setFilteredItems(items);
-  }, [items]);
+    setFilteredItems(items)
+  }, [items])
 
   function filter(event) {
-    const searchString = event.target.value.toLowerCase();
+    const searchString = event.target.value.toLowerCase()
 
     const searchResult = items.filter(item =>
         item.title.toLowerCase().includes(searchString) ||
         item.releaseYear.toString().includes(searchString) ||
         item.genre.toLowerCase().includes(searchString) ||
         item.description.toLowerCase().includes(searchString)
-    );
+    )
 
-    setFilteredItems(searchResult);
+    setFilteredItems(searchResult)
   }
 
   return (
@@ -60,5 +60,6 @@ export default function Items() {
         </section>
       ))}
     </>
-  );
+  )
+  
 }
