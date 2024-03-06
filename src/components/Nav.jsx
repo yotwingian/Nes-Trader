@@ -1,5 +1,5 @@
-import { Link } from "react-router-dom"
 import { useContext } from "react"
+import { Link } from "react-router-dom"
 import { GlobalContext } from "./GlobalContext.jsx"
 
 export default function Nav() {
@@ -22,5 +22,5 @@ export default function Nav() {
       )}
     </nav>
   )
-  
+
 }
