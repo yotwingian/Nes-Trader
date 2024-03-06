@@ -1,7 +1,7 @@
 {
   "items": [
     {
-      "id": 1,
+      "id": "1",
       "title": "Mario Bros.",
       "releaseYear": 1983,
       "genre": "Action",
@@ -25,7 +25,7 @@
       ]
     },
     {
-      "id": 2,
+      "id": "2",
       "title": "Donkey Kong Junior",
       "releaseYear": 1983,
       "genre": "Action",
@@ -38,7 +38,7 @@
       "bids": []
     },
     {
-      "id": 3,
+      "id": "3",
       "title": "Donkey Kong",
       "releaseYear": 1983,
       "genre": "Action",
@@ -51,7 +51,7 @@
       "bids": []
     },
     {
-      "id": 4,
+      "id": "4",
       "title": "Popeye",
       "releaseYear": 1983,
       "genre": "Action",
@@ -64,7 +64,7 @@
       "bids": []
     },
     {
-      "id": 5,
+      "id": "5",
       "title": "Donkey Kong Jr. Math",
       "releaseYear": 1983,
       "genre": "Educational, Puzzle",
@@ -77,7 +77,7 @@
       "bids": []
     },
     {
-      "id": 6,
+      "id": "6",
       "title": "Baseball",
       "releaseYear": 1983,
       "genre": "Sports",
@@ -90,7 +90,7 @@
       "bids": []
     },
     {
-      "id": 7,
+      "id": "7",
       "title": "Donkey Kong Jr. / Jr. Sansuu Lesson",
       "releaseYear": 1983,
       "genre": "Compilation",
@@ -103,7 +103,7 @@
       "bids": []
     },
     {
-      "id": 8,
+      "id": "8",
       "title": "Gomoku Narabe Renju",
       "releaseYear": 1983,
       "genre": "Strategy / tactics",
@@ -116,7 +116,7 @@
       "bids": []
     },
     {
-      "id": 9,
+      "id": "9",
       "title": "Mahjong",
       "releaseYear": 1983,
       "genre": "Strategy",
@@ -129,7 +129,7 @@
       "bids": []
     },
     {
-      "id": 10,
+      "id": "10",
       "title": "Popeye no Eigo Asobi",
       "releaseYear": 1983,
       "genre": "Action, Educational, Puzzle",
@@ -142,7 +142,7 @@
       "bids": []
     },
     {
-      "id": 11,
+      "id": "11",
       "title": "Excitebike",
       "releaseYear": 1984,
       "genre": "Sports, Racing / Driving",
@@ -155,7 +155,7 @@
       "bids": []
     },
     {
-      "id": 12,
+      "id": "12",
       "title": "Mappy",
       "releaseYear": 1984,
       "genre": "Action",
@@ -168,7 +168,7 @@
       "bids": []
     },
     {
-      "id": 13,
+      "id": "13",
       "title": "Pac-Man",
       "releaseYear": 1984,
       "genre": "Action",
@@ -181,7 +181,7 @@
       "bids": []
     },
     {
-      "id": 14,
+      "id": "14",
       "title": "Galaxian",
       "releaseYear": 1984,
       "genre": "Action",
@@ -194,7 +194,7 @@
       "bids": []
     },
     {
-      "id": 15,
+      "id": "15",
       "title": "Nuts & Milk",
       "releaseYear": 1984,
       "genre": "Action",
@@ -208,7 +208,9 @@
     }
   ],
   "bids": [
-    {},
+    {
+      "id": "5768"
+    },
     {
       "id": "4997",
       "bidder": "test",
@@ -220,6 +222,20 @@
       "bidder": "Steef",
       "amount": "2000",
       "timespan": "2024-03-06T14:56:05.000Z"
+    },
+    {
+      "id": "9cd9",
+      "bidder": "Steef",
+      "amount": "300",
+      "timespan": "2024-03-06T21:09:09.000Z",
+      "itemId": "1"
+    },
+    {
+      "id": "9a7e",
+      "bidder": "hej",
+      "amount": "500",
+      "timespan": "2024-03-06T21:09:38.000Z",
+      "itemId": "5"
     }
   ]
 }

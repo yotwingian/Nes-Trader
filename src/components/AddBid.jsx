@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 
-function BidForm() {
+function BidForm({ itemId }) {
+
   const [currentDateTime, setCurrentDateTime] = useState(formatDateTime(new Date()));
 
   useEffect(() => {
@@ -37,6 +38,8 @@ function BidForm() {
       <label>Time:</label>
       <input type="text" name="timespan" value={currentDateTime} readOnly />
 
+      <input type="hidden" name="itemId" value={itemId} />
+
 
       <input type="submit" />
     </form>
@@ -47,7 +50,6 @@ async function PostBid(event) {
   event.preventDefault();
   const data = new FormData(event.target);
   const info = Object.fromEntries(data);
-
   info.timespan = new Date(info.timespan).toISOString();
   
   await fetch("/api/bids", {
@@ -60,5 +62,8 @@ async function PostBid(event) {
 
   event.target.reset();
 }
+
+
+
 
 export default BidForm;
