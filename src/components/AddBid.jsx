@@ -16,15 +16,16 @@ function BidForm({ itemId }) {
 
   return (
     <form onSubmit={PostBid}>
+    {/* ERSÄTT MED <form onSubmit={PostBid} action={`/api/bids/${itemId}`}> */}
       <label>Bidder:</label>
       <input type="text" name="bidder" required />
 
       <label>Amount:</label>
       <input type="number" name="amount" required />
 
-      <input type="hidden" name="timespan" value={currentDateTime} readOnly />
+      <input type="hidden" name="timespan" value={currentDateTime} readOnly /> {/* TA BORT */}
 
-      <input type="hidden" name="itemId" value={itemId} />
+      <input type="hidden" name="itemId" value={itemId} /> {/* TA BORT */}
 
 
       <input type="submit" />
@@ -36,10 +37,11 @@ async function PostBid(event) {
   event.preventDefault();
   const data = new FormData(event.target);
   const info = Object.fromEntries(data);
-  info.timespan = new Date(info.timespan).toISOString();
-  info.itemId = parseInt(info.itemId)
-  
+  info.timespan = new Date(info.timespan).toISOString(); // TA BORT
+  info.itemId = parseInt(info.itemId) // TA BORT
+
   await fetch("/api/bids", {
+  // ERSÄTT MED await fetch(event.target.action, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

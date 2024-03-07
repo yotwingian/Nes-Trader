@@ -4,7 +4,6 @@ const GlobalContext = createContext()
 
 function GlobalProvider({ children }) {
 
-  const [items, setItems] = useState([])
   const [isLoggedIn, setIsLoggedIn] = useState(false)
 
   // BORDE FLYTTAS TILL LOGIN COMPONENT OCH INTE RETURNERA login NEDAN
@@ -13,7 +12,7 @@ function GlobalProvider({ children }) {
   }
 
   return (
-    <GlobalContext.Provider value={{ items, setItems, isLoggedIn, login }}>
+    <GlobalContext.Provider value={{ isLoggedIn, login }}>
       {children}
     </GlobalContext.Provider>
   )
