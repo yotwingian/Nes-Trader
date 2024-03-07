@@ -2,30 +2,16 @@ import { useState, useEffect } from 'react';
 
 function BidForm({ itemId }) {
 
-  const [currentDateTime, setCurrentDateTime] = useState(formatDateTime(new Date()));
+  const [currentDateTime, setCurrentDateTime] = useState(new Date());
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      setCurrentDateTime(formatDateTime(new Date()));
+      setCurrentDateTime(new Date());
     }, 1000);
 
     return () => clearInterval(intervalId);
   }, []);
 
-  function formatDateTime(dateTime) {
-    const options = {
-      year: 'numeric',
-      month: 'numeric',
-      day: 'numeric',
-      hour: 'numeric',
-      minute: 'numeric',
-      second: 'numeric',
-      hour12: false,
-      timeZone: 'Europe/Stockholm' // Tidszon för Sverige
-    };
-
-    return dateTime.toLocaleString('sv-SE', options);
-  }
 
   return (
     <form onSubmit={PostBid}>
@@ -35,8 +21,7 @@ function BidForm({ itemId }) {
       <label>Amount:</label>
       <input type="number" name="amount" required />
 
-      <label>Time:</label>
-      <input type="text" name="timespan" value={currentDateTime} readOnly />
+      <input type="hidden" name="timespan" value={currentDateTime} readOnly />
 
       <input type="hidden" name="itemId" value={itemId} />
 

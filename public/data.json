@@ -243,6 +243,20 @@
       "amount": "4000",
       "timespan": "2024-03-06T21:11:44.000Z",
       "itemId": 5
+    },
+    {
+      "id": "e948",
+      "bidder": "Test",
+      "amount": "20000",
+      "timespan": "2024-03-07T10:54:11.000Z",
+      "itemId": null
+    },
+    {
+      "id": "9411",
+      "bidder": "test222",
+      "amount": "222",
+      "timespan": "2024-03-07T10:55:57.000Z",
+      "itemId": 1
     }
   ]
 }
