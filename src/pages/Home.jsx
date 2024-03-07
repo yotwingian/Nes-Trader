@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import { GlobalContext } from "../components/GlobalContext.jsx";
 
 export default function Home() {
