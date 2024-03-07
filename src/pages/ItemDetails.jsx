@@ -15,7 +15,7 @@ export default function ItemDetails() {
 
   return (
     <>  
-      <BidForm itemId={id}/>
+      <BidForm itemId={parseInt(id)}/>
       <h1>{item.title}</h1>
       <img src={item.img} width="300" />
       <p>{item.releaseYear} | {item.genre} | Start price: {item.startPrice} | Game ends in: <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} /></p>

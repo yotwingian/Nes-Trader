@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import PropTypes from 'prop-types'
 
 function BidForm({ itemId }) {
 
@@ -49,7 +50,9 @@ async function PostBid(event) {
   event.target.reset();
 }
 
-
+BidForm.propTypes = {
+  itemId: PropTypes.number
+};
 
 
 export default BidForm;
