@@ -1,13 +1,30 @@
-import { useState, useContext } from 'react'
-import { GlobalContext } from "../components/GlobalContext.jsx";
+import { useState, useEffect } from 'react'
+
 
 export default function Login() {
-  const { items } = useContext(GlobalContext);
+  const [users, setUsers] = useState([])
   const [login, setLogin] = useState(true)
   const [loginData, setLoginData] = useState({
     email: '',
     password: ''
   })
+
+  useEffect(() => {
+
+    async function load() {
+      try {
+        const response = await fetch("/api/users")
+        const userData = await response.json()
+        setUsers(userData)
+        console.log(userData)
+      } catch (error) {
+        console.error("Error message: ", error)
+      }
+    }
+    load()
+
+  }, [])
+  console.log(users)
 
   const handleSwitchForm = () => {
     setLogin((prevRegister) => !prevRegister);
@@ -18,18 +35,18 @@ export default function Login() {
     event.preventDefault()
 
     if (login) {
-      const user = items.find(item => item.user && item.user.email === loginData.email && item.user.password === loginData.password);
+      const user = users.find(user => user.email === loginData.email && user.password === loginData.password);
 
       if (user) {
-        // Successfully logged in, you can navigate to your 'my page' or set some state to indicate login
+
         console.log('Successfully logged in:', user);
 
       } else {
-        // Display an error message or handle the unsuccessful login attempt
+
         console.log('Invalid email or password');
       }
     } else {
-      // Handle registration logic if needed
+
       console.log('Registering...');
 
 

@@ -286,5 +286,12 @@
       "timespan": "2024-03-07T12:47:03.000Z",
       "itemId": 1
     }
+  ],
+  "users": [
+    {
+      "userId": 1,
+      "email": "mario@example.com",
+      "password": "mario123"
+    }
   ]
 }

@@ -7,7 +7,7 @@ import CountdownRenderer from "./CountdownRenderer.jsx"
 export default function Items() {
 
   const { items, setItems } = useContext(GlobalContext)
-  const [ filteredItems, setFilteredItems ] = useState([])
+  const [filteredItems, setFilteredItems] = useState([])
 
   useEffect(() => {
 
@@ -17,6 +17,7 @@ export default function Items() {
         const data = await response.json()
         setItems(data)
         setFilteredItems(data)
+        console.log(filteredItems)
       } catch (error) {
         console.error("Error message: ", error)
       }
@@ -29,10 +30,10 @@ export default function Items() {
     const searchString = event.target.value.toLowerCase()
 
     const searchResult = items.filter(item =>
-        item.title.toLowerCase().includes(searchString) ||
-        item.releaseYear.toString().includes(searchString) ||
-        item.genre.toLowerCase().includes(searchString) ||
-        item.description.toLowerCase().includes(searchString)
+      item.title.toLowerCase().includes(searchString) ||
+      item.releaseYear.toString().includes(searchString) ||
+      item.genre.toLowerCase().includes(searchString) ||
+      item.description.toLowerCase().includes(searchString)
     )
 
     setFilteredItems(searchResult)
