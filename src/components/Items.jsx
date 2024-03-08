@@ -7,13 +7,14 @@ export default function Items() {
 
   const [ items, setItems ] = useState([])
   const [ filteredItems, setFilteredItems ] = useState([])
+  const [ sortType, setSortType ] = useState('endingSoon') // default sort type
 
   useEffect(() => {
     async function load() {
       const response = await fetch("/api/items")
       const data = await response.json()
       setItems(data)
-      setFilteredItems(data)
+      sortItems(data, sortType)
     }
     load()
   }, [])
@@ -26,12 +27,43 @@ export default function Items() {
         item.genre.toLowerCase().includes(searchString) ||
         item.description.toLowerCase().includes(searchString)
     )
-    setFilteredItems(searchResult)
+    sortItems(searchResult, sortType)
+  }
+
+  function sortItems(sortedItems, sortType) {
+    switch(sortType) {
+      case 'title':
+        sortedItems.sort((a, b) => a.title.localeCompare(b.title))
+        break
+      case 'releaseYear':
+        sortedItems.sort((a, b) => a.releaseYear - b.releaseYear)
+        break
+      case 'endingSoon':
+        sortedItems.sort((a, b) => new Date(a.endDateTime) - new Date(b.endDateTime))
+        break
+      case 'latest':
+        sortedItems.sort((a, b) => new Date(b.startDateTime) - new Date(a.startDateTime)) // assuming items have a startDateTime property
+        break
+      default:
+        break
+    }
+    setFilteredItems(sortedItems)
+  }
+
+  function handleSortChange(event) {
+    setSortType(event.target.value)
+    sortItems(filteredItems, event.target.value)
   }
 
   return <>
     <search>
       <input type="text" onChange={filter} placeholder="Enter search here..." />
+      <select onChange={handleSortChange}>
+        <option value="endingSoon">Ending Soon</option>
+        <option value="title">Title</option>
+        <option value="releaseYear">Release Year</option>
+        <option value="latest">Latest</option>
+      </select>
     </search>
 
     {filteredItems.map(item => (
