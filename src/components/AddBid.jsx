@@ -16,7 +16,7 @@ function BidForm({ itemId }) {
 
   return (
     <form onSubmit={PostBid}>
-    {/* ERSÄTT MED <form onSubmit={PostBid} action={`/api/bids/${itemId}`}> */}
+      {/* ERSÄTT MED <form onSubmit={PostBid} action={`/api/bids/${itemId}`}> */}
       <label>Bidder:</label>
       <input type="text" name="bidder" required />
 
@@ -41,7 +41,7 @@ async function PostBid(event) {
   info.itemId = parseInt(info.itemId) // TA BORT
 
   await fetch("/api/bids", {
-  // ERSÄTT MED await fetch(event.target.action, {
+    // ERSÄTT MED await fetch(event.target.action, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -13,16 +13,6 @@ export default function Items() {
   useEffect(() => {
     async function load() {
 
-      // try {
-      //   const response = await fetch("/api/items")
-      //   const data = await response.json()
-      //   setItems(data)
-      //   setFilteredItems(data)
-      //   console.log(filteredItems)
-      // } catch (error) {
-      //   console.error("Error message: ", error)
-      // }
-
       const response = await fetch("/api/items")
       const data = await response.json()
       setItems(data)
