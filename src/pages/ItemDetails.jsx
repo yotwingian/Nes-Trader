@@ -1,26 +1,36 @@
-import { useContext } from "react"
+import { useState, useEffect } from "react"
 import { useParams } from "react-router-dom"
 import Countdown from "react-countdown"
-import { GlobalContext } from "../components/GlobalContext.jsx"
 import BidForm from "../components/AddBid.jsx"
 import CountdownRenderer from "../components/CountdownRenderer.jsx"
 
 export default function ItemDetails() {
 
-  const { items } = useContext(GlobalContext)
   const { id } = useParams()
+  const [ item, setItem ] = useState()
 
-  // const item = items[id - 1]
-  const item = items.find(item => item.id.toString() === id)
+  useEffect(() => {
+    async function load() {
+      const response = await fetch("/api/items/" + id)
+      const data = await response.json()
+      setItem(data)
+    }
+    load()
+  }, [])
 
-  return (
-    <>  
-      <BidForm itemId={parseInt(id)}/>
-      <h1>{item.title}</h1>
-      <img src={item.img} width="300" />
-      <p>{item.releaseYear} | {item.genre} | Start price: {item.startPrice} | Game ends in: <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} /></p>
-      <p>{item.description}</p>
-    </>
-  )
+  if (!item) {
+    return null
+  }
+
+  return <>
+    <BidForm itemId={parseInt(id)} />
+    <h1>{item.title}</h1>
+    <img src={item.img} width="300" alt={item.title} />
+    <p>
+      {item.releaseYear} | {item.genre} | Start price: {item.startPrice} | Game over in:
+      <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />
+    </p>
+    <p>{item.description}</p>
+  </>
 
 }
