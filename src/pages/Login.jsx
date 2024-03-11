@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import RegisterForm from "../components/Register.jsx"
+import { GlobalContext } from '../components/GlobalContext.jsx'
 
 export default function Login() {
   const [users, setUsers] = useState([])
@@ -8,6 +9,7 @@ export default function Login() {
     email: '',
     password: ''
   })
+  const { setIsLoggedIn } = useContext(GlobalContext)
 
   useEffect(() => {
 
@@ -25,6 +27,7 @@ export default function Login() {
 
   }, [])
 
+
   const handleSwitchForm = () => {
     setLogin((login) => (!login));
 
@@ -37,9 +40,8 @@ export default function Login() {
       const user = users.find(user => user.email === loginData.email && user.password === loginData.password);
 
       if (user) {
-
+        setIsLoggedIn(true)
         console.log('Successfully logged in:', user);
-
       } else {
 
         console.log('Invalid email or password');

@@ -12,7 +12,7 @@ function GlobalProvider({ children }) {
   }
 
   return (
-    <GlobalContext.Provider value={{ isLoggedIn, login }}>
+    <GlobalContext.Provider value={{ isLoggedIn, setIsLoggedIn, login }}>
       {children}
     </GlobalContext.Provider>
   )
