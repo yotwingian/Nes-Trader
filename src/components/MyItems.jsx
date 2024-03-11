@@ -10,10 +10,9 @@ export default function MyItems() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      // Fixa Api o Mockajacka
-      
+            
       async function load() {
-        const response = await fetch("/api/items");
+        const response = await fetch("/api/mylistings");
         const data = await response.json();
         setUserListings(data);
       }

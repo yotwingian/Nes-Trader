@@ -10,10 +10,9 @@ export default function MyBids() {
 
   useEffect(() => {
     if (isLoggedIn) {
-      // Fixa api o mockajacka
-      
+            
       async function load() {
-        const response = await fetch("/api/bids");
+        const response = await fetch("/api/mybids");
         const data = await response.json();
         setUserBids(data);
       }

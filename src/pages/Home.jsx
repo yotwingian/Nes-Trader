@@ -1,10 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Items from "../components/Items.jsx";
 import { Link } from "react-router-dom"
 import Countdown from "react-countdown"
 import CountdownRenderer from "../components/CountdownRenderer.jsx"
+import MyBids from "../components/MyBids.jsx";
+import MyItems from "../components/MyItems.jsx";
+import { GlobalContext } from "../components/GlobalContext.jsx";
 
 export default function Home() {
+  const { isLoggedIn } = useContext(GlobalContext);
   const [endingSoonItems, setEndingSoonItems] = useState([]);
   const [latestItems, setLatestItems] = useState([]);
 
@@ -26,6 +30,13 @@ export default function Home() {
 
   return (
     <div>
+      {isLoggedIn && (
+        <>
+          <MyBids />
+          <MyItems />
+        </>
+      )}
+
        { <h1>Top 5 Ending Soon Items</h1> }
       {endingSoonItems.map(item => (
         <Link to={{ pathname: `/item-details/${item.id}` }}>
