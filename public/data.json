@@ -209,19 +209,18 @@
   ],
   "bids": [
     {
-      "id": "5768"
-    },
-    {
       "id": "4997",
       "bidder": "test",
       "amount": "100",
-      "timespan": "2024-03-06 15:50:08"
+      "timespan": "2024-03-06 15:50:08",
+      "itemId": 5
     },
     {
       "id": "167e",
       "bidder": "Steef",
       "amount": "2000",
-      "timespan": "2024-03-06T14:56:05.000Z"
+      "timespan": "2024-03-06T14:56:05.000Z",
+      "itemId": 5
     },
     {
       "id": "9cd9",
@@ -249,7 +248,7 @@
       "bidder": "Test",
       "amount": "20000",
       "timespan": "2024-03-07T10:54:11.000Z",
-      "itemId": null
+      "itemId": 2
     },
     {
       "id": "9411",
@@ -292,11 +291,6 @@
       "amount": "123",
       "timespan": "2024-03-10T13:00:19.000Z",
       "itemId": 1
-    },
-    {
-      "id": "2345",
-      "title": "123",
-      "releaseYear": "123"
     }
   ],
   "users": [
