@@ -3,8 +3,8 @@ import { Link } from "react-router-dom"
 import { GlobalContext } from "./GlobalContext.jsx"
 
 export default function Nav() {
-  const { isLoggedIn, login } = useContext(GlobalContext)
-
+  const { login, isLoggedIn } = useContext(GlobalContext)
+  console.log(isLoggedIn)
   return (
     <nav>
       <Link to="/">NES TRADER</Link> |
@@ -13,11 +13,12 @@ export default function Nav() {
         <>
           <Link to="new-item">Sell</Link> |
           <Link to="my-page">Username</Link> |
+          <button style={{ marginLeft: '10px' }} onClick={login} >Logout</button>  {/*tillfällig styling*/}
         </>
       ) : (
         <>
           <Link to="login">Login/Register</Link>
-          <button style={{ marginLeft: '10px' }} onClick={login}>Login</button>  {/*tillfällig styling*/}
+
         </>
       )}
     </nav>
