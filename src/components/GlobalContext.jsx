@@ -8,7 +8,7 @@ function GlobalProvider({ children }) {
 
   // BORDE FLYTTAS TILL LOGIN COMPONENT OCH INTE RETURNERA login NEDAN
   const login = () => {
-    setIsLoggedIn(!isLoggedIn)
+    setIsLoggedIn((isLoggedIn) => (!isLoggedIn))
   }
 
   return (

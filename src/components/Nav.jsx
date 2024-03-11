@@ -9,8 +9,9 @@ export default function Nav() {
     // Remove user information from local storage
     localStorage.removeItem("user");
     // Set isLoggedIn to false in your global context or state
-    login;
-    console.log('User logged out');
+    login(false)
+    console.log(login);
+
   };
   return (
     <nav>

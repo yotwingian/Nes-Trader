@@ -52,7 +52,12 @@ async function PostUser(event) {
       body: JSON.stringify(info),
     });
 
+
+    const response = await fetch("/api/users");
+    const userData = await response.json();
     event.target.reset();
+    // Do something with the new data if needed
+    console.log("Updated user data:", userData);
   } catch (error) {
     console.error("Error posting user:", error);
 
