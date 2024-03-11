@@ -4,6 +4,14 @@ import { GlobalContext } from "./GlobalContext.jsx"
 
 export default function Nav() {
   const { login, isLoggedIn } = useContext(GlobalContext)
+
+  const handleLogout = () => {
+    // Remove user information from local storage
+    localStorage.removeItem("user");
+    // Set isLoggedIn to false in your global context or state
+    login;
+    console.log('User logged out');
+  };
   return (
     <nav>
       <Link to="/">NES TRADER</Link> |
@@ -12,7 +20,7 @@ export default function Nav() {
         <>
           <Link to="new-item">Sell</Link> |
           <Link to="my-page">Username</Link> |
-          <button style={{ marginLeft: '10px' }} onClick={login} >Logout</button>  {/*tillfällig styling*/}
+          <button style={{ marginLeft: '10px' }} onClick={handleLogout} >Logout</button>  {/*tillfällig styling*/}
         </>
       ) : (
         <>

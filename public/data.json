@@ -22,7 +22,8 @@
           "amount": 90,
           "timestamp": "2024-03-07T12:17:00+01:00"
         }
-      ]
+      ],
+      "user": "mario@example.com"
     },
     {
       "id": "2",

@@ -40,6 +40,7 @@ export default function Login() {
       const user = users.find(user => user.email === loginData.email && user.password === loginData.password);
 
       if (user) {
+        localStorage.setItem("user", JSON.stringify(user))
         setIsLoggedIn(true)
         console.log('Successfully logged in:', user);
       } else {
@@ -61,6 +62,16 @@ export default function Login() {
       [name]: value
     }));
   };
+
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setIsLoggedIn(true);
+      console.log(user)
+    }
+  }, [setIsLoggedIn]);
 
 
   return (
