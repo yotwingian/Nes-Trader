@@ -4,7 +4,6 @@ import { GlobalContext } from "./GlobalContext.jsx"
 
 export default function Nav() {
   const { login, isLoggedIn } = useContext(GlobalContext)
-  console.log(isLoggedIn)
   return (
     <nav>
       <Link to="/">NES TRADER</Link> |
