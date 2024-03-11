@@ -24,10 +24,9 @@ export default function Login() {
     load()
 
   }, [])
-  console.log(users)
 
   const handleSwitchForm = () => {
-    setLogin((prevRegister) => !prevRegister);
+    setLogin((login) => (!login));
 
   }
 
@@ -55,8 +54,8 @@ export default function Login() {
   };
   const handleInputChange = (event) => {
     const { name, value } = event.target;
-    setLoginData(prevLoginData => ({
-      ...prevLoginData,
+    setLoginData(loginData => ({
+      ...loginData,
       [name]: value
     }));
   };

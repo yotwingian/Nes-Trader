@@ -305,16 +305,6 @@
       "email": "mario@example.com",
       "password": "mario123",
       "id": "2357"
-    },
-    {
-      "id": "e5d5",
-      "name": "",
-      "email": "",
-      "password": "",
-      "userName": "",
-      "adress": "",
-      "city": "",
-      "zip": ""
     }
   ]
 }
