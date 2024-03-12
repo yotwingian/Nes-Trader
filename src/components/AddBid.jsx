@@ -26,7 +26,7 @@ function BidForm({ itemId, startPrice }) {
   useEffect(() => {
     const newMaxBidAmount = Bid.reduce((max, bid) => (parseFloat(bid.amount) > max ? parseFloat(bid.amount) : max), 0);
     setMaxBidAmount(newMaxBidAmount);
-  }, [Bid]); 
+  }, [Bid]);
 
   async function PostBid(event) {
     event.preventDefault();
@@ -36,10 +36,10 @@ function BidForm({ itemId, startPrice }) {
     info.itemId = parseInt(info.itemId);
 
     if (parseFloat(info.amount) <= maxBidAmount) {
-      alert("The new bid must be equal to or greater than the existing bid. Current bid: " + maxBidAmount);
+      alert("The new bid must be greater than the existing bid. Current bid: " + maxBidAmount);
       return;
     }
-    else if (parseFloat(info.amount) <= startPrice) {
+    else if (parseFloat(info.amount) < startPrice) {
       alert("The new bid must be equal to or greater than the start price. Current start price: " + startPrice);
       return;
     }
@@ -51,6 +51,7 @@ function BidForm({ itemId, startPrice }) {
       },
       body: JSON.stringify(info),
     });
+    alert("Your bid was successful. Your bid: " + info.amount);
 
     event.target.reset();
   }
@@ -60,14 +61,13 @@ function BidForm({ itemId, startPrice }) {
       <label>Bidder:</label>
       <input type="text" name="bidder" required />
 
-      <label>Amount:</label>
-      <input type="number" name="amount" required />
+      <input type="number" placeholder="Amount" name="amount" required />
 
       <input type="hidden" name="timespan" value={currentDateTime.toISOString()} readOnly />
 
       <input type="hidden" name="itemId" value={itemId} />
 
-      <input type="submit" />
+      <input type="submit" value="Bid now!" />
     </form>
   );
 }

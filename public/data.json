@@ -341,6 +341,34 @@
       "amount": "285",
       "timespan": "2024-03-11T14:14:22.169Z",
       "itemId": 1
+    },
+    {
+      "id": "9852",
+      "bidder": "123",
+      "amount": "60",
+      "timespan": "2024-03-12T09:21:30.797Z",
+      "itemId": 13
+    },
+    {
+      "id": "52aa",
+      "bidder": "123",
+      "amount": "61",
+      "timespan": "2024-03-12T09:22:06.817Z",
+      "itemId": 13
+    },
+    {
+      "id": "d6e1",
+      "bidder": "123",
+      "amount": "62",
+      "timespan": "2024-03-12T09:22:56.816Z",
+      "itemId": 13
+    },
+    {
+      "id": "7ef9",
+      "bidder": "1",
+      "amount": "63",
+      "timespan": "2024-03-12T09:29:45.985Z",
+      "itemId": 13
     }
   ]
 }
