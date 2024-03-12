@@ -6,6 +6,8 @@ import CountdownRenderer from "../components/CountdownRenderer.jsx"
 import MyBids from "../components/MyBids.jsx";
 import MyItems from "../components/MyItems.jsx";
 import { GlobalContext } from "../components/GlobalContext.jsx";
+import TotalBids from "../components/TotalBids.jsx"
+import MaxBid from "../components/MaxBid.jsx"
 
 export default function Home() {
   const { isLoggedIn } = useContext(GlobalContext);
@@ -39,24 +41,30 @@ export default function Home() {
 
        { <h1>Top 5 Ending Soon Items</h1> }
       {endingSoonItems.map(item => (
-        <Link to={{ pathname: `/item-details/${item.id}` }}>
-          <img src={item.img} width="100" alt={item.title} />
-          <p>
-            {item.title} | {item.releaseYear} | {item.genre} | Start price:{" "} {item.startPrice} | Game over in:{" "}
-            <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
-          </p>
-        </Link>
+        <section key={item.id}>
+          <Link to={{ pathname: `/item-details/${item.id}` }}>
+            <img src={item.img} width="100" alt={item.title} />
+            <p>
+              {item.title} | {item.releaseYear} | {item.genre} |
+              <MaxBid id={parseInt(item.id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(item.id)} /> |
+              Game over in:{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
+            </p>
+          </Link>
+        </section>
       ))}
       
        { <h1>Top 5 Latest Items</h1> }
       {latestItems.map(item => (
-        <Link to={{ pathname: `/item-details/${item.id}` }}>
-          <img src={item.img} width="100" alt={item.title} />
-          <p>
-            {item.title} | {item.releaseYear} | {item.genre} | Start price:{" "} {item.startPrice} | Game over in:{" "}
-            <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
-          </p>
-        </Link>
+        <section key={item.id}>
+          <Link to={{ pathname: `/item-details/${item.id}` }}>
+            <img src={item.img} width="100" alt={item.title} />
+            <p>
+              {item.title} | {item.releaseYear} | {item.genre} |
+              <MaxBid id={parseInt(item.id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(item.id)} /> |
+              Game over in:{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
+            </p>
+          </Link>
+        </section>
       ))}
 
       <h1>All Games</h1>
