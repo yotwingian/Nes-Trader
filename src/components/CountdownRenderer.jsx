@@ -5,8 +5,7 @@ const CountdownRenderer = ({ days, hours, minutes, seconds, completed }) => {
   } else {
     return (
       <span>
-        {days} days, {hours} hours, {minutes} minutes and {seconds} seconds Bid
-        now!
+        {days} days, {hours} hours, {minutes} minutes and {seconds} seconds
       </span>
     )
   }

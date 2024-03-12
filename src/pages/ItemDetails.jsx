@@ -26,13 +26,15 @@ export default function ItemDetails() {
   }
   
   return <>
-    <BidForm itemId={parseInt(id)} />
     <h1>{item.title}</h1>
     <img src={item.img} width="300" alt={item.title} />
     <p>
       {item.releaseYear} | {item.genre} | <MaxBid id={parseInt(id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(id)} /> | 
       Game over in: <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} /> 
     </p>
+    <BidForm itemId={parseInt(id)} startPrice={item.startPrice} />
+    <p></p>
     <p>{item.description}</p>
+
   </>
 }

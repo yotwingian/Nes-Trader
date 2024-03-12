@@ -20,12 +20,12 @@ export default function MaxBid({ id, startPrice }) {
 
   if (startPrice < maxBid) {
     return <>
-      Current bid: {maxBid} kr
+      Current bid: {maxBid}
     </>
   }
   else {
     return <>
-      Start price: {startPrice} kr
+      Start price: {startPrice}
     </>
   }
 
