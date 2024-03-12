@@ -17,11 +17,11 @@ export default function Home() {
       const response = await fetch("/api/items");
       const data = await response.json();
 
-     
+
       const sortedByEndingSoon = [...data].sort((a, b) => new Date(a.endDateTime) - new Date(b.endDateTime));
       setEndingSoonItems(sortedByEndingSoon.slice(0, 5));
 
-      
+
       const sortedByLatest = [...data].sort((a, b) => new Date(b.startDateTime) - new Date(a.startDateTime));
       setLatestItems(sortedByLatest.slice(0, 5));
     }
@@ -37,7 +37,7 @@ export default function Home() {
         </>
       )}
 
-       { <h1>Top 5 Ending Soon Items</h1> }
+      {<h1>Top 5 Ending Soon Items</h1>}
       {endingSoonItems.map(item => (
         <Link to={{ pathname: `/item-details/${item.id}` }}>
           <img src={item.img} width="100" alt={item.title} />
@@ -47,8 +47,8 @@ export default function Home() {
           </p>
         </Link>
       ))}
-      
-       { <h1>Top 5 Latest Items</h1> }
+
+      {<h1>Top 5 Latest Items</h1>}
       {latestItems.map(item => (
         <Link to={{ pathname: `/item-details/${item.id}` }}>
           <img src={item.img} width="100" alt={item.title} />
