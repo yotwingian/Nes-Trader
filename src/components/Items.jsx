@@ -9,7 +9,7 @@ export default function Items() {
 
   const [items, setItems] = useState([])
   const [filteredItems, setFilteredItems] = useState([])
-  const [sortType, setSortType] = useState('endingSoon') // default sort type
+  const [sortType, setSortType] = useState('endingSoon')
 
 
   useEffect(() => {
@@ -47,7 +47,7 @@ export default function Items() {
         sortedItems.sort((a, b) => new Date(a.endDateTime) - new Date(b.endDateTime))
         break
       case 'latest':
-        sortedItems.sort((a, b) => new Date(b.startDateTime) - new Date(a.startDateTime)) // assuming items have a startDateTime property
+        sortedItems.sort((a, b) => new Date(b.startDateTime) - new Date(a.startDateTime))
         break
       default:
         break
@@ -77,7 +77,7 @@ export default function Items() {
           <img src={item.img} width="100" alt={item.title} />
           <p>
             {item.title} | {item.releaseYear} | {item.genre} |
-            <MaxBid id={parseInt(item.id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(item.id)} /> | 
+            <MaxBid id={parseInt(item.id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(item.id)} /> |
             Game over in:{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
           </p>
         </Link>
