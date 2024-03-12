@@ -2,7 +2,7 @@
 function RegisterForm() {
 
   return <form onSubmit={PostUser}>
-    <div className="form-row">
+    <div className="form-row" id="registerForm" >
       <div className="form-group col-md-6">
         <label htmlFor="inputName">Name</label>
         <input type="text" name="name" className="form-control" id="inputName" placeholder="Name" required />
@@ -20,7 +20,7 @@ function RegisterForm() {
       <label htmlFor="inputUsername">Username</label>
       <input type="text" name="userName" className="form-control" id="inputUsername" placeholder="Username" required />
     </div>
-    <div className="form-group">
+    <div className="form-group col-md-6">
       <label htmlFor="inputAddress">Address</label>
       <input type="text" name="adress" className="form-control" id="inputAddress" required />
     </div>
@@ -29,7 +29,7 @@ function RegisterForm() {
         <label htmlFor="inputCity">City</label>
         <input type="text" name="city" className="form-control" id="inputCity" required />
       </div>
-      <div className="form-group col-md-2">
+      <div className="form-group col-md-2" id="registerFormBottom">
         <label htmlFor="inputZip">Zip</label>
         <input type="text" name="zip" className="form-control" id="inputZip" required />
       </div>

@@ -1,7 +1,16 @@
+header {
+  padding: 20px;
+}
+
 main {
   padding: 50px;
 }
 
+footer {
+  padding: 20px;
+}
+
+/* login */
 
 #inputEmail3 {
   width: 350px;
@@ -9,4 +18,22 @@ main {
 
 #inputPassword3 {
   width: 350px;
+  margin-bottom: 10px;
+}
+
+#loginInput {
+  margin-bottom: 10px;
+}
+
+#gotoRegister {
+  margin-top: 10px;
+}
+
+/* register */
+#registerForm {
+  margin-top: 10px;
+}
+
+#registerFormBottom {
+  margin-bottom: 10px;
 }

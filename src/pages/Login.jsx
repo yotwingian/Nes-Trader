@@ -71,7 +71,7 @@ export default function Login() {
       {login ? (
 
         <form onClick={handleSubmit}>
-          <div className="form-group row">
+          <div className="form-group row" >
             <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
             <div className="col-sm-10">
               <input
@@ -82,6 +82,7 @@ export default function Login() {
                 name="email"
                 value={loginData.email}
                 onChange={handleInputChange}
+
               />
             </div>
           </div>
@@ -99,16 +100,16 @@ export default function Login() {
               />
             </div>
           </div>
-          <div className="form-group row">
-            <div className="col-sm-10">
-              <button type="submit" className="btn btn-primary">Sign in</button>
+          <div className="form-group row" >
+            <div className="col-sm-10" >
+              <button type="submit" className="btn btn-primary">Login</button>
             </div>
           </div>
         </form>
       ) : (
         <RegisterForm />
       )}
-      <h3 onClick={handleSwitchForm}>{!login ? 'Go To Login' : 'Go To Register'}</h3>
+      <h3 onClick={handleSwitchForm} id='gotoRegister'>{!login ? 'Go To Login' : 'Go To Register'}</h3>
 
 
     </>
