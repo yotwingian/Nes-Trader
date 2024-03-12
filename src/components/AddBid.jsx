@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 
-function BidForm({ itemId }) {
+function BidForm({ itemId, startPrice }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [Bid, setBid] = useState([]);
   const [maxBidAmount, setMaxBidAmount] = useState(0);
@@ -37,6 +37,10 @@ function BidForm({ itemId }) {
 
     if (parseFloat(info.amount) <= maxBidAmount) {
       alert("The new bid must be equal to or greater than the existing bid. Current bid: " + maxBidAmount);
+      return;
+    }
+    else if (parseFloat(info.amount) <= startPrice) {
+      alert("The new bid must be equal to or greater than the start price. Current start price: " + startPrice);
       return;
     }
 

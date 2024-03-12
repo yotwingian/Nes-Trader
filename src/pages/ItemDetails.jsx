@@ -23,7 +23,7 @@ export default function ItemDetails() {
   }
 
   return <>
-    <BidForm itemId={parseInt(id)} />
+    <BidForm itemId={parseInt(id)} startPrice={item.startPrice} />
     <h1>{item.title}</h1>
     <img src={item.img} width="300" alt={item.title} />
     <p>
