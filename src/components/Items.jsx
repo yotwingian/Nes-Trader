@@ -4,6 +4,7 @@ import Countdown from "react-countdown"
 import CountdownRenderer from "./CountdownRenderer.jsx"
 import TotalBids from "../components/TotalBids.jsx"
 import MaxBid from "../components/MaxBid.jsx"
+import { sortItems } from '../components/sortItems.jsx'
 
 export default function Items() {
 
@@ -14,15 +15,13 @@ export default function Items() {
 
   useEffect(() => {
     async function load() {
-
-      const response = await fetch("/api/items")
-      const data = await response.json()
-      setItems(data)
-      sortItems(data, sortType)
-
+      const response = await fetch("/api/items");
+      const data = await response.json();
+      setItems(data);
+      updateFilteredItems(data, sortType);
     }
-    load()
-  }, [])
+    load();
+  }, []);
 
   function filter(event) {
     const searchString = event.target.value.toLowerCase()
@@ -34,25 +33,10 @@ export default function Items() {
     )
     sortItems(searchResult, sortType)
   }
-
-  function sortItems(sortedItems, sortType) {
-    switch (sortType) {
-      case 'title':
-        sortedItems.sort((a, b) => a.title.localeCompare(b.title))
-        break
-      case 'releaseYear':
-        sortedItems.sort((a, b) => a.releaseYear - b.releaseYear)
-        break
-      case 'endingSoon':
-        sortedItems.sort((a, b) => new Date(a.endDateTime) - new Date(b.endDateTime))
-        break
-      case 'latest':
-        sortedItems.sort((a, b) => new Date(b.startDateTime) - new Date(a.startDateTime))
-        break
-      default:
-        break
-    }
-    setFilteredItems(sortedItems)
+  
+  function updateFilteredItems(items, sortType) {
+    const sortedItems = sortItems(items, sortType);
+    setFilteredItems(sortedItems);
   }
 
   function handleSortChange(event) {
