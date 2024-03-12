@@ -25,6 +25,16 @@ footer {
   margin-bottom: 10px;
 }
 
+#loginButton {
+  transition-duration: 0.4s;
+}
+
+#loginButton:hover {
+  background-color: rgb(219, 58, 58);
+  color: white;
+}
+
+
 #gotoRegister {
   margin-top: 10px;
 }
@@ -36,4 +46,13 @@ footer {
 
 #registerFormBottom {
   margin-bottom: 10px;
+}
+
+#registerButton {
+  transition-duration: 0.4s;
+}
+
+#registerButton:hover {
+  background-color: #04AA6D;
+  color: white;
 }

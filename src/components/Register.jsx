@@ -35,7 +35,7 @@ function RegisterForm() {
       </div>
     </div>
 
-    <button type="submit" className="btn btn-primary">Sign in</button>
+    <button type="submit" className="btn btn-outline-danger" id="registerButton">Sign in</button>
   </form>
 }
 
