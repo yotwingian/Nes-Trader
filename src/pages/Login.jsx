@@ -3,7 +3,7 @@ import RegisterForm from "../components/Register.jsx"
 import { GlobalContext } from '../components/GlobalContext.jsx'
 
 export default function Login() {
-  
+
   const [users, setUsers] = useState([])
   const [login, setLogin] = useState(true)
   const [loginData, setLoginData] = useState({
@@ -39,21 +39,31 @@ export default function Login() {
     event.preventDefault()
 
     if (login) {
-      setUser(users.find(user => user.email === loginData.email && user.password === loginData.password))
+      const user = users.find(user => user.email === loginData.email && user.password === loginData.password)
+      setUser(user)
+      setTimeout(() => {
+        if (user) {
+          setIsLoggedIn(true)
+          console.log('Successfully logged in:', user);
 
-      if (user) {
-        setIsLoggedIn(true)
-        console.log('Successfully logged in:', user);
-      } else {
+        } else {
 
-        console.log('Invalid email or password');
-      }
+          console.log('Invalid email or password');
+        }
+      })
+
     } else {
 
       console.log('Registering...');
 
 
     }
+    setLoginData({
+      email: '',
+      password: '',
+    });
+
+  
 
   };
   const handleInputChange = (event) => {
