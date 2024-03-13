@@ -107,7 +107,7 @@ footer a {
 
 
 
-/* Items.jsx  */
+/* ItemsDetails.jsx & items.jsx  */
 
 .items-container {
   display: flex;
@@ -152,6 +152,7 @@ section p {
 .item-container img {
   width: 50%;
   height: 250px;
+  border-radius: 5px;
 }
 
 .details-container {
