@@ -5,7 +5,7 @@ import MyItems from "../components/MyItems.jsx";
 import { GlobalContext } from "../components/GlobalContext.jsx";
 import LatestItems from '../components/LatestItems';
 import EndingItems from '../components/EndingItems';
-import { sortItems } from '../components/Items';
+import { sortItems } from '../components/sortItems.jsx';
 
 export default function Home() {
   const { isLoggedIn } = useContext(GlobalContext);

@@ -1,0 +1,28 @@
+.nes-header {
+  background-color: rgb(189, 194, 190);
+  /* Light Grey */
+}
+
+.nes-nav {
+  background-color: rgb(114, 119, 123);
+  /* Grey */
+  color: rgb(189, 194, 190);
+  /* Light Grey */
+}
+
+.nes-link {
+  color: rgb(179, 126, 132);
+  /* Red */
+}
+
+.nes-link.brand {
+  font-size: 1.5em;
+  /* Increase the font size */
+}
+
+.nes-btn {
+  background-color: rgb(99, 106, 112);
+  /* Dark Grey */
+  color: rgb(179, 126, 132);
+  /* Red */
+}
