@@ -11,7 +11,7 @@ export default function TotalBids({ id }) {
       setBids(data)
     }
     load()
-  }, [bids])
+  }, []) // bids här skapar evighetsloop pga setBids i samma useEffect
   
   const thisItemBids = bids.filter(bid => bid.itemId.toString().includes(id))
   const totalBids = thisItemBids.length
