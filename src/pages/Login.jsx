@@ -75,16 +75,6 @@ export default function Login() {
     }));
   };
 
-  useEffect(() => {
-    const storedUser = localStorage.getItem("user");
-
-    if (storedUser) {
-      const user = JSON.parse(storedUser);
-      setIsLoggedIn(true);
-      console.log(user)
-    }
-  }, [setIsLoggedIn]);
-
 
   return (
     <>
