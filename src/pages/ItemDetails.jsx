@@ -32,7 +32,7 @@ export default function ItemDetails() {
       return <BidForm itemId={parseInt(id)} startPrice={item.startPrice} />
     }
     else {
-      return <Link to="/login">Log in to place a bid</Link>
+      return <Link to="/login" style={{ textDecoration: 'none' }}>Log in to place a bid</Link>
     }
   }
 
@@ -50,7 +50,7 @@ export default function ItemDetails() {
         <p>{item.description}</p>
       </div>
       <div className="current-bid-container">
-        <h5>Current bids!</h5>
+        <h6>Current bids!</h6>
         <CurrentBid id={parseInt(id)} />
       </div>
     </div>

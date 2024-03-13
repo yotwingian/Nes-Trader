@@ -12,6 +12,7 @@ main h1 {
   color: rgb(219, 58, 58);
   text-decoration: none;
   font-size: 3.5vh;
+  text-shadow: 1px 1px 1px black;
 }
 
 header {
@@ -109,22 +110,6 @@ footer a {
 
 /* ItemsDetails.jsx & items.jsx  */
 
-.items-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: space-between;
-  justify-content: space-between;
-}
-.items-containerx {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content:flex-start;
-  gap: 30px;
-  
-}
-
 section {
   background-color: rgb(136, 132, 139);
   border-radius: 5px;
@@ -142,7 +127,34 @@ section img {
 section p {
   padding-left: 10px;
   color: white;
+  
 }
+
+section h5 {
+  font-family: "Press Start 2P";
+  color: rgb(219, 58, 58);
+  text-shadow: 1px 1px 1px black;
+  font-size: 1em;
+  padding: 10px;
+}
+
+
+.items-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-between;
+}
+.items-containerx {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+  gap: 30px;
+  
+}
+
 
 .item-container {
   background-color: rgb(136, 132, 139);
@@ -155,12 +167,24 @@ section p {
   justify-content: space-between;
   margin-left: auto;
   margin-right: auto;
+  color: white;
+}
+
+.item-container a {
+  color: rgb(219, 58, 58);
+  font-family: "Press Start 2P";
+  text-shadow: 1px 1px 1px black
 }
 
 .item-container img {
   width: 50%;
   height: 250px;
   border-radius: 5px;
+}
+
+.item-container h1 {
+  text-shadow: 1px 1px 1px black
+
 }
 
 .details-container {
@@ -170,12 +194,12 @@ section p {
 .current-bid-container {
   flex-shrink: 0;
   width: 40%;
-  border: 1px solid black;
-  height: 1%;
-  overflow: auto;
-  overflow-x: hidden;
 }
 
-.current-bid-container h5 {
+.current-bid-container h6 {
+  padding-top: 10px;
   text-align: center;
+  font-size: 11pt;
+  font-family: "Press Start 2P";
+  text-shadow: 1px 1px 1px black;
 }

@@ -1,34 +1,36 @@
 
 function AuctionForm() {
   return <form onSubmit={PostAuction}>
+    <div className="form-row"><div className="form-group col-md-6">
     <label>Title:</label>
-    <input type="text" name="title" required />
+      <input type="text" className="form-control" name="title" required />
 
     <label>Release Year:</label>
-    <input type="number" name="releaseYear" required />
+      <input type="number" className="form-control" name="releaseYear" required />
 
     <label>Genre:</label>
-    <input type="text" name="genre" required />
+      <input type="text" className="form-control" name="genre" required />
 
     <label>Description:</label>
-    <textarea name="description" required />
+      <textarea name="description" className="form-control" required />
 
     <label>Image URL:</label>
-    <input type="text" name="img" required />
+      <input type="text" className="form-control" name="img" required />
 
     <label>Start Date:</label>
-    <input type="datetime-local" name="startDateTime" required />
+      <input type="datetime-local" className="form-control" name="startDateTime" required />
 
     <label>End Date:</label>
-    <input type="datetime-local" name="endDateTime" required />
+      <input type="datetime-local" className="form-control" name="endDateTime" required />
 
     <label>Start Price:</label>
-    <input type="number" name="startPrice" required />
+      <input type="number" className="form-control" name="startPrice" required />
 
     <label>Reserve Price:</label>
-    <input type="number" name="reservePrice" required />
+      <input type="number" className="form-control" name="reservePrice" required />
 
-    <input type="submit" />
+      <input type="submit" className="btn btn-outline-primary" />
+    </div></div>
   </form>
 
 }

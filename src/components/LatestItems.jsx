@@ -27,8 +27,8 @@ const LatestItems = () => {
         <section key={item.id}>
           <Link to={{ pathname: `/item-details/${item.id}` }} style={{ textDecoration: 'none' }}>
             <img src={item.img} alt={item.title} />
-            <p>
-              <h5>{item.title}</h5> <br />  Released: {item.releaseYear} <br />  Genre: {item.genre} <br />
+            
+            <h5>{item.title}</h5> <br /> <p> Released: {item.releaseYear} <br />  Genre: {item.genre} <br />
               <MaxBid id={parseInt(item.id)} startPrice={parseInt(item.startPrice)} /> <br /> <TotalBids id={parseInt(item.id)} /> <br />
               Game over in:{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
             </p>
