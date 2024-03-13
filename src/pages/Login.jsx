@@ -3,6 +3,7 @@ import RegisterForm from "../components/Register.jsx"
 import { GlobalContext } from '../components/GlobalContext.jsx'
 
 export default function Login() {
+  
   const [users, setUsers] = useState([])
   const [login, setLogin] = useState(true)
   const [loginData, setLoginData] = useState({
@@ -10,12 +11,13 @@ export default function Login() {
     password: ''
   })
   const { setIsLoggedIn } = useContext(GlobalContext)
+  const { user, setUser } = useContext(GlobalContext)
 
   useEffect(() => {
 
     async function load() {
       try {
-        const response = await fetch("/api/users")
+        const response = await fetch("/api/users/")
         const userData = await response.json()
         setUsers(userData)
         console.log(userData)
@@ -37,7 +39,7 @@ export default function Login() {
     event.preventDefault()
 
     if (login) {
-      const user = users.find(user => user.email === loginData.email && user.password === loginData.password);
+      setUser(users.find(user => user.email === loginData.email && user.password === loginData.password))
 
       if (user) {
         localStorage.setItem("user", JSON.stringify(user))
@@ -80,7 +82,7 @@ export default function Login() {
 
       {login ? (
 
-        <form onClick={handleSubmit}>
+        <form onSubmit={handleSubmit}>
           <div className="form-group row">
             <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
             <div className="col-sm-10">
@@ -119,7 +121,6 @@ export default function Login() {
         <RegisterForm />
       )}
       <h3 onClick={handleSwitchForm}>{!login ? 'Go To Login' : 'Go To Register'}</h3>
-
 
     </>
   );

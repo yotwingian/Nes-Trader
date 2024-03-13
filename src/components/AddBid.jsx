@@ -1,10 +1,12 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
+import { GlobalContext } from '../components/GlobalContext.jsx'
 
 function BidForm({ itemId, startPrice }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [Bid, setBid] = useState([]);
   const [maxBidAmount, setMaxBidAmount] = useState(0);
+  const { user } = useContext(GlobalContext)
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -58,8 +60,7 @@ function BidForm({ itemId, startPrice }) {
 
   return (
     <form onSubmit={PostBid}>
-      <label>Bidder:</label>
-      <input type="text" name="bidder" required />
+      <input type="hidden" name="bidder" value={user.username} />
 
       <input type="number" placeholder="Amount" name="amount" required />
 

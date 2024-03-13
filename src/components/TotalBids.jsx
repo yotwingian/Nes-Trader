@@ -11,7 +11,7 @@ export default function TotalBids({ id }) {
       setBids(data)
     }
     load()
-  }, [])
+  }, [bids])
   
   const thisItemBids = bids.filter(bid => bid.itemId.toString().includes(id))
   const totalBids = thisItemBids.length
