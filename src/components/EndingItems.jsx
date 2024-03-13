@@ -13,12 +13,12 @@ const EndingItems = () => {
       const response = await fetch("/api/items");
       const data = await response.json();
 
-      const sortedByEndingSoon = [...data].sort((a, b) => new Date(a.endDateTime) - new Date(b.endDateTime));
+      const sortedByEndingSoon = data.sort((a, b) => new Date(a.endDateTime) - new Date(b.endDateTime));
       setItems(sortedByEndingSoon.slice(0, 5));
     }
     load();
   }, []);
-  
+
   return (
     <div>
       <h1>Top 5 Ending Soon Items</h1>

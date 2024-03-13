@@ -13,12 +13,12 @@ const LatestItems = () => {
       const response = await fetch("/api/items");
       const data = await response.json();
 
-      const sortedByLatest = [...data].sort((a, b) => new Date(b.startDateTime) - new Date(a.startDateTime));
+      const sortedByLatest = data.sort((a, b) => new Date(b.startDateTime) - new Date(a.startDateTime));
       setItems(sortedByLatest.slice(0, 5));
     }
     load();
   }, []);
-  
+
   return (
     <div>
       <h1>Top 5 Latest Items</h1>
