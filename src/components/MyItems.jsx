@@ -24,8 +24,8 @@ export default function MyItems() {
 
   return (
     <div>
-      <div className="items-container">
       <h1>Your Listings</h1>
+      <div className="items-containerx">
         {userListings.map(item => (
           <section key={item.id}>
             <Link to={{ pathname: `/item-details/${item.id}` }} style={{ textDecoration: 'none' }}>

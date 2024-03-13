@@ -116,6 +116,14 @@ footer a {
   align-content: space-between;
   justify-content: space-between;
 }
+.items-containerx {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content:flex-start;
+  gap: 30px;
+  
+}
 
 section {
   background-color: rgb(136, 132, 139);

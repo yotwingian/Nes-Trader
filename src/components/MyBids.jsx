@@ -25,7 +25,7 @@ export default function MyBids() {
   return (
     <div>
       <h1>Your Bids</h1>
-      <div className="items-container">
+      <div className="items-containerx">
        {userBids.map(item => (
          <section key={item.id}>
            <Link to={{ pathname: `/item-details/${item.id}` }} style={{ textDecoration: 'none' }}>
