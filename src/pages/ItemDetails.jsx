@@ -6,6 +6,7 @@ import BidForm from "../components/AddBid.jsx"
 import CountdownRenderer from "../components/CountdownRenderer.jsx"
 import TotalBids from "../components/TotalBids.jsx"
 import MaxBid from "../components/MaxBid.jsx"
+import CurrentBid from "../components/CurrentBid.jsx"
 
 export default function ItemDetails() {
 
@@ -38,7 +39,7 @@ export default function ItemDetails() {
   return <>
     <h1>{item.title}</h1>
     <div className="item-container">
-    
+    <CurrentBid id={parseInt(id)} />
     <img src={item.img} width="300" alt={item.title} />
     <p>
       {item.releaseYear} | {item.genre} | <MaxBid id={parseInt(id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(id)} /> |
