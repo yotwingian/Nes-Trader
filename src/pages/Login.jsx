@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react'
 import RegisterForm from "../components/Register.jsx"
 import { GlobalContext } from '../components/GlobalContext.jsx'
 
-
 export default function Login() {
   const [users, setUsers] = useState([])
   const [login, setLogin] = useState(true)
@@ -41,6 +40,7 @@ export default function Login() {
       const user = users.find(user => user.email === loginData.email && user.password === loginData.password);
 
       if (user) {
+        localStorage.setItem("user", JSON.stringify(user))
         setIsLoggedIn(true)
         console.log('Successfully logged in:', user);
       } else {
@@ -63,6 +63,16 @@ export default function Login() {
     }));
   };
 
+  useEffect(() => {
+    const storedUser = localStorage.getItem("user");
+
+    if (storedUser) {
+      const user = JSON.parse(storedUser);
+      setIsLoggedIn(true);
+      console.log(user)
+    }
+  }, [setIsLoggedIn]);
+
 
   return (
     <>
@@ -71,7 +81,7 @@ export default function Login() {
       {login ? (
 
         <form onClick={handleSubmit}>
-          <div className="form-group row" >
+          <div className="form-group row">
             <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
             <div className="col-sm-10">
               <input
@@ -82,7 +92,6 @@ export default function Login() {
                 name="email"
                 value={loginData.email}
                 onChange={handleInputChange}
-
               />
             </div>
           </div>
@@ -100,16 +109,16 @@ export default function Login() {
               />
             </div>
           </div>
-          <div className="form-group row" >
-            <div className="col-sm-10" >
-              <button type="submit" className="btn btn-outline-primary" id='loginButton'>Login</button>
+          <div className="form-group row">
+            <div className="col-sm-10">
+              <button type="submit" className="btn btn-primary">Sign in</button>
             </div>
           </div>
         </form>
       ) : (
         <RegisterForm />
       )}
-      <h3 onClick={handleSwitchForm} id='gotoRegister'>{!login ? 'Go To Login' : 'Go To Register'}</h3>
+      <h3 onClick={handleSwitchForm}>{!login ? 'Go To Login' : 'Go To Register'}</h3>
 
 
     </>
