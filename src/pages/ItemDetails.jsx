@@ -42,7 +42,7 @@ export default function ItemDetails() {
       {item.releaseYear} | {item.genre} | <MaxBid id={parseInt(id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(id)} /> |
       Game over in: <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />
     </p>
-    <p>{bid()}</p>
+    {bid()}<p></p>
     <p>{item.description}</p>
 
   </>
