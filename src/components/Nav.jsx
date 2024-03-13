@@ -26,10 +26,12 @@ export default function Nav() {
       ) : (
         <>
           <Link to="login">Login/Register</Link>
-
+          <button style={{ marginLeft: '10px' }} onClick={login} >Login</button>  {/*tillfällig styling*/}
         </>
       )}
     </nav>
   )
 
 }
+
+
