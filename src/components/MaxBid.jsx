@@ -15,7 +15,7 @@ export default function MaxBid({ id, startPrice }) {
 
   const thisItemBids = bids.filter(bid => bid.itemId.toString().includes(id))
   const maxBid = thisItemBids.reduce((acc, bid) => {
-    return (acc = acc > bid.amount ? acc : bid.amount)
+    return (acc = acc > parseInt(bid.amount) ? acc : parseInt(bid.amount))
   }, 0)
 
   if (maxBid >= startPrice) {
