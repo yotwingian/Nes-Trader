@@ -3,7 +3,7 @@ import RegisterForm from "../components/Register.jsx"
 import { GlobalContext } from '../components/GlobalContext.jsx'
 
 export default function Login() {
-  
+
   const [users, setUsers] = useState([])
   const [login, setLogin] = useState(true)
   const [loginData, setLoginData] = useState({
@@ -84,7 +84,7 @@ export default function Login() {
 
         <form onSubmit={handleSubmit}>
           <div className="form-group row">
-            <label htmlFor="inputEmail3" className="col-sm-2 col-form-label">Email</label>
+            <label htmlFor="inputEmail3" id='inputEmail3' className="col-sm-2 col-form-label">Email</label>
             <div className="col-sm-10">
               <input
                 type="email"
@@ -98,7 +98,7 @@ export default function Login() {
             </div>
           </div>
           <div className="form-group row">
-            <label htmlFor="inputPassword3" className="col-sm-2 col-form-label">Password</label>
+            <label htmlFor="inputPassword3" id="inputPassword3" className="col-sm-2 col-form-label">Password</label>
             <div className="col-sm-10">
               <input
                 type="password"
@@ -111,16 +111,16 @@ export default function Login() {
               />
             </div>
           </div>
-          <div className="form-group row">
+          <div className="form-group row" id='loginInput'>
             <div className="col-sm-10">
-              <button type="submit" className="btn btn-primary">Sign in</button>
+              <button type="submit" id="loginButton" className="btn btn-outline-primary">Sign in</button>
             </div>
           </div>
         </form>
       ) : (
         <RegisterForm />
       )}
-      <h3 onClick={handleSwitchForm}>{!login ? 'Go To Login' : 'Go To Register'}</h3>
+      <h3 id='gotoRegister' onClick={handleSwitchForm}>{!login ? 'Go To Login' : 'Go To Register'}</h3>
 
     </>
   );
