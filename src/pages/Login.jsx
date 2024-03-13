@@ -113,7 +113,7 @@ export default function Login() {
           </div>
           <div className="form-group row" id='loginInput'>
             <div className="col-sm-10">
-              <button type="submit" id="loginButton" className="btn btn-outline-primary">Sign in</button>
+              <button type="submit" id="loginButton" className="btn btn-outline-primary">Login</button>
             </div>
           </div>
         </form>
