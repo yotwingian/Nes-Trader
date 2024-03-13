@@ -37,17 +37,23 @@ export default function ItemDetails() {
   }
 
   return <>
-    <h1>{item.title}</h1>
+    
     <div className="item-container">
-    <CurrentBid id={parseInt(id)} />
-    <img src={item.img} width="300" alt={item.title} />
-    <p>
-      {item.releaseYear} | {item.genre} | <MaxBid id={parseInt(id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(id)} /> |
-      Game over in: <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />
-    </p>
-    {bid()}<p></p>
-    <p>{item.description}</p>
+      <div className="details-container">
+        <h1>{item.title}</h1>
+        <img src={item.img} width="300" alt={item.title} />
+        <p>
+          {item.releaseYear} | {item.genre} | <MaxBid id={parseInt(id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(id)} /> |
+          Game over in: <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />
+        </p>
+        {bid()}<p></p>
+        <p>{item.description}</p>
+      </div>
+      <div className="current-bid-container">
+        <h5>Current bids!</h5>
+        <CurrentBid id={parseInt(id)} />
+      </div>
     </div>
-
   </>
+
 }

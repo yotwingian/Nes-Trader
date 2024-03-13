@@ -139,13 +139,34 @@ section p {
 .item-container {
   background-color: rgb(136, 132, 139);
   border-radius: 5px;
-  width: 50%;
+  width: 70%;
   margin-bottom: 10px;
   margin-top: 20px;
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .item-container img {
   width: 50%;
   height: 250px;
-  padding: 10px;
+}
+
+.details-container {
+  flex-grow: 1;
+}
+
+.current-bid-container {
+  flex-shrink: 0;
+  width: 40%;
+  border: 1px solid black;
+  height: 1%;
+  overflow: auto;
+  overflow-x: hidden;
+}
+
+.current-bid-container h5 {
+  text-align: center;
 }

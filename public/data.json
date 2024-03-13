@@ -305,6 +305,20 @@
       "amount": "4001",
       "timespan": "2024-03-13T10:15:08.330Z",
       "itemId": 5
+    },
+    {
+      "id": "3dac",
+      "bidder": "mario",
+      "amount": "500000000",
+      "timespan": "2024-03-13T20:28:14.352Z",
+      "itemId": 1
+    },
+    {
+      "id": "a4dd",
+      "bidder": "mario",
+      "amount": "500000000",
+      "timespan": "2024-03-13T20:28:18.354Z",
+      "itemId": 1
     }
   ],
   "users": [
