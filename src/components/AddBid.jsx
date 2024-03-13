@@ -76,7 +76,8 @@ function BidForm({ itemId, startPrice }) {
 }
 
 BidForm.propTypes = {
-  itemId: PropTypes.number
+  itemId: PropTypes.number,
+  startPrice: PropTypes.number
 };
 
 export default BidForm;

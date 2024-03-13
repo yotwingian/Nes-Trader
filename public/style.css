@@ -1,13 +1,59 @@
-header {
-  padding: 20px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 
 main {
   padding: 50px;
+  background-color: rgb(214, 214, 217);
+  
 }
 
+main h1 {
+  font-family: "Press Start 2P";
+  color: rgb(219, 58, 58);
+  text-decoration: none;
+  font-size: 3.5vh;
+}
+
+header {
+  font-family: "Press Start 2P";
+  background-color: rgb(44, 44, 44);
+  width: 100%;
+  border-bottom: 5px rgb(136, 132, 139) solid;
+  
+  
+}
+
+header nav {
+  width: 70%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+
+header a {
+  color: rgb(219, 58, 58);
+  text-decoration: none;
+  font-size: 1.2vw;
+}
+
+header img {
+  width: 13%;
+  
+}
+
+
 footer {
+  background-color: rgb(44, 44, 44);
+  font-family: "Press Start 2P";
   padding: 20px;
+  border-top: 5px rgb(136, 132, 139) solid;
+}
+
+footer a {
+  color: rgb(219, 58, 58);
+  text-decoration: none;
+  font-size: 1.2vw;
 }
 
 /* login */
@@ -37,6 +83,8 @@ footer {
 
 #gotoRegister {
   margin-top: 10px;
+  font-family: "Press Start 2P";
+  
 }
 
 /* register */
@@ -54,5 +102,36 @@ footer {
 
 #registerButton:hover {
   background-color: #04AA6D;
+  color: white;
+}
+
+
+
+/* Items.jsx  */
+
+.items-container {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-content: space-between;
+  justify-content: space-between;
+}
+
+section {
+  background-color: rgb(136, 132, 139);
+  border-radius: 5px;
+  width: 18%;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+section img {
+  width: 100%;
+  height: 250px;
+  padding: 10px;
+}
+
+section p {
+  padding-left: 10px;
   color: white;
 }

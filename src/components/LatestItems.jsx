@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom"
 import Countdown from "react-countdown"
 import CountdownRenderer from "../components/CountdownRenderer.jsx"
@@ -21,7 +21,7 @@ const LatestItems = () => {
 
   return (
     <div>
-      <h1>Top 5 Latest Items</h1>
+      <h1>Latest Games</h1>
       {items.map(item => (
         <section key={item.id}>
           <Link to={{ pathname: `/item-details/${item.id}` }}>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react"
+import PropTypes from 'prop-types';
 
 export default function MaxBid({ id, startPrice }) {
 
@@ -29,4 +30,14 @@ export default function MaxBid({ id, startPrice }) {
     </>
   }
 
+
+  
+
 }
+
+MaxBid.propTypes = {
+  id: PropTypes.number,
+  startPrice: PropTypes.number
+};
+
+

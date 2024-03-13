@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from "react-router-dom"
 import Countdown from "react-countdown"
 import CountdownRenderer from "../components/CountdownRenderer.jsx"
@@ -21,7 +21,8 @@ const EndingItems = () => {
 
   return (
     <div>
-      <h1>Top 5 Ending Soon Items</h1>
+      <h1>Games Ending Soon</h1>
+      <div className="items-container">
       {items.map(item => (
         <section key={item.id}>
           <Link to={{ pathname: `/item-details/${item.id}` }}>
@@ -34,6 +35,7 @@ const EndingItems = () => {
           </Link>
         </section>
       ))}
+      </div>
     </div>
   );
 };
