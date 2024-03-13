@@ -1,25 +1,27 @@
 import AddItem from '../components/Additem'
 import { useContext } from "react"
-import { Link } from "react-router-dom"
 import { GlobalContext } from '../components/GlobalContext.jsx'
+import { useNavigate } from 'react-router-dom'; // Import useHistory
 
 
 
 export default function NewItem() {
   const { isLoggedIn } = useContext(GlobalContext)
-  
-  if (isLoggedIn) { 
+  const navigate = useNavigate();
+
+  if (isLoggedIn) {
     return (
       <>
         <h1>Sell!</h1>
         <AddItem />
       </>
     )
-  } else { 
-    return <Link to="/login" style={{ textDecoration: 'none' }}>Please sign in!</Link>
+  } else {
+    navigate('/login');
+
   }
-  
-  
+
+
 
 
 }

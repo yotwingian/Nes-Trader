@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext } from 'react'
 import RegisterForm from "../components/Register.jsx"
 import { GlobalContext } from '../components/GlobalContext.jsx'
+import { useNavigate } from 'react-router-dom'; // Import useHistory
 
 export default function Login() {
 
@@ -12,6 +13,7 @@ export default function Login() {
   })
   const { setIsLoggedIn } = useContext(GlobalContext)
   const { user, setUser } = useContext(GlobalContext)
+  const navigate = useNavigate();
 
   useEffect(() => {
 
@@ -45,11 +47,12 @@ export default function Login() {
         if (user) {
           setIsLoggedIn(true)
           console.log('Successfully logged in:', user);
-
+          navigate('/');
 
         } else {
 
           console.log('Invalid email or password');
+
         }
       })
 
@@ -62,8 +65,7 @@ export default function Login() {
     setLoginData({
       email: '',
       password: '',
-    });
-
+    })
 
 
   };
