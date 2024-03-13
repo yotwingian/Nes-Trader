@@ -135,3 +135,17 @@ section p {
   padding-left: 10px;
   color: white;
 }
+
+.item-container {
+  background-color: rgb(136, 132, 139);
+  border-radius: 5px;
+  width: 50%;
+  margin-bottom: 10px;
+  margin-top: 20px;
+}
+
+.item-container img {
+  width: 50%;
+  height: 250px;
+  padding: 10px;
+}

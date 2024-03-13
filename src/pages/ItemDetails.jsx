@@ -37,6 +37,8 @@ export default function ItemDetails() {
 
   return <>
     <h1>{item.title}</h1>
+    <div className="item-container">
+    
     <img src={item.img} width="300" alt={item.title} />
     <p>
       {item.releaseYear} | {item.genre} | <MaxBid id={parseInt(id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(id)} /> |
@@ -44,6 +46,7 @@ export default function ItemDetails() {
     </p>
     {bid()}<p></p>
     <p>{item.description}</p>
+    </div>
 
   </>
 }
