@@ -22,9 +22,10 @@ const LatestItems = () => {
   return (
     <div>
       <h1>Latest Games</h1>
+      <div className="items-container">
       {items.map(item => (
         <section key={item.id}>
-          <Link to={{ pathname: `/item-details/${item.id}` }}>
+          <Link to={{ pathname: `/item-details/${item.id}`}} style={{ textDecoration: 'none' }}>
             <img src={item.img} width="100" alt={item.title} />
             <p>
               {item.title} | {item.releaseYear} | {item.genre} |
@@ -34,6 +35,7 @@ const LatestItems = () => {
           </Link>
         </section>
       ))}
+      </div>
     </div>
   );
 };
