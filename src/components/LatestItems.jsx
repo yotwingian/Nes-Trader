@@ -1,11 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom"
 import Countdown from "react-countdown"
 import CountdownRenderer from "../components/CountdownRenderer.jsx"
 import MaxBid from "../components/MaxBid.jsx"
 import TotalBids from "../components/TotalBids.jsx"
 
-const LatestItems = ({ items }) => {
+const LatestItems = () => {
+  const [items, setItems] = useState([]);
+
+  useEffect(() => {
+    async function load() {
+      const response = await fetch("/api/items");
+      const data = await response.json();
+
+      const sortedByLatest = [...data].sort((a, b) => new Date(b.startDateTime) - new Date(a.startDateTime));
+      setItems(sortedByLatest.slice(0, 5));
+    }
+    load();
+  }, []);
+  
   return (
     <div>
       <h1>Top 5 Latest Items</h1>
