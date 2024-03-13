@@ -25,19 +25,20 @@ export default function MyBids() {
   return (
     <div>
       <h1>Your Bids</h1>
-      {userBids.map(item => (
-        <section key={item.id}>
-          <Link to={{ pathname: `/item-details/${item.id}` }}>
-            <img src={item.img} width="100" alt={item.title} />
-            <p>
-              {item.title} | {item.releaseYear} | {item.genre} |
-              <MaxBid id={parseInt(item.id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(item.id)} /> |
-              Game over in:{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
-            </p>
-          </Link>
-        </section>
-
-      ))}
+      <div className="items-container">
+       {userBids.map(item => (
+         <section key={item.id}>
+           <Link to={{ pathname: `/item-details/${item.id}` }} style={{ textDecoration: 'none' }}>
+             <img src={item.img} alt={item.title} />
+             <p>
+               <h5>{item.title}</h5> <br />  Released: {item.releaseYear} <br />  Genre: {item.genre} <br />
+               <MaxBid id={parseInt(item.id)} startPrice={parseInt(item.startPrice)} /> <br /> <TotalBids id={parseInt(item.id)} /> <br />
+               Game over in:{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
+             </p>
+           </Link>
+         </section>
+))}
+      </div>
     </div>
   );
 }
