@@ -23,7 +23,8 @@ function BidForm({ itemId, startPrice }) {
       setBid(data);
     }
     load();
-  }, []); // Bid här skapar evighetsloop pga setBid i samma useEffect. itemId verkar inte behövas eller påverka något här.
+
+  }, []);  // Bid här skapar evighetsloop pga setBid i samma useEffect. itemId verkar inte behövas eller påverka något här.
 
   useEffect(() => {
     const newMaxBidAmount = Bid.reduce((max, bid) => (parseFloat(bid.amount) > max ? parseFloat(bid.amount) : max), 0);
