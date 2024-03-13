@@ -1,6 +1,6 @@
+import { useEffect, useState } from "react";
 
 export default function MyPage() {
-  import { useEffect, useState } from "react";
 
 
   const [user, setUser] = useState(null);
@@ -25,17 +25,19 @@ export default function MyPage() {
     <div>
       <h2>Selling Items</h2>
       {user ? (
-        <p>Welcome, {user.username}! You can view your selling items here.</p>
-        // Render your selling items based on the filtered items
-        {sellingItems.map(item => (
-          <div key={item.id}>
-            {/* Render each item */}
-            <p>{item.title}</p>
-            {/* Add more details or components as needed */}
-          </div>
-        ))}
+        <div>
+          <p>Welcome, {user.username}! You can view your selling items here.</p>
+          {/* Render your selling items based on the filtered items */}
+          {sellingItems.map(item => (
+            <div key={item.id}>
+              {/* Render each item */}
+              <p>{item.title}</p>
+              {/* Add more details or components as needed */}
+            </div>
+          ))}
+        </div>
       ) : (
-      <p>Please log in to view your selling items.</p>
+        <p>Please log in to view your selling items.</p>
       )}
     </div>
   );
