@@ -1,10 +1,15 @@
 import { useContext } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { GlobalContext } from "./GlobalContext.jsx"
 
 export default function Nav() {
   const { login, isLoggedIn } = useContext(GlobalContext)
-  const {user} = useContext(GlobalContext)
+  const { user } = useContext(GlobalContext)
+  const navigate = useNavigate()
+  
+  function loginReg() {
+    navigate("/login")
+  }
 
   return (
     <nav>
@@ -20,7 +25,7 @@ export default function Nav() {
         </>
       ) : (
         <>
-          <Link to="login" style={{ textDecoration: 'none' }}>POWER</Link>
+          <button style={{ marginLeft: '10px' }} onClick={loginReg} >POWER</button>
           <img src="../../img/test.png" alt="kontroll"></img>
         </>
       )}
