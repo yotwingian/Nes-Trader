@@ -16,10 +16,12 @@ export default function Nav() {
           <Link to="new-item" style={{ textDecoration: 'none' }}>Sell</Link>
           <Link to="my-page" style={{ textDecoration: 'none' }}>{user.username}</Link>
           <button style={{ marginLeft: '10px' }} onClick={login} >Logout</button>  {/*tillfällig styling*/}
+          <img src="../../img/test.png" alt="kontroll"></img>
         </>
       ) : (
         <>
             <Link to="login" style={{ textDecoration: 'none' }}>Login/Register</Link>
+            <img src="../../img/test.png" alt="kontroll"></img>
                  </>
       )}
     </nav>
