@@ -1,5 +1,3 @@
 # NES Trader
 
-
-## Live Share
-### Added --host to package.json to enable "Sharing Local Server"
+Trello (user stories): https://trello.com/b/0aP6T5jd/onlineauktion
