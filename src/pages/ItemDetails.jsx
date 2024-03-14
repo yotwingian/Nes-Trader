@@ -29,7 +29,7 @@ export default function ItemDetails() {
 
   function bid() {
     if (isLoggedIn) {
-      return <BidForm itemId={parseInt(id)} startPrice={item.startPrice} />
+      return <BidForm itemId={parseInt(id)} startPrice={parseInt(item.startPrice)} />
     }
     else {
       return <Link to="/login" style={{ textDecoration: 'none' }}>Log in to place a bid</Link>

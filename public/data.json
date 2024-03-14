@@ -345,6 +345,20 @@
       "amount": "50",
       "timespan": "2024-03-14T08:30:56.022Z",
       "itemId": 10
+    },
+    {
+      "id": "23a2",
+      "bidder": "mario",
+      "amount": "20001",
+      "timespan": "2024-03-14T09:09:06.198Z",
+      "itemId": 2
+    },
+    {
+      "id": "0756",
+      "bidder": "mario",
+      "amount": "20005",
+      "timespan": "2024-03-14T09:09:12.190Z",
+      "itemId": 2
     }
   ],
   "users": [
