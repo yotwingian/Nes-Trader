@@ -56,8 +56,8 @@ function BidForm({ itemId, startPrice }) {
       body: JSON.stringify(info),
     });
     alert("Your bid was successful. Your bid: " + info.amount);
-
     event.target.reset();
+
   }
 
   return (

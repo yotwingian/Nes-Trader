@@ -10,8 +10,11 @@ export default function CurrentBid({ id }) {
       const data = await response.json()
       setBids(data)
     }
-    load()
-  }, [])
+    const intervalId = setInterval(load, 1000); //interval
+    load();
+    return () => clearInterval(intervalId); //clear after unmounting
+
+  }, [id]) // id 
 
   const thisItemBids = bids.filter(bid => bid.itemId.toString().includes(id))
   const sortedBids = thisItemBids.sort((a, b) => b.amount - a.amount);

@@ -205,6 +205,18 @@
       "startPrice": "75",
       "reservePrice": "112",
       "bids": []
+    },
+    {
+      "id": "2e16",
+      "title": "Teenage Mutant Ninja Turtles",
+      "releaseYear": "1989",
+      "genre": "Action",
+      "description": "A game",
+      "img": "https://www.arkad.nu/9917/uploads/fbf34639-01f8-4e96-a45a-490d05d78f2a.jpg",
+      "startDateTime": "2024-03-14T09:14",
+      "endDateTime": "2024-03-21T09:14",
+      "startPrice": "10",
+      "reservePrice": "70"
     }
   ],
   "bids": [
@@ -312,6 +324,27 @@
       "amount": "500000000",
       "timespan": "2024-03-13T20:28:14.352Z",
       "itemId": 1
+    },
+    {
+      "id": "7262",
+      "bidder": "mario",
+      "amount": "45",
+      "timespan": "2024-03-14T08:30:40.559Z",
+      "itemId": 9
+    },
+    {
+      "id": "af5b",
+      "bidder": "mario",
+      "amount": "55",
+      "timespan": "2024-03-14T08:30:47.692Z",
+      "itemId": 8
+    },
+    {
+      "id": "b114",
+      "bidder": "mario",
+      "amount": "50",
+      "timespan": "2024-03-14T08:30:56.022Z",
+      "itemId": 10
     }
   ],
   "users": [
