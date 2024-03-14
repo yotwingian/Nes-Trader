@@ -12,7 +12,7 @@ export default function NewItem() {
   if (isLoggedIn) {
     return (
       <>
-        <h1>Sell!</h1>
+        <h1>New Game</h1>
         <AddItem />
       </>
     )

@@ -29,7 +29,7 @@ function AuctionForm() {
     <label>Reserve Price:</label>
       <input type="number" className="form-control" name="reservePrice" required />
 
-      <input type="submit" className="btn btn-outline-primary" />
+      <input type="submit" className="btn btn-outline-primary" value="START"/>
     </div></div>
   </form>
 

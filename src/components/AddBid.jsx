@@ -64,13 +64,13 @@ function BidForm({ itemId, startPrice }) {
     <form onSubmit={PostBid}>
       <input type="hidden" name="bidder" value={user.username} />
 
-      <input type="number" placeholder="Amount" name="amount" required />
+      <input type="number" placeholder="Bid" name="amount" required />
 
       <input type="hidden" name="timespan" value={currentDateTime.toISOString()} readOnly />
 
       <input type="hidden" name="itemId" value={itemId} />
 
-      <input type="submit" value="Bid now!" />
+      <input type="submit" value="SELECT" />
     </form>
   );
 }

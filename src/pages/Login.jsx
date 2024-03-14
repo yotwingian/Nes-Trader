@@ -80,7 +80,7 @@ export default function Login() {
 
   return (
     <>
-      <h1>{login ? 'Login' : 'Register'}</h1>
+      <h1>{login ? 'Select Player' : 'New Player'}</h1>
 
       {login ? (
 
@@ -115,14 +115,14 @@ export default function Login() {
           </div>
           <div className="form-group row" id='loginInput'>
             <div className="col-sm-10">
-              <button type="submit" id="loginButton" className="btn btn-outline-primary">Login</button>
+              <button type="submit" id="loginButton" className="btn btn-outline-primary">SELECT</button>
             </div>
           </div>
         </form>
       ) : (
         <RegisterForm />
       )}
-      <h3 id='gotoRegister' onClick={handleSwitchForm}>{!login ? 'Go To Login' : 'Go To Register'}</h3>
+      <h3 id='gotoRegister' onClick={handleSwitchForm}>{!login ? 'Select Player' : 'New Player'}</h3>
 
     </>
   );
