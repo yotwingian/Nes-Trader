@@ -50,7 +50,7 @@ export default function ItemDetails() {
         <p>{item.description}</p>
       </div>
       <div className="current-bid-container">
-        <h6>Current bids!</h6>
+        <h6>HIGH SCORES</h6>
         <CurrentBid id={parseInt(id)} />
       </div>
     </div>
