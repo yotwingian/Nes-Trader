@@ -8,7 +8,7 @@ export default function Login() {
   const [users, setUsers] = useState([])
   const [login, setLogin] = useState(true)
   const [loginData, setLoginData] = useState({
-    email: '',
+    userName: '',
     password: ''
   })
   const { setIsLoggedIn } = useContext(GlobalContext)
@@ -41,7 +41,7 @@ export default function Login() {
     event.preventDefault()
 
     if (login) {
-      const user = users.find(user => user.email === loginData.email && user.password === loginData.password)
+      const user = users.find(user => user.userName === loginData.userName && user.password === loginData.password)
       setUser(user)
       setTimeout(() => {
         if (user) {
@@ -63,7 +63,7 @@ export default function Login() {
 
     }
     setLoginData({
-      email: '',
+      userName: '',
       password: '',
     })
 
@@ -85,26 +85,24 @@ export default function Login() {
       {login ? (
 
         <form onSubmit={handleSubmit}>
-          <div className="form-group row">
-            <label htmlFor="inputEmail3" id='inputEmail3' className="col-sm-2 col-form-label">Email</label>
-            <div className="col-sm-10">
+          <div>
+            <label htmlFor="inputEmail3" id='inputEmail3'>Email</label>
+            <div>
               <input
-                type="email"
-                className="form-control"
+                type="text"
                 id="inputEmail3"
-                placeholder="Email"
-                name="email"
+                placeholder="Player Name"
+                name="userName"
                 value={loginData.email}
                 onChange={handleInputChange}
               />
             </div>
           </div>
-          <div className="form-group row">
-            <label htmlFor="inputPassword3" id="inputPassword3" className="col-sm-2 col-form-label">Password</label>
-            <div className="col-sm-10">
+          <div >
+            <label htmlFor="inputPassword3" id="inputPassword3">Password</label>
+            <div>
               <input
                 type="password"
-                className="form-control"
                 id="inputPassword3"
                 placeholder="Password"
                 name="password"
@@ -113,9 +111,9 @@ export default function Login() {
               />
             </div>
           </div>
-          <div className="form-group row" id='loginInput'>
+          <div id='loginInput'>
             <div className="col-sm-10">
-              <button type="submit" id="loginButton" className="btn btn-outline-primary">SELECT</button>
+              <button type="submit" id="loginButton" >SELECT</button>
             </div>
           </div>
         </form>

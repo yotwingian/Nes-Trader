@@ -6,7 +6,7 @@ export default function Nav() {
   const { login, isLoggedIn } = useContext(GlobalContext)
   const { user } = useContext(GlobalContext)
   const navigate = useNavigate()
-  
+
   function loginReg() {
     navigate("/login")
   }
@@ -20,12 +20,12 @@ export default function Nav() {
         <>
           <Link to="new-item" style={{ textDecoration: 'none' }}>NEW GAME</Link>
           <Link to="my-page" style={{ textDecoration: 'none' }}>{user.username}</Link>
-          <button style={{ marginLeft: '10px' }} onClick={login} >RESET</button>  {/*tillfällig styling*/}
+          <button onClick={login} >RESET</button>
           <img src="../../img/test.png" alt="kontroll"></img>
         </>
       ) : (
         <>
-          <button style={{ marginLeft: '10px' }} onClick={loginReg} >POWER</button>
+          <button onClick={loginReg} >POWER</button>
           <img src="../../img/test.png" alt="kontroll"></img>
         </>
       )}

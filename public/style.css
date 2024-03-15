@@ -1,5 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+button {
+  margin-left: '10px'
+}
 
 main {
   padding: 50px;
@@ -191,6 +194,12 @@ section h5 {
 
 .details-container {
   flex-grow: 1;
+}
+
+.details-container button {
+  font-family: "Press Start 2P";
+  outline-color: rgb(136, 132, 139);
+  background-color: rgb(214, 214, 217);
 }
 
 .current-bid-container {
