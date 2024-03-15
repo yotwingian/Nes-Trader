@@ -70,7 +70,7 @@ function BidForm({ itemId, startPrice }) {
 
       <input type="hidden" name="itemId" value={itemId} />
 
-      <button type="submit">SELECT</button>
+      <button type="submit" className='addBidButton'>SELECT</button>
     </form>
   );
 }

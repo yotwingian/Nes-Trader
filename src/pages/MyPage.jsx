@@ -1,7 +1,7 @@
 export default function MyPage() {
 
   return (
-    <h1>MyPage</h1>
+    <h1>Player Page</h1>
   )
 
 }

@@ -7,8 +7,7 @@
     outline-color: rgb(136, 132, 139);
     background-color: rgb(214, 214, 217);
     color: rgb(219, 58, 58);
-    /* border: 2px rgb(136, 132, 139) solid;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); */
+
   }
 
   main {
@@ -80,20 +79,12 @@
     width: 13%;
   }
 
+  input {
+    width: 350px;
+    margin-bottom: 10px;
+  }
+
   /* login */
-
-  .inputEmail3 {
-    width: 350px;
-  }
-
-  .inputPassword3 {
-    width: 350px;
-    margin-bottom: 10px;
-  }
-
-  #loginInput {
-    margin-bottom: 10px;
-  }
 
   #loginButton {
     transition-duration: 0.4s;
@@ -105,11 +96,15 @@
     color: white;
   }
 
-
   #gotoRegister {
     margin-top: 10px;
+    font-size: 3.5vh;
     font-family: "Press Start 2P";
     cursor: pointer;
+  }
+
+  #gotoRegister:hover {
+    color: rgb(219, 58, 58);
   }
 
   /* register */
@@ -137,6 +132,11 @@
     margin-top: 10px;
     transition-duration: 0.4s;
     font-family: "Press Start 2P";
+  }
+
+  .newGameButton:hover {
+    background-color: #04AA6D;
+    color: white;
   }
 
   /* ItemsDetails.jsx & items.jsx  */
@@ -275,4 +275,11 @@
   .current-bid-container ul {
     font-family: "Press Start 2P";
     font-size: 8pt;
+  }
+
+  /* Add Bid */
+
+  .addBidButton:hover {
+    background-color: rgb(219, 58, 58);
+    color: white;
   }
