@@ -37,9 +37,11 @@ export default function Router() {
           </Routes>
         </main>
         <footer >
-          <Link to="about" style={{ textDecoration: 'none' }}>About</Link> |&nbsp;
-          <Link to="contact" style={{ textDecoration: 'none' }}>Contact</Link> |&nbsp;
+          <Link to="about" style={{ textDecoration: 'none' }}>About</Link>
+          <Link to="contact" style={{ textDecoration: 'none' }}>Contact</Link>
           <Link to="how-to" style={{ textDecoration: 'none' }}>How to</Link>
+          <img src="../../img/controller.png" alt="controller"></img>
+
         </footer>
       </BrowserRouter>
     </GlobalProvider >

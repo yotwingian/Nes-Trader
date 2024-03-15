@@ -13,7 +13,7 @@ export default function Nav() {
 
   return (
     <nav>
-      <img src="../../img/test.png" alt="kontroll"></img>
+      <img src="../../img/controller.png" alt="controller"></img>
       <Link to="/" style={{ textDecoration: 'none' }}>NES TRADER</Link>
       <Link to="games" style={{ textDecoration: 'none' }}>GAMES</Link>
       {isLoggedIn ? (
@@ -21,12 +21,10 @@ export default function Nav() {
           <Link to="new-item" style={{ textDecoration: 'none' }}>NEW GAME</Link>
           <Link to="my-page" style={{ textDecoration: 'none' }}>{user.username}</Link>
           <button onClick={login} >RESET</button>
-          <img src="../../img/test.png" alt="kontroll"></img>
         </>
       ) : (
         <>
           <button onClick={loginReg} >POWER</button>
-          <img src="../../img/test.png" alt="kontroll"></img>
         </>
       )}
     </nav>

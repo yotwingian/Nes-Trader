@@ -1,9 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
 button {
-  margin-left: '10px'
+  margin-left: '10px';
+  font-family: "Press Start 2P";
+  border-color: rgb(136, 132, 139);
+  outline-color: rgb(136, 132, 139);
+  background-color: rgb(214, 214, 217);
+  color: rgb(219, 58, 58);
+  /* border: 2px rgb(136, 132, 139) solid;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); */
 }
-
 main {
   padding: 50px;
   background-color: rgb(214, 214, 217);
@@ -23,8 +29,6 @@ header {
   background-color: rgb(44, 44, 44);
   width: 100%;
   border-bottom: 5px rgb(136, 132, 139) solid;
-
-
 }
 
 header nav {
@@ -45,15 +49,20 @@ header a {
 
 header img {
   width: 13%;
-
 }
 
 
 footer {
   background-color: rgb(44, 44, 44);
   font-family: "Press Start 2P";
-  padding: 20px;
   border-top: 5px rgb(136, 132, 139) solid;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: right;
+  justify-content: space-between;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 footer a {
@@ -62,13 +71,17 @@ footer a {
   font-size: 1.2vw;
 }
 
+footer img {
+  width: 13%;
+}
+
 /* login */
 
-#inputEmail3 {
+.inputEmail3 {
   width: 350px;
 }
 
-#inputPassword3 {
+.inputPassword3 {
   width: 350px;
   margin-bottom: 10px;
 }
@@ -79,6 +92,7 @@ footer a {
 
 #loginButton {
   transition-duration: 0.4s;
+  font-family: "Press Start 2P";
 }
 
 #loginButton:hover {
@@ -90,7 +104,7 @@ footer a {
 #gotoRegister {
   margin-top: 10px;
   font-family: "Press Start 2P";
-
+  cursor: pointer;
 }
 
 /* register */
@@ -104,6 +118,7 @@ footer a {
 
 #registerButton {
   transition-duration: 0.4s;
+  font-family: "Press Start 2P";
 }
 
 #registerButton:hover {
@@ -111,7 +126,13 @@ footer a {
   color: white;
 }
 
+/*AddItems*/
 
+.newGameButton {
+  margin-top: 10px;
+  transition-duration: 0.4s;
+  font-family: "Press Start 2P";
+}
 
 /* ItemsDetails.jsx & items.jsx  */
 
@@ -198,8 +219,15 @@ section h5 {
 
 .details-container button {
   font-family: "Press Start 2P";
-  outline-color: rgb(136, 132, 139);
+  border-color: rgb(44, 44, 44);
+  outline-color: rgb(44, 44, 44);
   background-color: rgb(214, 214, 217);
+  color: rgb(219, 58, 58);
+}
+
+.bid-text {
+  font-family: "Press Start 2P";
+
 }
 
 .current-bid-container {

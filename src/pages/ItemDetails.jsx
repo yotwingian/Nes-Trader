@@ -38,7 +38,9 @@ export default function ItemDetails() {
     }
     else {
       return <>
-        <button onClick={loginReg} >POWER</button>  UP! to place a bid
+        <button onClick={loginReg} >POWER</button>
+        <span className="bid-text"> to place a bid!
+        </span>
       </>
     }
   }

@@ -86,24 +86,24 @@ export default function Login() {
 
         <form onSubmit={handleSubmit}>
           <div>
-            <label htmlFor="inputEmail3" id='inputEmail3'>Email</label>
+            <label htmlFor="inputEmail3" className='inputEmail3'>Player Name</label>
             <div>
               <input
                 type="text"
-                id="inputEmail3"
+                className="inputEmail3"
                 placeholder="Player Name"
                 name="userName"
-                value={loginData.email}
+                value={loginData.userName}
                 onChange={handleInputChange}
               />
             </div>
           </div>
           <div >
-            <label htmlFor="inputPassword3" id="inputPassword3">Password</label>
+            <label htmlFor="inputPassword3" className="inputPassword3">Password</label>
             <div>
               <input
                 type="password"
-                id="inputPassword3"
+                className="inputPassword3"
                 placeholder="Password"
                 name="password"
                 value={loginData.password}
@@ -111,11 +111,11 @@ export default function Login() {
               />
             </div>
           </div>
-          <div id='loginInput'>
-            <div className="col-sm-10">
-              <button type="submit" id="loginButton" >SELECT</button>
-            </div>
+
+          <div className="col-sm-10">
+            <button type="submit" id="loginButton" >SELECT</button>
           </div>
+
         </form>
       ) : (
         <RegisterForm />
