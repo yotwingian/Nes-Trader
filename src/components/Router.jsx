@@ -36,12 +36,13 @@ export default function Router() {
 
           </Routes>
         </main>
-        <footer >
-          <Link to="about" style={{ textDecoration: 'none' }}>About</Link>
-          <Link to="contact" style={{ textDecoration: 'none' }}>Contact</Link>
-          <Link to="how-to" style={{ textDecoration: 'none' }}>How to</Link>
-          <img src="../../img/controller.png" alt="controller"></img>
-
+        <footer>
+          <div>
+            <Link to="about" style={{ textDecoration: 'none' }}>About</Link>
+            <Link to="contact" style={{ textDecoration: 'none' }}>Contact</Link>
+            <Link to="how-to" style={{ textDecoration: 'none' }}>How to</Link>
+            <img src="../../img/controller.png" alt="controller"></img>
+          </div>
         </footer>
       </BrowserRouter>
     </GlobalProvider >

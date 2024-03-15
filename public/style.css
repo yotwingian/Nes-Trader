@@ -1,249 +1,252 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
-button {
-  margin-left: '10px';
-  font-family: "Press Start 2P";
-  border-color: rgb(136, 132, 139);
-  outline-color: rgb(136, 132, 139);
-  background-color: rgb(214, 214, 217);
-  color: rgb(219, 58, 58);
-  /* border: 2px rgb(136, 132, 139) solid;
+  button {
+    margin-left: '10px';
+    font-family: "Press Start 2P";
+    border-color: rgb(136, 132, 139);
+    outline-color: rgb(136, 132, 139);
+    background-color: rgb(214, 214, 217);
+    color: rgb(219, 58, 58);
+    /* border: 2px rgb(136, 132, 139) solid;
   box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); */
-}
-main {
-  padding: 50px;
-  background-color: rgb(214, 214, 217);
+  }
 
-}
+  main {
+    padding: 50px;
+    background-color: rgb(214, 214, 217);
 
-main h1 {
-  font-family: "Press Start 2P";
-  color: rgb(219, 58, 58);
-  text-decoration: none;
-  font-size: 3.5vh;
-  text-shadow: 1px 1px 1px black;
-}
+  }
 
-header {
-  font-family: "Press Start 2P";
-  background-color: rgb(44, 44, 44);
-  width: 100%;
-  border-bottom: 5px rgb(136, 132, 139) solid;
-}
+  main h1 {
+    font-family: "Press Start 2P";
+    color: rgb(219, 58, 58);
+    text-decoration: none;
+    font-size: 3.5vh;
+    text-shadow: 1px 1px 1px black;
+  }
 
-header nav {
-  width: 70%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-left: auto;
-  margin-right: auto;
-}
+  header {
+    font-family: "Press Start 2P";
+    background-color: rgb(44, 44, 44);
+    width: 100%;
+    border-bottom: 5px rgb(136, 132, 139) solid;
+  }
 
-header a {
-  color: rgb(219, 58, 58);
-  text-decoration: none;
-  font-size: 1.2vw;
-}
+  header nav {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+  }
 
-header img {
-  width: 13%;
-}
+  header a {
+    color: rgb(219, 58, 58);
+    text-decoration: none;
+    font-size: 1.2vw;
+  }
 
+  header img {
+    width: 13%;
+  }
 
-footer {
-  background-color: rgb(44, 44, 44);
-  font-family: "Press Start 2P";
-  border-top: 5px rgb(136, 132, 139) solid;
-  width: 100%;
-  display: flex;
-  flex-direction: row;
-  align-items: right;
-  justify-content: space-between;
-  margin-left: auto;
-  margin-right: auto;
-}
+  footer {
+    background-color: rgb(44, 44, 44);
+    font-family: "Press Start 2P";
+    border-top: 5px rgb(136, 132, 139) solid;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
 
-footer a {
-  color: rgb(219, 58, 58);
-  text-decoration: none;
-  font-size: 1.2vw;
-}
+  footer div {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
 
-footer img {
-  width: 13%;
-}
+  footer a {
+    color: rgb(219, 58, 58);
+    text-decoration: none;
+    font-size: 1.2vw;
+  }
 
-/* login */
+  footer img {
+    width: 13%;
+  }
 
-.inputEmail3 {
-  width: 350px;
-}
+  /* login */
 
-.inputPassword3 {
-  width: 350px;
-  margin-bottom: 10px;
-}
+  .inputEmail3 {
+    width: 350px;
+  }
 
-#loginInput {
-  margin-bottom: 10px;
-}
+  .inputPassword3 {
+    width: 350px;
+    margin-bottom: 10px;
+  }
 
-#loginButton {
-  transition-duration: 0.4s;
-  font-family: "Press Start 2P";
-}
+  #loginInput {
+    margin-bottom: 10px;
+  }
 
-#loginButton:hover {
-  background-color: rgb(219, 58, 58);
-  color: white;
-}
+  #loginButton {
+    transition-duration: 0.4s;
+    font-family: "Press Start 2P";
+  }
 
-
-#gotoRegister {
-  margin-top: 10px;
-  font-family: "Press Start 2P";
-  cursor: pointer;
-}
-
-/* register */
-#registerForm {
-  margin-top: 10px;
-}
-
-#registerFormBottom {
-  margin-bottom: 10px;
-}
-
-#registerButton {
-  transition-duration: 0.4s;
-  font-family: "Press Start 2P";
-}
-
-#registerButton:hover {
-  background-color: #04AA6D;
-  color: white;
-}
-
-/*AddItems*/
-
-.newGameButton {
-  margin-top: 10px;
-  transition-duration: 0.4s;
-  font-family: "Press Start 2P";
-}
-
-/* ItemsDetails.jsx & items.jsx  */
-
-section {
-  background-color: rgb(136, 132, 139);
-  border-radius: 5px;
-  width: 18%;
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
-
-section img {
-  width: 100%;
-  height: 250px;
-  padding: 10px;
-}
-
-section p {
-  padding-left: 10px;
-  color: white;
-
-}
-
-section h5 {
-  font-family: "Press Start 2P";
-  color: rgb(219, 58, 58);
-  text-shadow: 1px 1px 1px black;
-  font-size: 1em;
-  padding: 10px;
-}
+  #loginButton:hover {
+    background-color: rgb(219, 58, 58);
+    color: white;
+  }
 
 
-.items-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: space-between;
-  justify-content: space-between;
-}
+  #gotoRegister {
+    margin-top: 10px;
+    font-family: "Press Start 2P";
+    cursor: pointer;
+  }
 
-.items-containerx {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 30px;
+  /* register */
+  #registerForm {
+    margin-top: 10px;
+  }
 
-}
+  #registerFormBottom {
+    margin-bottom: 10px;
+  }
+
+  #registerButton {
+    transition-duration: 0.4s;
+    font-family: "Press Start 2P";
+  }
+
+  #registerButton:hover {
+    background-color: #04AA6D;
+    color: white;
+  }
+
+  /*AddItems*/
+
+  .newGameButton {
+    margin-top: 10px;
+    transition-duration: 0.4s;
+    font-family: "Press Start 2P";
+  }
+
+  /* ItemsDetails.jsx & items.jsx  */
+
+  section {
+    background-color: rgb(136, 132, 139);
+    border-radius: 5px;
+    width: 18%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+
+  section img {
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+  }
+
+  section p {
+    padding-left: 10px;
+    color: white;
+
+  }
+
+  section h5 {
+    font-family: "Press Start 2P";
+    color: rgb(219, 58, 58);
+    text-shadow: 1px 1px 1px black;
+    font-size: 1em;
+    padding: 10px;
+  }
 
 
-.item-container {
-  background-color: rgb(136, 132, 139);
-  border-radius: 5px;
-  width: 70%;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  margin-left: auto;
-  margin-right: auto;
-  color: white;
-}
+  .items-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-between;
+  }
 
-.item-container a {
-  color: rgb(219, 58, 58);
-  font-family: "Press Start 2P";
-  text-shadow: 1px 1px 1px black
-}
+  .items-containerx {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 30px;
 
-.item-container img {
-  width: 50%;
-  height: 250px;
-  border-radius: 5px;
-}
+  }
 
-.item-container h1 {
-  text-shadow: 1px 1px 1px black
-}
 
-.details-container {
-  flex-grow: 1;
-}
+  .item-container {
+    background-color: rgb(136, 132, 139);
+    border-radius: 5px;
+    width: 70%;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+  }
 
-.details-container button {
-  font-family: "Press Start 2P";
-  border-color: rgb(44, 44, 44);
-  outline-color: rgb(44, 44, 44);
-  background-color: rgb(214, 214, 217);
-  color: rgb(219, 58, 58);
-}
+  .item-container a {
+    color: rgb(219, 58, 58);
+    font-family: "Press Start 2P";
+    text-shadow: 1px 1px 1px black
+  }
 
-.bid-text {
-  font-family: "Press Start 2P";
+  .item-container img {
+    width: 50%;
+    height: 250px;
+    border-radius: 5px;
+  }
 
-}
+  .item-container h1 {
+    text-shadow: 1px 1px 1px black
+  }
 
-.current-bid-container {
-  flex-shrink: 0;
-  width: 40%;
-}
+  .details-container {
+    flex-grow: 1;
+  }
 
-.current-bid-container h6 {
-  padding-top: 10px;
-  text-align: center;
-  font-size: 11pt;
-  font-family: "Press Start 2P";
-  text-shadow: 1px 1px 1px black;
-}
+  .details-container button {
+    font-family: "Press Start 2P";
+    border-color: rgb(44, 44, 44);
+    outline-color: rgb(44, 44, 44);
+    background-color: rgb(214, 214, 217);
+    color: rgb(219, 58, 58);
+  }
 
-.current-bid-container ul {
-  font-family: "Press Start 2P";
-  font-size: 8pt;
-}
+  .bid-text {
+    font-family: "Press Start 2P";
+
+  }
+
+  .current-bid-container {
+    flex-shrink: 0;
+    width: 40%;
+  }
+
+  .current-bid-container h6 {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 11pt;
+    font-family: "Press Start 2P";
+    text-shadow: 1px 1px 1px black;
+  }
+
+  .current-bid-container ul {
+    font-family: "Press Start 2P";
+    font-size: 8pt;
+  }
