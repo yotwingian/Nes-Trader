@@ -46,6 +46,7 @@
     color: rgb(219, 58, 58);
     text-decoration: none;
     font-size: 1.2vw;
+    word-spacing: -12px;
   }
 
   header img {
@@ -72,6 +73,7 @@
     color: rgb(219, 58, 58);
     text-decoration: none;
     font-size: 1.2vw;
+    word-spacing: -12px;
   }
 
   footer img {
@@ -156,7 +158,6 @@
   section p {
     padding-left: 10px;
     color: white;
-
   }
 
   section h5 {
@@ -165,6 +166,7 @@
     text-shadow: 1px 1px 1px black;
     font-size: 1em;
     padding: 10px;
+    height: 50px;
   }
 
 
@@ -183,6 +185,15 @@
     justify-content: flex-start;
     gap: 30px;
 
+  }
+
+  .itemsCard {
+    margin-bottom: 1px;
+  }
+
+  .itemsFlex {
+    display: flex;
+    flex-direction: column;
   }
 
 
@@ -215,6 +226,21 @@
   .item-container h1 {
     text-shadow: 1px 1px 1px black
   }
+
+  .itemstext {
+    margin-bottom: 3px;
+  }
+
+  .items {
+    margin-left: 13px;
+    margin-bottom: 3px;
+    color: white;
+  }
+
+  .itemsDetail {
+    margin: 20px;
+  }
+
 
   .details-container {
     flex-grow: 1;

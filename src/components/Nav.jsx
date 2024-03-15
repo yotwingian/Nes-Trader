@@ -13,7 +13,7 @@ export default function Nav() {
 
   return (
     <nav>
-      <img src="../../img/controller.png" alt="controller"></img>
+      <img src="../../img/controller.png" />
       <Link to="/" style={{ textDecoration: 'none' }}>NES TRADER</Link>
       <Link to="games" style={{ textDecoration: 'none' }}>GAMES</Link>
       {isLoggedIn ? (

@@ -53,7 +53,7 @@ export default function ItemDetails() {
         <img src={item.img} width="300" alt={item.title} />
         <p>
           {item.releaseYear} | {item.genre} | <MaxBid id={parseInt(id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(id)} /> <br />
-          Game over in: <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />
+          <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />
         </p>
         {bid()}<p></p>
         <p>{item.description}</p>

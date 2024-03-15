@@ -3,10 +3,10 @@ function RegisterForm() {
 
   return <form onSubmit={PostUser}>
     <div className="form-row" id="registerForm" >
-      <div >
-        <label htmlFor="inputName">Name</label>
+      <div>
+        <label htmlFor="inputUsername">Username</label>
         <div>
-          <input type="text" name="name" id="inputName" placeholder="Name" required />
+          <input type="text" name="userName" id="inputUsername" placeholder="Username" required />
         </div>
       </div>
       <div>
@@ -22,29 +22,29 @@ function RegisterForm() {
         </div>
       </div>
     </div>
-    <div>
-      <label htmlFor="inputUsername">Username</label>
+    <div >
+      <label htmlFor="inputName">Name</label>
       <div>
-        <input type="text" name="userName" id="inputUsername" placeholder="Username" required />
+        <input type="text" name="name" id="inputName" placeholder="Name" required />
       </div>
     </div>
     <div>
       <label htmlFor="inputAddress">Address</label>
       <div>
-        <input type="text" name="adress" id="inputAddress" required />
+        <input type="text" name="adress" id="inputAddress" placeholder="Address" required />
       </div>
     </div>
     <div className="form-row">
       <div>
         <label htmlFor="inputCity">City</label>
         <div>
-          <input type="text" name="city" id="inputCity" required />
+          <input type="text" name="city" id="inputCity" placeholder="City" required />
         </div>
       </div>
       <div id="registerFormBottom">
         <label htmlFor="inputZip">Zip</label>
         <div>
-          <input type="text" name="zip" id="inputZip" required />
+          <input type="text" name="zip" id="inputZip" placeholder="Zip" required />
         </div>
       </div>
     </div>
