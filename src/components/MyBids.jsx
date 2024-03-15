@@ -24,7 +24,7 @@ export default function MyBids() {
 
   return (
     <div>
-      <h1>Your Bids</h1>
+      <h1>Player Bids</h1>
       <div className="items-containerx">
        {userBids.map(item => (
          <section key={item.id}>

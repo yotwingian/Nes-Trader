@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react"
-import { Link, useParams } from "react-router-dom"
+import { Link, useParams, useNavigate } from "react-router-dom"
 import Countdown from "react-countdown"
 import { GlobalContext } from "../components/GlobalContext.jsx"
 import BidForm from "../components/AddBid.jsx"
@@ -13,6 +13,7 @@ export default function ItemDetails() {
   const { id } = useParams()
   const [item, setItem] = useState()
   const { isLoggedIn } = useContext(GlobalContext)
+  const navigate = useNavigate()
 
   useEffect(() => {
     async function load() {
@@ -27,23 +28,31 @@ export default function ItemDetails() {
     return null
   }
 
+  function loginReg() {
+    navigate("/login")
+  }
+
   function bid() {
     if (isLoggedIn) {
       return <BidForm itemId={parseInt(id)} startPrice={parseInt(item.startPrice)} />
     }
     else {
-      return <Link to="/login" style={{ textDecoration: 'none' }}>Log in to place a bid</Link>
+      return <>
+        <button onClick={loginReg} >POWER</button>
+        <span className="bid-text"> to place a bid!
+        </span>
+      </>
     }
   }
 
   return <>
-    
+
     <div className="item-container">
       <div className="details-container">
         <h1>{item.title}</h1>
         <img src={item.img} width="300" alt={item.title} />
         <p>
-          {item.releaseYear} | {item.genre} | <MaxBid id={parseInt(id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(id)} /> |
+          {item.releaseYear} | {item.genre} | <MaxBid id={parseInt(id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(id)} /> <br />
           Game over in: <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />
         </p>
         {bid()}<p></p>

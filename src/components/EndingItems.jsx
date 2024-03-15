@@ -21,7 +21,7 @@ const EndingItems = () => {
 
   return (
     <div>
-      <h1>Games Ending Soon</h1>
+      <h1>Games Over Soon</h1>
       <div className="items-container">
       {items.map(item => (
         <section key={item.id}>

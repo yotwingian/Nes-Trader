@@ -3,39 +3,53 @@ function RegisterForm() {
 
   return <form onSubmit={PostUser}>
     <div className="form-row" id="registerForm" >
-      <div className="form-group col-md-6">
+      <div >
         <label htmlFor="inputName">Name</label>
-        <input type="text" name="name" className="form-control" id="inputName" placeholder="Name" required />
+        <div>
+          <input type="text" name="name" id="inputName" placeholder="Name" required />
+        </div>
       </div>
-      <div className="form-group col-md-6">
+      <div>
         <label htmlFor="inputEmail4">Email</label>
-        <input type="email" name="email" className="form-control" id="inputEmail4" placeholder="Email" required />
+        <div>
+          <input type="email" name="email" id="inputEmail4" placeholder="Email" required />
+        </div>
       </div>
-      <div className="form-group col-md-6">
+      <div>
         <label htmlFor="inputPassword4">Password</label>
-        <input type="password" name="password" className="form-control" id="inputPassword4" placeholder="Password" required />
+        <div>
+          <input type="password" name="password" id="inputPassword4" placeholder="Password" required />
+        </div>
       </div>
     </div>
-    <div className="form-group col-md-6">
+    <div>
       <label htmlFor="inputUsername">Username</label>
-      <input type="text" name="userName" className="form-control" id="inputUsername" placeholder="Username" required />
+      <div>
+        <input type="text" name="userName" id="inputUsername" placeholder="Username" required />
+      </div>
     </div>
-    <div className="form-group col-md-6">
+    <div>
       <label htmlFor="inputAddress">Address</label>
-      <input type="text" name="adress" className="form-control" id="inputAddress" required />
+      <div>
+        <input type="text" name="adress" id="inputAddress" required />
+      </div>
     </div>
     <div className="form-row">
-      <div className="form-group col-md-6">
+      <div>
         <label htmlFor="inputCity">City</label>
-        <input type="text" name="city" className="form-control" id="inputCity" required />
+        <div>
+          <input type="text" name="city" id="inputCity" required />
+        </div>
       </div>
-      <div className="form-group col-md-2" id="registerFormBottom">
+      <div id="registerFormBottom">
         <label htmlFor="inputZip">Zip</label>
-        <input type="text" name="zip" className="form-control" id="inputZip" required />
+        <div>
+          <input type="text" name="zip" id="inputZip" required />
+        </div>
       </div>
     </div>
 
-    <button type="submit" className="btn btn-outline-danger" id="registerButton">Sign in</button>
+    <button type="submit" id="registerButton">START</button>
   </form>
 }
 

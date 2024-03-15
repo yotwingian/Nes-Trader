@@ -21,7 +21,7 @@ export default function Home() {
       <EndingItems />
       <LatestItems />
 
-      <h1>All Games</h1>
+      <h1>Select Game</h1>
       <Items />
     </div>
   );

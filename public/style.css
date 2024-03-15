@@ -1,212 +1,252 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+  button {
+    margin-left: '10px';
+    font-family: "Press Start 2P";
+    border-color: rgb(136, 132, 139);
+    outline-color: rgb(136, 132, 139);
+    background-color: rgb(214, 214, 217);
+    color: rgb(219, 58, 58);
+    /* border: 2px rgb(136, 132, 139) solid;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3); */
+  }
+
+  main {
+    padding: 50px;
+    background-color: rgb(214, 214, 217);
+
+  }
+
+  main h1 {
+    font-family: "Press Start 2P";
+    color: rgb(219, 58, 58);
+    text-decoration: none;
+    font-size: 3.5vh;
+    text-shadow: 1px 1px 1px black;
+  }
+
+  header {
+    font-family: "Press Start 2P";
+    background-color: rgb(44, 44, 44);
+    width: 100%;
+    border-bottom: 5px rgb(136, 132, 139) solid;
+  }
+
+  header nav {
+    width: 70%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  header a {
+    color: rgb(219, 58, 58);
+    text-decoration: none;
+    font-size: 1.2vw;
+  }
+
+  header img {
+    width: 13%;
+  }
+
+  footer {
+    background-color: rgb(44, 44, 44);
+    font-family: "Press Start 2P";
+    border-top: 5px rgb(136, 132, 139) solid;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  footer div {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  footer a {
+    color: rgb(219, 58, 58);
+    text-decoration: none;
+    font-size: 1.2vw;
+  }
+
+  footer img {
+    width: 13%;
+  }
+
+  /* login */
+
+  .inputEmail3 {
+    width: 350px;
+  }
+
+  .inputPassword3 {
+    width: 350px;
+    margin-bottom: 10px;
+  }
+
+  #loginInput {
+    margin-bottom: 10px;
+  }
+
+  #loginButton {
+    transition-duration: 0.4s;
+    font-family: "Press Start 2P";
+  }
+
+  #loginButton:hover {
+    background-color: rgb(219, 58, 58);
+    color: white;
+  }
 
 
-main {
-  padding: 50px;
-  background-color: rgb(214, 214, 217);
+  #gotoRegister {
+    margin-top: 10px;
+    font-family: "Press Start 2P";
+    cursor: pointer;
+  }
 
-}
+  /* register */
+  #registerForm {
+    margin-top: 10px;
+  }
 
-main h1 {
-  font-family: "Press Start 2P";
-  color: rgb(219, 58, 58);
-  text-decoration: none;
-  font-size: 3.5vh;
-  text-shadow: 1px 1px 1px black;
-}
+  #registerFormBottom {
+    margin-bottom: 10px;
+  }
 
-header {
-  font-family: "Press Start 2P";
-  background-color: rgb(44, 44, 44);
-  width: 100%;
-  border-bottom: 5px rgb(136, 132, 139) solid;
+  #registerButton {
+    transition-duration: 0.4s;
+    font-family: "Press Start 2P";
+  }
 
+  #registerButton:hover {
+    background-color: #04AA6D;
+    color: white;
+  }
 
-}
+  /*AddItems*/
 
-header nav {
-  width: 70%;
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  margin-left: auto;
-  margin-right: auto;
-}
+  .newGameButton {
+    margin-top: 10px;
+    transition-duration: 0.4s;
+    font-family: "Press Start 2P";
+  }
 
-header a {
-  color: rgb(219, 58, 58);
-  text-decoration: none;
-  font-size: 1.2vw;
-}
+  /* ItemsDetails.jsx & items.jsx  */
 
-header img {
-  width: 13%;
+  section {
+    background-color: rgb(136, 132, 139);
+    border-radius: 5px;
+    width: 18%;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
 
-}
+  section img {
+    width: 100%;
+    height: 250px;
+    padding: 10px;
+  }
 
+  section p {
+    padding-left: 10px;
+    color: white;
 
-footer {
-  background-color: rgb(44, 44, 44);
-  font-family: "Press Start 2P";
-  padding: 20px;
-  border-top: 5px rgb(136, 132, 139) solid;
-}
+  }
 
-footer a {
-  color: rgb(219, 58, 58);
-  text-decoration: none;
-  font-size: 1.2vw;
-}
-
-/* login */
-
-#inputEmail3 {
-  width: 350px;
-}
-
-#inputPassword3 {
-  width: 350px;
-  margin-bottom: 10px;
-}
-
-#loginInput {
-  margin-bottom: 10px;
-}
-
-#loginButton {
-  transition-duration: 0.4s;
-}
-
-#loginButton:hover {
-  background-color: rgb(219, 58, 58);
-  color: white;
-}
+  section h5 {
+    font-family: "Press Start 2P";
+    color: rgb(219, 58, 58);
+    text-shadow: 1px 1px 1px black;
+    font-size: 1em;
+    padding: 10px;
+  }
 
 
-#gotoRegister {
-  margin-top: 10px;
-  font-family: "Press Start 2P";
+  .items-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: space-between;
+    justify-content: space-between;
+  }
 
-}
+  .items-containerx {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    gap: 30px;
 
-/* register */
-#registerForm {
-  margin-top: 10px;
-}
-
-#registerFormBottom {
-  margin-bottom: 10px;
-}
-
-#registerButton {
-  transition-duration: 0.4s;
-}
-
-#registerButton:hover {
-  background-color: #04AA6D;
-  color: white;
-}
+  }
 
 
+  .item-container {
+    background-color: rgb(136, 132, 139);
+    border-radius: 5px;
+    width: 70%;
+    margin-bottom: 10px;
+    margin-top: 20px;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-right: auto;
+    color: white;
+  }
 
-/* ItemsDetails.jsx & items.jsx  */
+  .item-container a {
+    color: rgb(219, 58, 58);
+    font-family: "Press Start 2P";
+    text-shadow: 1px 1px 1px black
+  }
 
-section {
-  background-color: rgb(136, 132, 139);
-  border-radius: 5px;
-  width: 18%;
-  margin-top: 40px;
-  margin-bottom: 40px;
-}
+  .item-container img {
+    width: 50%;
+    height: 250px;
+    border-radius: 5px;
+  }
 
-section img {
-  width: 100%;
-  height: 250px;
-  padding: 10px;
-}
+  .item-container h1 {
+    text-shadow: 1px 1px 1px black
+  }
 
-section p {
-  padding-left: 10px;
-  color: white;
+  .details-container {
+    flex-grow: 1;
+  }
 
-}
+  .details-container button {
+    font-family: "Press Start 2P";
+    border-color: rgb(44, 44, 44);
+    outline-color: rgb(44, 44, 44);
+    background-color: rgb(214, 214, 217);
+    color: rgb(219, 58, 58);
+  }
 
-section h5 {
-  font-family: "Press Start 2P";
-  color: rgb(219, 58, 58);
-  text-shadow: 1px 1px 1px black;
-  font-size: 1em;
-  padding: 10px;
-}
+  .bid-text {
+    font-family: "Press Start 2P";
 
+  }
 
-.items-container {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  align-content: space-between;
-  justify-content: space-between;
-}
+  .current-bid-container {
+    flex-shrink: 0;
+    width: 40%;
+  }
 
-.items-containerx {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: flex-start;
-  gap: 30px;
+  .current-bid-container h6 {
+    padding-top: 10px;
+    text-align: center;
+    font-size: 11pt;
+    font-family: "Press Start 2P";
+    text-shadow: 1px 1px 1px black;
+  }
 
-}
-
-
-.item-container {
-  background-color: rgb(136, 132, 139);
-  border-radius: 5px;
-  width: 70%;
-  margin-bottom: 10px;
-  margin-top: 20px;
-  padding: 10px;
-  display: flex;
-  justify-content: space-between;
-  margin-left: auto;
-  margin-right: auto;
-  color: white;
-}
-
-.item-container a {
-  color: rgb(219, 58, 58);
-  font-family: "Press Start 2P";
-  text-shadow: 1px 1px 1px black
-}
-
-.item-container img {
-  width: 50%;
-  height: 250px;
-  border-radius: 5px;
-}
-
-.item-container h1 {
-  text-shadow: 1px 1px 1px black
-}
-
-.details-container {
-  flex-grow: 1;
-}
-
-.current-bid-container {
-  flex-shrink: 0;
-  width: 40%;
-}
-
-.current-bid-container h6 {
-  padding-top: 10px;
-  text-align: center;
-  font-size: 11pt;
-  font-family: "Press Start 2P";
-  text-shadow: 1px 1px 1px black;
-}
-
-.current-bid-container ul {
-  font-family: "Press Start 2P";
-  font-size: 8pt;
-}
+  .current-bid-container ul {
+    font-family: "Press Start 2P";
+    font-size: 8pt;
+  }

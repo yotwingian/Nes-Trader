@@ -62,7 +62,7 @@ export default function Items() {
 
   return <>
     <search >
-      <input type="text" onChange={filter} placeholder="Enter search here..." />
+      <input type="text" onChange={filter} placeholder="Search..." />
       <select onChange={handleSortChange} className="btn btn-outline-seconda">
         <option value="endingSoon">Ending Soon</option>
         <option value="title">Title</option>
@@ -71,18 +71,19 @@ export default function Items() {
       </select>
     </search>
     <div className="items-container">
-    {filteredItems.map(item => (
-      <section key={item.id}>
-        <Link to={{ pathname: `/item-details/${item.id}` }} style={{ textDecoration: 'none' }}>
-          <img src={item.img}    alt={item.title} />
-          
-          <h5>{item.title}</h5> <br /> <p> Released: {item.releaseYear} <br />  Genre: {item.genre} <br />
-            <MaxBid id={parseInt(item.id)} startPrice={parseInt(item.startPrice)} /> <br /> <TotalBids id={parseInt(item.id)} /> <br />
-            {" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
-          </p>
-        </Link>
-      </section>
-    ))}
+      {filteredItems.map(item => (
+        <section key={item.id}>
+          <Link to={{ pathname: `/item-details/${item.id}` }} style={{ textDecoration: 'none' }}>
+            <img src={item.img} alt={item.title} />
+
+            <h5>{item.title}</h5> <br /> <p> Released: {item.releaseYear} <br />  Genre: {item.genre} <br />
+              <MaxBid id={parseInt(item.id)} startPrice={parseInt(item.startPrice)} /> <br /> <TotalBids id={parseInt(item.id)} /> <br />
+              {" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
+
+            </p>
+          </Link>
+        </section>
+      ))}
     </div>
   </>
 

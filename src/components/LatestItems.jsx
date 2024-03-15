@@ -21,7 +21,7 @@ const LatestItems = () => {
 
   return (
     <div>
-      <h1>Latest Games</h1>
+      <h1>New Games</h1>
       <div className="items-container">
       {items.map(item => (
         <section key={item.id}>

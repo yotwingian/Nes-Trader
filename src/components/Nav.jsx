@@ -1,28 +1,31 @@
 import { useContext } from "react"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { GlobalContext } from "./GlobalContext.jsx"
 
 export default function Nav() {
   const { login, isLoggedIn } = useContext(GlobalContext)
-  const {user} = useContext(GlobalContext)
+  const { user } = useContext(GlobalContext)
+  const navigate = useNavigate()
+
+  function loginReg() {
+    navigate("/login")
+  }
 
   return (
     <nav>
-      <img src="../../img/test.png" alt="kontroll"></img>
+      <img src="../../img/controller.png" alt="controller"></img>
       <Link to="/" style={{ textDecoration: 'none' }}>NES TRADER</Link>
-      <Link to="games" style={{ textDecoration: 'none' }}>Games</Link>
+      <Link to="games" style={{ textDecoration: 'none' }}>GAMES</Link>
       {isLoggedIn ? (
         <>
-          <Link to="new-item" style={{ textDecoration: 'none' }}>Sell</Link>
-          <Link to="my-page" style={{ textDecoration: 'none' }}>{user.username}</Link>
-          <button style={{ marginLeft: '10px' }} onClick={login} >Logout</button>  {/*tillfällig styling*/}
-          <img src="../../img/test.png" alt="kontroll"></img>
+          <Link to="new-item" style={{ textDecoration: 'none' }}>NEW GAME</Link>
+          <Link to="my-page" style={{ textDecoration: 'none' }}>{user.userName}</Link>
+          <button onClick={login} >RESET</button>
         </>
       ) : (
         <>
-            <Link to="login" style={{ textDecoration: 'none' }}>Login/Register</Link>
-            <img src="../../img/test.png" alt="kontroll"></img>
-                 </>
+          <button onClick={loginReg} >POWER</button>
+        </>
       )}
     </nav>
   )

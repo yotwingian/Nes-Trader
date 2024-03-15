@@ -24,7 +24,7 @@ export default function MyItems() {
 
   return (
     <div>
-      <h1>Your Listings</h1>
+      <h1>Player Items</h1>
       <div className="items-containerx">
         {userListings.map(item => (
           <section key={item.id}>
