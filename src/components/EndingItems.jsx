@@ -30,7 +30,7 @@ const EndingItems = () => {
             
             <h5>{item.title}</h5> <br /> <p> Released: {item.releaseYear} <br />  Genre: {item.genre} <br />
               <MaxBid id={parseInt(item.id)} startPrice={parseInt(item.startPrice)} /> <br /> <TotalBids id={parseInt(item.id)} /> <br />
-              Game over in:{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
+              {" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}
             </p>
           </Link>
         </section>
