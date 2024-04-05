@@ -67,7 +67,6 @@ try
 
   app.MapGet("/items/item/{slug}", () => "Items.SingleItem");
   app.MapGet("/items/item/{slug}/bids", () => "Items.ItemBids");
-  app.MapPost("/items/item/{slug}/post-bid", () => "Items.PostBid"); // Kopplad till slug, men hör det till Items eller Bids - "/bids/{slug}/post"?
 
   app.MapGet("/bids", () => @"
   [
@@ -259,6 +258,7 @@ try
   ");
   // ^ Mockdata, ska tas bort! Ersätts med endpoint "/bids/{user}" v
   app.MapGet("/bids/{user}", () => "Bids.User");
+  app.MapPost("/bids/{slug}/post", () => "Bids.PostBid");
 
   app.MapGet("/users", () => @"
   [
