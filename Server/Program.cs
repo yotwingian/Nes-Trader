@@ -14,6 +14,7 @@ try
   var app = builder.Build();
 
   app.MapGet("/", () => "NES Trader Server");
+
   app.MapGet("/items", Items.All);
   app.MapGet("/items/ending-soon", () => "Items.EndingSoon");
   app.MapGet("/items/latest", () => "Items.Latest");
@@ -60,8 +61,14 @@ try
       }
   ]
   ");
-  // ^ Mockdata, ska tas bort! Ersätts med "/items/{user}" v
+  // ^ Mockdata, ska tas bort! Ersätts med endpoint "/items/{user}" v
   app.MapGet("/items/{user}", () => "Items.User");
+  app.MapPost("items/post", () => "Items.PostItem");
+
+  app.MapGet("/items/item/{slug}", () => "Items.SingleItem");
+  app.MapGet("/items/item/{slug}/bids", () => "Items.ItemBids");
+  app.MapPost("/items/item/{slug}/post-bid", () => "Items.PostBid"); // Kopplad till slug, men hör det till Items eller Bids - "/bids/{slug}/post"?
+
   app.MapGet("/bids", () => @"
   [
       {
@@ -206,7 +213,7 @@ try
       }
     ]
   ");
-  // ^ Mockdata, ska tas bort! Behövs en endpoint för alla bids?
+  // ^ Mockdata, ska tas bort! Ersätts med metod Bids.All
   app.MapGet("/mybids", () => @"
   [
       {
@@ -250,8 +257,9 @@ try
       }
   ]
   ");
-  // ^ Mockdata, ska tas bort! Ersätts med "/bids/{user}" v
+  // ^ Mockdata, ska tas bort! Ersätts med endpoint "/bids/{user}" v
   app.MapGet("/bids/{user}", () => "Bids.User");
+
   app.MapGet("/users", () => @"
   [
       {
@@ -263,13 +271,9 @@ try
       }
   ]
   ");
-  // ^ Mockdata, ska tas bort! Behövs en endpoint för alla users?
+  // ^ Mockdata, ska tas bort!
   app.MapPost("/users/login", () => "Users.Login");
   app.MapPost("/users/register", () => "Users.Register");
-  app.MapGet("/item-details/{slug}", () => "Item.Details"); // Döpa om till "/item"?
-  app.MapGet("/item-details/{slug}/bids", () => "Item.Bids");
-  app.MapPost("/item-details/{slug}/new-bid", () => "Item.NewBid");
-  app.MapPost("/new-item", () => "NewItem.Add");
 
   app.Run("http://localhost:3000");
 }
