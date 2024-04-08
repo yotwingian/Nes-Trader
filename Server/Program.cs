@@ -2,7 +2,7 @@ using Server;
 using MySql.Data.MySqlClient;
 
 MySqlConnection? db = null;
-string connectionString = "server=localhost;uid=root;pwd=mypassword;database=nes_trader;port=3306";
+string connectionString = "server=localhost;uid=root;pwd=docker;database=nes_trader;port=3306";
 
 try
 {
@@ -63,7 +63,7 @@ try
   ");
   // ^ Mockdata, ska tas bort! Ersätts med endpoint "/items/{user}" v
   app.MapGet("/items/{user}", () => "Items.User");
-  app.MapPost("items/post", () => "Items.PostItem");
+  app.MapPost("/items/post", Items.PostItem);
 
   app.MapGet("/item/{slug}", () => "Items.SingleItem");
   app.MapGet("/item/bids/{slug}", () => "Items.ItemBids");

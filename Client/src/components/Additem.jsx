@@ -1,4 +1,3 @@
-
 function AuctionForm() {
   return <form onSubmit={PostAuction}>
     <div>
@@ -64,12 +63,13 @@ async function PostAuction(event) {
   event.preventDefault();
   const data = new FormData(event.target);
   const info = Object.fromEntries(data);
-  await fetch("/api/items", {
+  const infoWithUser = { ...info, user: 1 }; // tillfallig hardkodad user
+  await fetch("/api/items/post", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(info),
+    body: JSON.stringify(infoWithUser),
   });
 
   event.target.reset();
