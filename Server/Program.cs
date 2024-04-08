@@ -16,8 +16,8 @@ try
   app.MapGet("/", () => "NES Trader Server");
 
   app.MapGet("/items", Items.All);
-  app.MapGet("/items/ending-soon", () => "Items.EndingSoon");
-  app.MapGet("/items/latest", () => "Items.Latest");
+  app.MapGet("/items/ending-soon", Items.EndingSoon);
+  app.MapGet("/items/latest", Items.Latest);
   app.MapGet("/mylistings", () => @"
   [
       {
