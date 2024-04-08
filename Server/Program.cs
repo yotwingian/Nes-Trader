@@ -65,8 +65,8 @@ try
   app.MapGet("/items/{user}", () => "Items.User");
   app.MapPost("items/post", () => "Items.PostItem");
 
-  app.MapGet("/items/item/{slug}", () => "Items.SingleItem");
-  app.MapGet("/items/item/{slug}/bids", () => "Items.ItemBids");
+  app.MapGet("/item/{slug}", () => "Items.SingleItem");
+  app.MapGet("/item/bids/{slug}", () => "Items.ItemBids");
 
   app.MapGet("/bids", () => @"
   [
@@ -258,7 +258,7 @@ try
   ");
   // ^ Mockdata, ska tas bort! Ersätts med endpoint "/bids/{user}" v
   app.MapGet("/bids/{user}", () => "Bids.User");
-  app.MapPost("/bids/{slug}/post", () => "Bids.PostBid");
+  app.MapPost("/bids/post/{slug}", () => "Bids.PostBid");
 
   app.MapGet("/users", () => @"
   [
