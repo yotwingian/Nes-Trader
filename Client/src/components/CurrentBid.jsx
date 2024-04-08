@@ -30,7 +30,7 @@ export default function CurrentBid({ id }) {
       </li>
       {bids.map((bid) => (
         <li key={bid.bids_id} style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div style={{ textAlign: 'left' }}>{bid.bids_user}</div>
+          <div style={{ textAlign: 'left' }}>{bid.username}</div>
           <div style={{ textAlign: 'right' }}>{bid.bids_amount}</div>
         </li>
       ))}
