@@ -79,7 +79,7 @@ export default function Items() {
               <h5>{item.title}</h5>
               <div className="itemsFlex">
                 <div><p className="itemstext">{item.releaseYear} | {item.genre}</p></div>
-                <div className="items"><MaxBid id={item.id} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={item.id} /></div>
+                <div className="items"><MaxBid id={item.id} startPrice={item.startPrice} /> | <TotalBids id={item.id} /></div>
                 <div className="items">{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}</div>
               </div>
             </Link>

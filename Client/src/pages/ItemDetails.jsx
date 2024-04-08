@@ -60,7 +60,7 @@ export default function ItemDetails() {
       </div>
       <div className="current-bid-container">
         <h6>HIGH SCORES</h6>
-        <CurrentBid id={item.id} />
+        <CurrentBid id={slug} />
       </div>
     </div>
   </>
