@@ -10,11 +10,10 @@ const EndingItems = () => {
 
   useEffect(() => {
     async function load() {
-      const response = await fetch("/api/items");
+      const response = await fetch("/api/items/ending-soon");
       const data = await response.json();
 
-      const sortedByEndingSoon = data.sort((a, b) => new Date(a.endDateTime) - new Date(b.endDateTime));
-      setItems(sortedByEndingSoon.slice(0, 5));
+      setItems(data);
     }
     load();
   }, []);
