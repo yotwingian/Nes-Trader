@@ -66,7 +66,7 @@ try
   app.MapPost("items/post", () => "Items.PostItem");
 
   app.MapGet("/item/{slug}", Items.SingleItem);
-  app.MapGet("/item/bids/{slug}", () => "Items.ItemBids");
+  app.MapGet("/item/bids/{slug}", Items.ItemsBids);
 
   app.MapGet("/bids", () => @"
   [
