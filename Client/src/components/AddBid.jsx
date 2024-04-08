@@ -48,7 +48,7 @@ function BidForm({ itemId, startPrice }) {
       return;
     }
 
-    await fetch("/api/bids", {
+    await fetch("/api/bids/post", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
