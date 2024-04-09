@@ -32,9 +32,7 @@ public class Items
     return result;
   }
 
- public record PostItemRecord(string Slug, string Title, string ReleaseYear, string Genre, string Description,
-    string Img, string StartDateTime, string EndDateTime, int StartPrice, int ReservePrice, int User);
-  public static async Task PostItem( PostItemRecord item, State state)
+  public static async Task PostItem(State state, Item item)
   {
     // Generate the slug from the title
     string slug = item.Title.ToLower().Replace(" ", "-");
@@ -63,7 +61,7 @@ public class Items
       }
     }
 
-
+    
     using var cmd = new MySqlCommand("INSERT INTO items (slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price, user) VALUES (@slug, @title, @release_year, @genre, @description, @image, @start_datetime, @end_datetime, @start_price, @reserve_price, @user)", state.DB);
     cmd.Parameters.AddWithValue("@slug", slug);
     cmd.Parameters.AddWithValue("@title", item.Title);
