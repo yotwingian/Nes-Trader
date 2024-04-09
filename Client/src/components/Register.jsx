@@ -31,7 +31,7 @@ function RegisterForm() {
     <div>
       <label htmlFor="inputAddress">Address</label>
       <div>
-        <input type="text" name="adress" id="inputAddress" placeholder="Address" required />
+        <input type="text" name="address" id="inputAddress" placeholder="Address" required />
       </div>
     </div>
     <div className="form-row">
@@ -46,6 +46,10 @@ function RegisterForm() {
         <div>
           <input type="text" name="zip" id="inputZip" placeholder="Zip" required />
         </div>
+        <label htmlFor="country">Country</label>
+        <div>
+          <input type="text" name="country" id="country" placeholder="Country" required />
+        </div>
       </div>
     </div>
 
@@ -55,21 +59,26 @@ function RegisterForm() {
 
 async function PostUser(event) {
   event.preventDefault();
-  try {
-    const data = new FormData(event.target);
-    const info = Object.fromEntries(data);
-    await fetch("/api/users", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(info),
-    });
+  const formData = new FormData(event.target);
+  // const info = Object.fromEntries(formData);
 
-    event.target.reset();
-  } catch (error) {
-    console.error("Error posting user:", error);
+  // try {
+  await fetch("/api/users/register", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(formData),
+  });
 
-  }
+  //   if (response.ok) {
+  //     console.log('User registered successfully.');
+  event.target.reset(); // Reset the form
+  //   } else {
+  //     console.error('Failed to register user. Server returned status:', response.status);
+  //   }
+  // } catch (error) {
+  //   console.error('Error posting user:', error);
+  // }
 }
 export default RegisterForm
