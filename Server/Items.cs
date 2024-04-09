@@ -9,7 +9,7 @@ public class Items
   public static IResult All(State state)
   {
     List<Item> items = new();
-    string query = "SELECT id slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items";
+    string query = "SELECT id, slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items";
     var reader = MySqlHelper.ExecuteReader(state.DB, query);
 
     if (reader.HasRows)
@@ -36,20 +36,19 @@ public class Items
     {
       return TypedResults.NotFound("Items not found");
     }
-
   }
 
-  public static Item? SingleItem(State state, string slug)
-  {
-    Item? result = null;
-    string query = "SELECT id, slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items WHERE slug = @slug";
-    MySqlCommand command = new(query, state.DB);
-    command.Parameters.AddWithValue("@slug", slug);
-    using var reader = command.ExecuteReader();
+  public record SingleItemRecord(int ID, string Slug, string Title, string ReleaseYear, string Genre, string Description,
+  string Img, string EndDateTime, int StartPrice, int ReservePrice);
 
-    while (reader.Read())
+  public static IResult SingleItem(string slug, State state)
+  {
+    string query = "SELECT id, slug, title, release_year, genre, description, image, end_datetime, start_price, reserve_price FROM items WHERE slug = @slug";
+    var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@slug", slug)]);
+
+    if (reader.Read())
     {
-      result = new Item(
+      return TypedResults.Ok(new SingleItemRecord(
         reader.GetInt32("id"),
         reader.GetString("slug"),
         reader.GetString("title"),
@@ -57,13 +56,15 @@ public class Items
         reader.GetString("genre"),
         reader.GetString("description"),
         reader.GetString("image"),
-        reader.GetDateTime("start_datetime").ToString(),
         reader.GetDateTime("end_datetime").ToString(),
         reader.GetInt32("start_price"),
         reader.GetInt32("reserve_price")
-      );
+      ));
     }
-    return result;
+    else
+    {
+      return TypedResults.NotFound("Item not found");
+    }
   }
 
 }
