@@ -6,35 +6,37 @@ public class Items
   public record Item(int ID, string Slug, string Title, string ReleaseYear, string Genre, string Description,
     string Img, string StartDateTime, string EndDateTime, int StartPrice, int ReservePrice);
 
-
-  public record ItemBids(int ID, string Slug, string Title, string ReleaseYear, string Genre, string Description,
-    string Img, string StartDateTime, string EndDateTime, int StartPrice, int ReservePrice, int bids_id, int bids_amount, string bids_time, int bids_user, int bids_item, string username);
-
-
-  public static List<Item> All(State state)
+  public static IResult All(State state)
   {
-    List<Item> result = new();
-    string query = "SELECT id, slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items";
-    MySqlCommand command = new(query, state.DB);
-    using var reader = command.ExecuteReader();
+    List<Item> items = new();
+    string query = "SELECT id slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items";
+    var reader = MySqlHelper.ExecuteReader(state.DB, query);
 
-    while (reader.Read())
+    if (reader.HasRows)
     {
-      result.Add(new(
-        reader.GetInt32("id"),
-        reader.GetString("slug"),
-        reader.GetString("title"),
-        reader.GetString("release_year"),
-        reader.GetString("genre"),
-        reader.GetString("description"),
-        reader.GetString("image"),
-        reader.GetDateTime("start_datetime").ToString(),
-        reader.GetDateTime("end_datetime").ToString(),
-        reader.GetInt32("start_price"),
-        reader.GetInt32("reserve_price")
-      ));
+      while (reader.Read())
+      {
+        items.Add(new(
+          reader.GetInt32("id"),
+          reader.GetString("slug"),
+          reader.GetString("title"),
+          reader.GetString("release_year"),
+          reader.GetString("genre"),
+          reader.GetString("description"),
+          reader.GetString("image"),
+          reader.GetDateTime("start_datetime").ToString(),
+          reader.GetDateTime("end_datetime").ToString(),
+          reader.GetInt32("start_price"),
+          reader.GetInt32("reserve_price")
+        ));
+      }
+      return TypedResults.Ok(items);
     }
-    return result;
+    else
+    {
+      return TypedResults.NotFound("Items not found");
+    }
+
   }
 
   public static Item? SingleItem(State state, string slug)
