@@ -6,17 +6,49 @@ public class Items
   public record Item(int ID, string Slug, string Title, string ReleaseYear, string Genre, string Description,
     string Img, string StartDateTime, string EndDateTime, int StartPrice, int ReservePrice);
 
-
-  public static List<Item> All(State state)
+  public static IResult All(State state)
   {
-    List<Item> result = new();
+    List<Item> items = new();
     string query = "SELECT id, slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items";
-    MySqlCommand command = new(query, state.DB);
-    using var reader = command.ExecuteReader();
+    var reader = MySqlHelper.ExecuteReader(state.DB, query);
 
-    while (reader.Read())
+    if (reader.HasRows)
     {
-      result.Add(new(
+      while (reader.Read())
+      {
+        items.Add(new(
+          reader.GetInt32("id"),
+          reader.GetString("slug"),
+          reader.GetString("title"),
+          reader.GetString("release_year"),
+          reader.GetString("genre"),
+          reader.GetString("description"),
+          reader.GetString("image"),
+          reader.GetDateTime("start_datetime").ToString(),
+          reader.GetDateTime("end_datetime").ToString(),
+          reader.GetInt32("start_price"),
+          reader.GetInt32("reserve_price")
+        ));
+      }
+      return TypedResults.Ok(items);
+    }
+    else
+    {
+      return TypedResults.NotFound("Items not found");
+    }
+  }
+
+  public record SingleItemRecord(int ID, string Slug, string Title, string ReleaseYear, string Genre, string Description,
+  string Img, string EndDateTime, int StartPrice, int ReservePrice);
+
+  public static IResult SingleItem(string slug, State state)
+  {
+    string query = "SELECT id, slug, title, release_year, genre, description, image, end_datetime, start_price, reserve_price FROM items WHERE slug = @slug";
+    var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@slug", slug)]);
+
+    if (reader.Read())
+    {
+      return TypedResults.Ok(new SingleItemRecord(
         reader.GetInt32("id"),
         reader.GetString("slug"),
         reader.GetString("title"),
@@ -24,41 +56,15 @@ public class Items
         reader.GetString("genre"),
         reader.GetString("description"),
         reader.GetString("image"),
-        reader.GetDateTime("start_datetime").ToString(),
         reader.GetDateTime("end_datetime").ToString(),
         reader.GetInt32("start_price"),
         reader.GetInt32("reserve_price")
       ));
     }
-    return result;
-  }
-
-  public static Item? SingleItem(State state, string slug)
-  {
-    Item? result = null;
-    string query = "SELECT id, slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items WHERE slug = @slug";
-    MySqlCommand command = new(query, state.DB);
-    command.Parameters.AddWithValue("@slug", slug);
-    using var reader = command.ExecuteReader();
-
-    while (reader.Read())
+    else
     {
-      result = new Item(
-        reader.GetInt32("id"),
-        reader.GetString("slug"),
-        reader.GetString("title"),
-        reader.GetString("release_year"),
-        reader.GetString("genre"),
-        reader.GetString("description"),
-        reader.GetString("image"),
-        reader.GetDateTime("start_datetime").ToString(),
-        reader.GetDateTime("end_datetime").ToString(),
-        reader.GetInt32("start_price"),
-        reader.GetInt32("reserve_price")
-      );
+      return TypedResults.NotFound("Item not found");
     }
-    return result;
   }
 
- 
 }

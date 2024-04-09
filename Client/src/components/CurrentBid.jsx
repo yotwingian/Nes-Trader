@@ -6,10 +6,8 @@ export default function CurrentBid({ id }) {
 
   useEffect(() => {
     async function load() {
-      const response = await fetch("/api/item/bids/" + id)
-      console.log(response)
+      const response = await fetch("/api/bids/")
       const data = await response.json()
-      console.log
       setBids(data)
     }
     const intervalId = setInterval(load, 1000); //interval
@@ -18,24 +16,27 @@ export default function CurrentBid({ id }) {
 
   }, [id]) // id 
 
-
+  const thisItemBids = bids.filter(bid => bid.itemId.toString().includes(id))
+  const sortedBids = thisItemBids.sort((a, b) => b.amount - a.amount);
 
 
   // Spara thisItemBids i en variabel
   const bidsList = (
-    <ul style={{ listStyleType: 'none', padding: 0 }}>
-      <li style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}>
-        <div style={{ textAlign: 'left' }}>Player</div>
-        <div style={{ textAlign: 'right' }}>Bid</div>
-      </li>
-      {bids.map((bid) => (
-        <li key={bid.bids_id} style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <div style={{ textAlign: 'left' }}>{bid.username}</div>
-          <div style={{ textAlign: 'right' }}>{bid.bids_amount}</div>
+    <>
+      <ul style={{ listStyleType: 'none', padding: 0, }}>
+        <li style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}>
+          <div style={{ textAlign: 'left' }}>Player</div>
+          <div style={{ textAlign: 'right' }}>Bid</div>
         </li>
-      ))}
-    </ul>
+        <p></p>
+        {sortedBids.map((bid, index) => (
+          <li key={index} style={{ display: 'flex', justifyContent: 'space-between' }}>
+            <div style={{ textAlign: 'left' }}>{bid.bidder}</div>
+            <div style={{ textAlign: 'right' }}>{bid.amount}</div>
+          </li>
+        ))}
+      </ul>
+    </>
   );
-
   return bidsList;
 }
