@@ -9,16 +9,16 @@ public class Bids
   public record ItemBids(int ID, string Slug, string Title, string ReleaseYear, string Genre, string Description,
     string Img, string StartDateTime, string EndDateTime, int StartPrice, int ReservePrice, int bids_id, int bids_amount, string bids_time, int bids_user, int bids_item, string username);
 
-  public record Info(string Amount, string Timespan, string Bidder, int ItemId);
-  public static void PostBid(State state, Info info)
+  public record Bid(string Amount, string Timespan, string Bidder, int ItemId);
+  public static void PostBid(State state, Bid bid)
   {
     string query = "INSERT INTO bids (amount, time, user, item) VALUES (@amount, @time, @user, @item)";
     MySqlCommand command = new(query, state.DB);
     
-    command.Parameters.AddWithValue("@amount", info.Amount);
-    command.Parameters.AddWithValue("@time", DateTime.Parse(info.Timespan));
-    command.Parameters.AddWithValue("@user", 3);
-    command.Parameters.AddWithValue("@item", info.ItemId);
+    command.Parameters.AddWithValue("@amount", bid.Amount);
+    command.Parameters.AddWithValue("@time", DateTime.Parse(bid.Timespan));
+    command.Parameters.AddWithValue("@user", 3); // bör vara bid.Bidder så fort det inte är undefined.
+    command.Parameters.AddWithValue("@item", bid.ItemId);
 
     command.ExecuteNonQuery();
   }
