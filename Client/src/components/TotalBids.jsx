@@ -9,7 +9,6 @@ export default function TotalBids({ id }) {
       const response = await fetch("/api/bids/")
       const data = await response.json()
       setBids(data)
-      console.log(data)
     }
     load()
   }, []) // bids här skapar evighetsloop pga setBids i samma useEffect
