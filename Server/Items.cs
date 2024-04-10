@@ -81,11 +81,9 @@ public class Items
     new MySqlParameter("@reserve_price", item.ReservePrice),
     new MySqlParameter("@user", item.User)
   };
-
-    // Execute the insert query
+    
     MySqlHelper.ExecuteNonQuery(state.DB, insertQuery, insertParameters);
-
-    // Return a result that can be serialized to JSON.
+    
     return TypedResults.Ok();
   }
 
