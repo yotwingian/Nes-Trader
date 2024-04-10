@@ -64,7 +64,7 @@ async function PostAuction(event) {
   event.preventDefault();
   const data = new FormData(event.target);
   const info = Object.fromEntries(data);
-  await fetch("/api/items", {
+  await fetch("/api/items/post", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
