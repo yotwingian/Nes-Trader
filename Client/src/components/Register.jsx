@@ -6,7 +6,7 @@ function RegisterForm() {
       <div>
         <label htmlFor="inputUsername">Username</label>
         <div>
-          <input type="text" name="userName" id="inputUsername" placeholder="Username" required />
+          <input type="text" name="username" id="inputUsername" placeholder="Username" required />
         </div>
       </div>
       <div>
@@ -60,7 +60,7 @@ function RegisterForm() {
 async function PostUser(event) {
   event.preventDefault();
   const formData = new FormData(event.target);
-  // const info = Object.fromEntries(formData);
+  const info = Object.fromEntries(formData);
 
   // try {
   await fetch("/api/users/register", {
@@ -68,7 +68,7 @@ async function PostUser(event) {
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify(formData),
+    body: JSON.stringify(info),
   });
 
   //   if (response.ok) {

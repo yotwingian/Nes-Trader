@@ -273,7 +273,7 @@ try
   ");
   // ^ Mockdata, ska tas bort!
   app.MapPost("/users/login", () => "Users.Login");
-  app.MapPost("/users/register", () => Users.Register);
+  app.MapPost("/users/register", Users.Register);
 
   app.Run("http://localhost:3000");
 }

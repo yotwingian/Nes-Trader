@@ -3,12 +3,12 @@ using MySql.Data.MySqlClient;
 
 public class Users
 {
-  public record User(string UserName, string Email, string Password, string Name, string Address, string City, string Zip, string Country);
+  public record User(string Username, string Email, string Password, string Name, string Address, string City, string Zip, string Country);
 
-  public static async Task Register(State state, User user)
+  public static async Task Register(User user, State state)
   {
-    MySqlCommand command = new("INSERT INTO users(username, email, password, name, address, city, zip, country) VALUES (@userName, @email, @password, @name, @address, @city, @zip, @country)", state.DB);
-    command.Parameters.AddWithValue("@userName", user.UserName);
+    MySqlCommand command = new("INSERT INTO users(username, email, password, name, address, city, zip, country) VALUES (@Username, @email, @password, @name, @address, @city, @zip, @country)", state.DB);
+    command.Parameters.AddWithValue("@Username", user.Username);
     command.Parameters.AddWithValue("@email", user.Email);
     command.Parameters.AddWithValue("@password", user.Password);
     command.Parameters.AddWithValue("@name", user.Name);
