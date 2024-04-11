@@ -12,7 +12,7 @@ export default function MyItems() {
 
   useEffect(() => {
     if (isLoggedIn) {
-            
+
       async function load() {
         const response = await fetch("/api/mylistings");
         const data = await response.json();
@@ -29,11 +29,11 @@ export default function MyItems() {
         {userListings.map(item => (
           <section key={item.id}>
             <div >
-              <Link to={{ pathname: `/item-details/${item.id}` }} style={{ textDecoration: 'none' }}>
+              <Link to={{ pathname: `/item/${item.slug}` }} style={{ textDecoration: 'none' }}>
                 <img src={item.img} alt={item.title} />
                 <h5>{item.title}</h5>
                 <div><p className="itemstext">{item.releaseYear} | {item.genre}</p></div>
-                <div className="items"><MaxBid id={parseInt(item.id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(item.id)} /></div>
+                <div className="items"><MaxBid id={item.id} startPrice={item.startPrice} /> | <TotalBids id={item.id} /></div>
                 <div className="items">{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}</div>
               </Link>
             </div>
