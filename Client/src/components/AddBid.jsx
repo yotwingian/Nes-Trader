@@ -48,16 +48,25 @@ function BidForm({ slug, itemId, startPrice }) {
       return;
     }
 
-    await fetch("/api/bids/post/" + slug , {
+    const response = await fetch("/api/bids/post/" + slug , {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(info),
     });
-    alert("Your bid was successful. Your bid: " + info.amount);
-    event.target.reset();
 
+    console.log(response)
+
+    if(response.ok == true)
+    {
+      alert("Your bid was successful. Your bid: " + info.amount);
+      console.log(await response.text())
+      event.target.reset();
+    }else
+    {
+      alert("Failed to register bid, server returned: " + response.status)
+    }
   }
 
   return (

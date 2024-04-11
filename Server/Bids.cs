@@ -70,8 +70,6 @@ public class Bids
       return TypedResults.Problem("Something went wrong");
     }
 
-
-
   }
 
 }
