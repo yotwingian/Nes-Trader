@@ -8,7 +8,7 @@ export default function Login() {
   const [users, setUsers] = useState([])
   const [login, setLogin] = useState(true)
   const [loginData, setLoginData] = useState({
-    userName: '',
+    email: '',
     password: ''
   })
   const { setIsLoggedIn } = useContext(GlobalContext)
@@ -19,7 +19,7 @@ export default function Login() {
 
     async function load() {
       try {
-        const response = await fetch("/api/users/")
+        const response = await fetch("/api/users/login")
         const userData = await response.json()
         setUsers(userData)
         console.log(userData)
@@ -41,7 +41,7 @@ export default function Login() {
     event.preventDefault()
 
     if (login) {
-      const user = users.find(user => user.userName === loginData.userName && user.password === loginData.password)
+      const user = users.find(user => user.email === loginData.email && user.password === loginData.password)
       setUser(user)
       setTimeout(() => {
         if (user) {
