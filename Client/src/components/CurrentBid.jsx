@@ -9,6 +9,7 @@ export default function CurrentBid({ id }) {
       const response = await fetch("/api/bids/")
       const data = await response.json()
       setBids(data)
+
     }
     const intervalId = setInterval(load, 1000); //interval
     load();
