@@ -7,15 +7,15 @@ public class Bids
 
   public static IResult All(State state)
   {
-    List<Bid> allBids = new();
-    string allBidsQuery = "SELECT id, amount, time, user, item FROM bids";
-    var reader = MySqlHelper.ExecuteReader(state.DB, allBidsQuery);
+    List<Bid> bids = new();
+    var reader = MySqlHelper.ExecuteReader(state.DB,
+   "SELECT id, amount, time, user, item FROM bids");
 
     if (reader.HasRows)
     {
       while (reader.Read())
       {
-        allBids.Add(new(
+        bids.Add(new(
           reader.GetInt32("id"),
           reader.GetInt32("amount"),
           reader.GetDateTime("time").ToString(),
@@ -23,7 +23,7 @@ public class Bids
           reader.GetInt32("item")
         ));
       }
-      return TypedResults.Ok(allBids);
+      return TypedResults.Ok(bids);
     }
     else
     {
