@@ -8,7 +8,7 @@ public class Bids
   public static IResult All(State state)
   {
     List<Bid> bids = new();
-    var reader = MySqlHelper.ExecuteReader(state.DB,
+    using var reader = MySqlHelper.ExecuteReader(state.DB,
    "SELECT id, amount, time, user, item FROM bids");
 
     if (reader.HasRows)
