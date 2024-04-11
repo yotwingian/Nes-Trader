@@ -61,20 +61,130 @@ function AuctionForm() {
 }
 
 
+// async function PostAuction(event) {
+//   event.preventDefault();
+//   const data = new FormData(event.target);
+//   const info = Object.fromEntries(data);
+//   const infoWithUser = { ...info, user: 1 }; // tillfallig hardkodad user
+//   await fetch("/api/items/post", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(infoWithUser),
+//   });
+
+//   event.target.reset();
+
+// }
+// export default AuctionForm
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 async function PostAuction(event) {
   event.preventDefault();
   const data = new FormData(event.target);
   const info = Object.fromEntries(data);
   const infoWithUser = { ...info, user: 1 }; // tillfallig hardkodad user
-  await fetch("/api/items/post", {
+  const response = await fetch("/api/items/post", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify(infoWithUser),
+    
   });
+  console.log(response.status);
 
   event.target.reset();
 
 }
 export default AuctionForm
+
+
+
+
+
+
+
+
+
+
+
+
+
+// async function PostAuction(event) {
+//   event.preventDefault();
+//   const data = new FormData(event.target);
+//   const info = Object.fromEntries(data);
+//   const infoWithUser = { ...info, user: 1 }; // tillfallig hardkodad user
+//   try {
+//     const response = await fetch("/api/items/post", {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(infoWithUser),
+//     });
+
+//     if (response.ok) {
+//       const message = await response.text();
+//       console.log(message); // Logs "Data has been successfully submitted"
+//     } else {
+//       console.log('Error:', response.status, response.statusText);
+//     }
+//   } catch (error) {
+//     console.error('Error:', error);
+//   }
+
+//   event.target.reset();
+// }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// async function PostAuction(event) {
+//   event.preventDefault();
+//   const data = new FormData(event.target);
+//   const info = Object.fromEntries(data);
+//   const infoWithUser = { ...info, user: 1 }; // tillfallig hardkodad user
+//   console.log('Sending fetch request'); // New log statement
+//   const response = await fetch("/api/items/post", {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify(infoWithUser),
+//   });
+//   console.log('Fetch request sent, response received'); // New log statement
+//   if (response.ok) {
+//     const message = await response.text();
+//     console.log('Response was OK, message:', message); // Modified log statement
+//   } else {
+//     console.log('Error:', response.status, response.statusText);
+//   }
+
+//   event.target.reset();
