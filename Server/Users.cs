@@ -1,31 +1,35 @@
 namespace Server;
+
+using Microsoft.AspNetCore.Mvc;
 using MySql.Data.MySqlClient;
 
 public class Users
 {
-  public record UserCredentials(string Email, string Username);
-  public static IResult GetUser(string Email, string Password, State state)
+  public record UserCredentials(string Username, string Password);
+  public static IResult GetUser([FromBody] UserCredentials credentials, State state)
   {
-    string query = "SELECT email, username FROM users WHERE email = @email AND password = @password";
+    string query = "SELECT username, password FROM users WHERE username = @username AND password = @password";
     var reader = MySqlHelper.ExecuteReader(state.DB, query, new[] {
-    new MySqlParameter("@email", Email),
-    new MySqlParameter("@password", Password) });
+        new MySqlParameter("@username", credentials.Username),
+        new MySqlParameter("@password", credentials.Password)
+    });
 
-    Console.WriteLine("Username: " + Email);
-    Console.WriteLine("Password: " + Password);
+    Console.WriteLine("Username: " + credentials.Username);
+    Console.WriteLine("Password: " + credentials.Password);
 
     if (reader.Read())
     {
       return TypedResults.Ok(new UserCredentials(
-          reader.GetString("email"),
-          reader.GetString("username")
+          reader.GetString("username"),
+          reader.GetString("password")
       ));
     }
     else
     {
-      return TypedResults.NotFound("Item not found");
+      return TypedResults.NotFound("Wrong username or password!");
     }
   }
+
 
 
 }

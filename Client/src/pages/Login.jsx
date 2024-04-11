@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from 'react'
 import RegisterForm from "../components/Register.jsx"
 import { GlobalContext } from '../components/GlobalContext.jsx'
 import { useNavigate } from 'react-router-dom'; // Import useHistory
@@ -8,28 +8,14 @@ export default function Login() {
   const [users, setUsers] = useState([])
   const [login, setLogin] = useState(true)
   const [loginData, setLoginData] = useState({
-    email: '',
+    userName: '',
     password: ''
   })
   const { setIsLoggedIn } = useContext(GlobalContext)
   const { user, setUser } = useContext(GlobalContext)
   const navigate = useNavigate();
 
-  useEffect(() => {
 
-    async function load() {
-      try {
-        const response = await fetch("/api/users/login")
-        const userData = await response.json()
-        setUsers(userData)
-        console.log(userData)
-      } catch (error) {
-        console.error("Error message: ", error)
-      }
-    }
-    load()
-
-  }, [])
 
 
   const handleSwitchForm = () => {
@@ -37,31 +23,37 @@ export default function Login() {
 
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
+    
+    const response = await fetch("/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(loginData)
+    });
+    
+    const userData = await response.json();
+    setUsers(userData); 
 
-    if (login) {
-      const user = users.find(user => user.email === loginData.email && user.password === loginData.password)
+    if (loginData.userName === userData.username && loginData.password === userData.password) {
+      const user = userData.username
       setUser(user)
       setTimeout(() => {
         if (user) {
           setIsLoggedIn(true)
           console.log('Successfully logged in:', user);
           navigate('/');
-
-        } else {
-
-          console.log('Invalid email or password');
-
         }
       })
 
     } else {
-
-      console.log('Registering...');
-
+      alert(userData)
+      console.log('Invalid email or password');
 
     }
+
     setLoginData({
       userName: '',
       password: '',
