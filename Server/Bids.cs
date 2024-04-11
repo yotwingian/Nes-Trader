@@ -3,57 +3,58 @@ using MySql.Data.MySqlClient;
 
 public class Bids
 {
-  public record ItemBidsRecord(int ID, string Slug, string Title, string ReleaseYear, string Genre, string Description,
-      string Img, string StartDateTime, string EndDateTime, int StartPrice, int ReservePrice, int bids_id, int bids_amount, string bids_time, int bids_user, int bids_item, string username);
+  public record Bid(int Amount, string Timespan, string Bidder, int Item);
 
-  public static IResult ItemsBids(string slug, State state)
+  public static IResult Item(string slug, State state)
   {
-    List<ItemBidsRecord> Bids = new();
-    string query = "SELECT items.id, items.slug, items.title, items.release_year, items.genre, items.description, items.image, items.start_datetime, items.end_datetime, items.start_price, items.reserve_price, bids.id AS bids_id, bids.amount AS bids_amount, bids.time AS bids_time, bids.user AS bids_user, bids.item AS bids_item, users.username AS username FROM bids INNER JOIN users ON users.id = bids.user INNER JOIN items ON bids.item = items.id WHERE items.slug = @slug";
-    var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@slug", slug)]);
-    
+    List<Bid> bids = new();
+    string query = "SELECT bids.amount AS amount, bids.time AS time, users.username AS username, bids.item as item FROM bids INNER JOIN users ON bids.user = users.id INNER JOIN items ON bids.item = items.id WHERE items.slug = @slug";
+    using var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@slug", slug)]);
+
     if (reader.HasRows)
     {
       while (reader.Read())
       {
-        Bids.Add(new ItemBidsRecord(
-          reader.GetInt32("id"),
-          reader.GetString("slug"),
-          reader.GetString("title"),
-          reader.GetString("release_year"),
-          reader.GetString("genre"),
-          reader.GetString("description"),
-          reader.GetString("image"),
-          reader.GetDateTime("start_datetime").ToString(),
-          reader.GetDateTime("end_datetime").ToString(),
-          reader.GetInt32("start_price"),
-          reader.GetInt32("reserve_price"),
-          reader.GetInt32("bids_id"),
-          reader.GetInt32("bids_amount"),
-          reader.GetDateTime("bids_time").ToString(),
-          reader.GetInt32("bids_user"),
-          reader.GetInt32("bids_item"),
-          reader.GetString("username")
-      ));
+        bids.Add(new(
+          reader.GetInt32("amount"),
+          reader.GetDateTime("time").ToString(),
+          reader.GetString("username"),
+          reader.GetInt32("item")
+        ));
       }
-      return TypedResults.Ok(Bids);
+      return TypedResults.Ok(bids);
     }
     else
     {
-      return TypedResults.NotFound("Items not found");
+      return TypedResults.NotFound("Bids not found");
     }
   }
 
-  public record Bid(string Amount, DateTime Timespan, string Bidder, int ItemId);
-  public static void PostBid(State state, Bid bid)
+  public record PostBidRecord(string Amount, DateTime Timespan, string Bidder, int ItemId);
+  public static IResult PostBid(State state, PostBidRecord bid)
   {
     string query = "INSERT INTO bids (amount, time, user, item) VALUES (@amount, @time, @user, @item)";
-    Console.WriteLine("Tid " + bid.Timespan);
-    MySqlHelper.ExecuteNonQuery(state.DB, query,
-        new MySqlParameter("@amount", bid.Amount),
-        new MySqlParameter("@time", bid.Timespan.ToLocalTime()),
-        new MySqlParameter("@user", 3),
-        new MySqlParameter("@item", bid.ItemId));
+    
+    var result = MySqlHelper.ExecuteNonQuery(state.DB, query, [
+        new ("@amount", bid.Amount),
+        new ("@time", bid.Timespan.ToLocalTime()),
+        new ("@user", 3),
+        new ("@item", bid.ItemId)
+        ]);
+
+    if (result > 0)
+    {
+      // return to client/frontend
+      return TypedResults.Created("Post succesfull");
+    }
+    else
+    {
+      // return to client/frontend
+      return TypedResults.Problem("Something went wrong");
+    }
+
+
+
   }
 
 }

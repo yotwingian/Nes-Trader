@@ -59,7 +59,7 @@ app.MapGet("/items/{user}", () => "Items.User");
 app.MapPost("items/post", () => "Items.PostItem");
 
 app.MapGet("/item/{slug}", Items.SingleItem);
-app.MapGet("/item/bids/{slug}", Bids.ItemsBids); ;
+app.MapGet("/bids/item/{slug}", Bids.Item); ;
 
 app.MapGet("/bids", () => @"
 [
