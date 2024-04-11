@@ -81,10 +81,19 @@ public class Items
     new MySqlParameter("@reserve_price", item.ReservePrice),
     new MySqlParameter("@user", item.User)
   };
-    
-    MySqlHelper.ExecuteNonQuery(state.DB, insertQuery, insertParameters);
-    
-    return TypedResults.Ok();
+    try
+    {
+      
+      MySqlHelper.ExecuteNonQuery(state.DB, insertQuery, insertParameters);
+      
+      return TypedResults.Ok("Data has been successfully submitted");
+    }
+    catch (Exception ex)
+    {
+     
+      return TypedResults.Problem("An error occurred while submitting the data");
+    }
+
   }
 
 }
