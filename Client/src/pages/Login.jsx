@@ -5,27 +5,21 @@ import { useNavigate } from 'react-router-dom'; // Import useHistory
 
 export default function Login() {
 
-  const [users, setUsers] = useState([])
   const [login, setLogin] = useState(true)
   const [loginData, setLoginData] = useState({
     userName: '',
     password: ''
   })
-  const { setIsLoggedIn } = useContext(GlobalContext)
-  const { user, setUser } = useContext(GlobalContext)
+  const { setIsLoggedIn, setUser } = useContext(GlobalContext)
   const navigate = useNavigate();
-
-
-
 
   const handleSwitchForm = () => {
     setLogin((login) => (!login));
-
   }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    
+
     const response = await fetch("/api/users/login", {
       method: "POST",
       headers: {
@@ -33,9 +27,8 @@ export default function Login() {
       },
       body: JSON.stringify(loginData)
     });
-    
+
     const userData = await response.json();
-    setUsers(userData); 
 
     if (loginData.userName === userData.username && loginData.password === userData.password) {
       const user = userData.username
@@ -51,16 +44,14 @@ export default function Login() {
     } else {
       alert(userData)
       console.log('Invalid email or password');
-
     }
 
     setLoginData({
       userName: '',
       password: '',
     })
-
-
   };
+
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setLoginData(loginData => ({
@@ -69,13 +60,11 @@ export default function Login() {
     }));
   };
 
-
   return (
     <>
       <h1>{login ? 'Select Player' : 'New Player'}</h1>
 
       {login ? (
-
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="inputEmail3" className='inputEmail3'>Player Name</label>
@@ -107,14 +96,11 @@ export default function Login() {
           <div className="col-sm-10">
             <button type="submit" id="loginButton" >SELECT</button>
           </div>
-
         </form>
       ) : (
         <RegisterForm />
       )}
       <h3 id='gotoRegister' onClick={handleSwitchForm}>{!login ? 'Select Player' : 'New Player'}</h3>
-
     </>
   );
-
 }
