@@ -44,25 +44,16 @@ public class Bids
     }
   }
 
-  public record Bid(string Amount, string Timespan, string Bidder, int ItemId);
+  public record Bid(string Amount, DateTime Timespan, string Bidder, int ItemId);
   public static void PostBid(State state, Bid bid)
   {
-    
     string query = "INSERT INTO bids (amount, time, user, item) VALUES (@amount, @time, @user, @item)";
-    
-    using (MySqlConnection connection = new MySqlConnection(state.DB))
-    {
-      connection.Open();
-
-      MySqlCommand command = new MySqlCommand(query, connection);
-      command.Parameters.AddWithValue("@amount", bid.Amount);
-      command.Parameters.AddWithValue("@time", DateTime.Parse(bid.Timespan)); // eller DateTime.TryParseExact() för robusthet
-      command.Parameters.AddWithValue("@user", 3); // Om bid.Bidder är ett stringvärde
-      command.Parameters.AddWithValue("@item", bid.ItemId);
-
-      command.ExecuteNonQuery();
-    }
+    Console.WriteLine("Tid " + bid.Timespan);
+    MySqlHelper.ExecuteNonQuery(state.DB, query,
+        new MySqlParameter("@amount", bid.Amount),
+        new MySqlParameter("@time", bid.Timespan.ToLocalTime()),
+        new MySqlParameter("@user", 3),
+        new MySqlParameter("@item", bid.ItemId));
   }
-
 
 }
