@@ -28,7 +28,7 @@ export default function Router() {
             <Route path="login" element={<Login />} />
             <Route path="my-page" element={<MyPage />} />
             <Route path="new-item" element={<NewItem />} />
-            <Route path="item-details/:id" element={<ItemDetails />} />
+            <Route path="item/:slug" element={<ItemDetails />} />
             <Route path="*" element={<NoPage />} />
             <Route path="about" element={<About />} />
             <Route path="contact" element={<Contact />} />

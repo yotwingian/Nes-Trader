@@ -3,82 +3,136 @@ using MySql.Data.MySqlClient;
 
 public class Items
 {
-  public record Item(string Slug, string Title, string ReleaseYear, string Genre, string Description,
+  public record Item(int ID, string Slug, string Title, string ReleaseYear, string Genre, string Description,
     string Img, string StartDateTime, string EndDateTime, int StartPrice, int ReservePrice);
-    
-  public static List<Item> All(State state)
-  {
-    List<Item> result = new();
-    string query = "SELECT slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items";
-    MySqlCommand command = new(query, state.DB);
-    using var reader = command.ExecuteReader();
 
-    while (reader.Read())
+  public static IResult All(State state)
+  {
+    List<Item> items = new();
+    string query = "SELECT id, slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items";
+    var reader = MySqlHelper.ExecuteReader(state.DB, query);
+
+    if (reader.HasRows)
     {
-      result.Add(new( 
+      while (reader.Read())
+      {
+        items.Add(new(
+          reader.GetInt32("id"),
+          reader.GetString("slug"),
+          reader.GetString("title"),
+          reader.GetString("release_year"),
+          reader.GetString("genre"),
+          reader.GetString("description"),
+          reader.GetString("image"),
+          reader.GetDateTime("start_datetime").ToString(),
+          reader.GetDateTime("end_datetime").ToString(),
+          reader.GetInt32("start_price"),
+          reader.GetInt32("reserve_price")
+        ));
+      }
+      return TypedResults.Ok(items);
+    }
+    else
+    {
+      return TypedResults.NotFound("Items not found");
+    }
+  }
+
+  public record SingleItemRecord(int ID, string Slug, string Title, string ReleaseYear, string Genre, string Description,
+  string Img, string EndDateTime, int StartPrice, int ReservePrice);
+
+  public static IResult SingleItem(string slug, State state)
+  {
+    string query = "SELECT id, slug, title, release_year, genre, description, image, end_datetime, start_price, reserve_price FROM items WHERE slug = @slug";
+    var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@slug", slug)]);
+
+    if (reader.Read())
+    {
+      return TypedResults.Ok(new SingleItemRecord(
+        reader.GetInt32("id"),
         reader.GetString("slug"),
         reader.GetString("title"),
         reader.GetString("release_year"),
         reader.GetString("genre"),
         reader.GetString("description"),
         reader.GetString("image"),
-        reader.GetDateTime("start_datetime").ToString(),
         reader.GetDateTime("end_datetime").ToString(),
         reader.GetInt32("start_price"),
         reader.GetInt32("reserve_price")
       ));
     }
-    return result;
-  }
-
-  public static List<Item> Latest(State state)
-  {
-    List<Item> result = new();
-    string query = "SELECT slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items ORDER BY start_datetime desc LIMIT 5";
-    MySqlCommand command = new(query, state.DB);
-    using var reader = command.ExecuteReader();
-
-    while (reader.Read())
+    else
     {
-      result.Add(new(
-        reader.GetString("slug"),
-        reader.GetString("title"),
-        reader.GetString("release_year"),
-        reader.GetString("genre"),
-        reader.GetString("description"),
-        reader.GetString("image"),
-        reader.GetDateTime("start_datetime").ToString(),
-        reader.GetDateTime("end_datetime").ToString(),
-        reader.GetInt32("start_price"),
-        reader.GetInt32("reserve_price")
-      ));
+      return TypedResults.NotFound("Item not found");
     }
-    return result;
   }
 
-  public static List<Item> EndingSoon(State state)
+
+  public record EndingSoonRecord(string Slug, string Title, string ReleaseYear, string Genre, string Description,
+  string Img, string StartDateTime, string EndDateTime, int StartPrice, int ReservePrice);
+
+  public static IResult EndingSoon(State state)
   {
-    List<Item> result = new();
+    List<EndingSoonRecord> ending = new();
+
     string query = "SELECT slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items WHERE end_datetime >= curdate() LIMIT 5";
-    MySqlCommand command = new(query, state.DB);
-    using var reader = command.ExecuteReader();
+    var reader = MySqlHelper.ExecuteReader(state.DB, query);
 
-    while (reader.Read())
+    if (reader.HasRows)
     {
-      result.Add(new(
-        reader.GetString("slug"),
-        reader.GetString("title"),
-        reader.GetString("release_year"),
-        reader.GetString("genre"),
-        reader.GetString("description"),
-        reader.GetString("image"),
-        reader.GetDateTime("start_datetime").ToString(),
-        reader.GetDateTime("end_datetime").ToString(),
-        reader.GetInt32("start_price"),
-        reader.GetInt32("reserve_price")
-      ));
+      while (reader.Read())
+      {
+        ending.Add(new(
+          reader.GetString("slug"),
+          reader.GetString("title"),
+          reader.GetString("release_year"),
+          reader.GetString("genre"),
+          reader.GetString("description"),
+          reader.GetString("image"),
+          reader.GetDateTime("start_datetime").ToString(),
+          reader.GetDateTime("end_datetime").ToString(),
+          reader.GetInt32("start_price"),
+          reader.GetInt32("reserve_price")
+        ));
+      }
+      return TypedResults.Ok(ending);
     }
-    return result;
+    else
+    {
+      return TypedResults.NotFound("Items not found");
+    }
+  }
+
+  public static IResult Latest(State state)
+  {
+    List<EndingSoonRecord> ending = new();
+
+    string query = "SELECT slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items ORDER BY start_datetime desc LIMIT 5";
+    var reader = MySqlHelper.ExecuteReader(state.DB, query);
+
+    if (reader.HasRows)
+    {
+      while (reader.Read())
+      {
+        ending.Add(new(
+          reader.GetString("slug"),
+          reader.GetString("title"),
+          reader.GetString("release_year"),
+          reader.GetString("genre"),
+          reader.GetString("description"),
+          reader.GetString("image"),
+          reader.GetDateTime("start_datetime").ToString(),
+          reader.GetDateTime("end_datetime").ToString(),
+          reader.GetInt32("start_price"),
+          reader.GetInt32("reserve_price")
+        ));
+      }
+      return TypedResults.Ok(ending);
+    }
+    else
+    {
+      return TypedResults.NotFound("Items not found");
+    }
   }
 
 }
