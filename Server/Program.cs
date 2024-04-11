@@ -59,7 +59,6 @@ app.MapGet("/items/{user}", () => "Items.User");
 app.MapPost("items/post", () => "Items.PostItem");
 
 app.MapGet("/item/{slug}", Items.SingleItem);
-app.MapGet("/item/bids/{slug}", () => "Items.ItemBids");
 
 app.MapGet("/bids", Bids.All);
 app.MapGet("/mybids", () => @"
@@ -107,7 +106,8 @@ app.MapGet("/mybids", () => @"
 ");
 // ^ Mockdata, ska tas bort! Ersätts med endpoint "/bids/{user}" v
 app.MapGet("/bids/{user}", () => "Bids.User");
-app.MapPost("/bids/post/{slug}", () => "Bids.PostBid");
+app.MapPost("/bids/post/", () => "Bids.PostBid");
+app.MapGet("/bids/item/{slug}", Bids.Item);
 
 app.MapGet("/users", () => @"
 [
