@@ -24,13 +24,13 @@ const EndingItems = () => {
       <h1>Games Over Soon</h1>
       <div className="items-container">
         {items.map(item => (
-          <section key={item.id}>
+          <section key={item.slug}>
             <div >
               <Link to={{ pathname: `/item/${item.slug}` }} style={{ textDecoration: 'none' }}>
                 <img src={item.img} alt={item.title} />
                 <h5>{item.title}</h5>
                 <div><p className="itemstext">{item.releaseYear} | {item.genre}</p></div>
-                <div className="items"><MaxBid id={item.id} startPrice={item.startPrice} /> | <TotalBids id={item.id} /></div>
+                <div className="items"><MaxBid slug={item.slug} startPrice={item.startPrice} /> | <TotalBids slug={item.slug} /></div>
                 <div className="items">{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}</div>
               </Link>
             </div>
