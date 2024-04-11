@@ -1,4 +1,6 @@
 namespace Server;
+
+using Microsoft.VisualBasic;
 using MySql.Data.MySqlClient;
 
 public class Bids
@@ -30,16 +32,31 @@ public class Bids
     }
   }
 
-  public record PostBidRecord(string Amount, DateTime Timespan, string Bidder, int ItemId);
-  public static IResult PostBid(State state, PostBidRecord bid)
+  public record ItemIdRecord(int ItemId);
+  public record PostBidRecord(string Amount, DateTime Timespan, string Bidder);
+  public static IResult PostBid(string slug, State state, PostBidRecord bid)
   {
+    
+    int ItemId = 0;
+
+    string queryItemId = "SELECT bids.item AS itemid FROM bids INNER JOIN items ON bids.item = items.id WHERE slug = @slug";
+
+    var reader = MySqlHelper.ExecuteReader(state.DB, queryItemId, [new("@slug", slug)]);
+
+    if(reader.Read())
+    {
+      ItemId = reader.GetInt32("itemid");
+    }
+
+    Console.WriteLine(ItemId);
+
     string query = "INSERT INTO bids (amount, time, user, item) VALUES (@amount, @time, @user, @item)";
     
     var result = MySqlHelper.ExecuteNonQuery(state.DB, query, [
         new ("@amount", bid.Amount),
         new ("@time", bid.Timespan.ToLocalTime()),
         new ("@user", 3),
-        new ("@item", bid.ItemId)
+        new ("@item", ItemId)
         ]);
 
     if (result > 0)

@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { GlobalContext } from '../components/GlobalContext.jsx'
 
-function BidForm({ itemId, startPrice }) {
+function BidForm({ slug, itemId, startPrice }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [Bid, setBid] = useState([]);
   const [maxBidAmount, setMaxBidAmount] = useState(0);
@@ -48,7 +48,7 @@ function BidForm({ itemId, startPrice }) {
       return;
     }
 
-    await fetch("/api/bids/post", {
+    await fetch("/api/bids/post/" + slug , {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -77,7 +77,8 @@ function BidForm({ itemId, startPrice }) {
 
 BidForm.propTypes = {
   itemId: PropTypes.number,
-  startPrice: PropTypes.number
+  startPrice: PropTypes.number,
+  slug: PropTypes.string
 };
 
 export default BidForm;

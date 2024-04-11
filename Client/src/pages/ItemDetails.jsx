@@ -34,7 +34,7 @@ export default function ItemDetails() {
 
   function bid() {
     if (isLoggedIn) {
-      return <BidForm itemId={item.id} startPrice={item.startPrice} />
+      return <BidForm slug={slug} itemId={item.id} startPrice={item.startPrice} />
     }
     else {
       return <>

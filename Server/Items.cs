@@ -10,7 +10,7 @@ public class Items
   {
     List<Item> items = new();
     string query = "SELECT id, slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items";
-    var reader = MySqlHelper.ExecuteReader(state.DB, query);
+    using var reader = MySqlHelper.ExecuteReader(state.DB, query);
 
     if (reader.HasRows)
     {
@@ -44,7 +44,7 @@ public class Items
   public static IResult SingleItem(string slug, State state)
   {
     string query = "SELECT id, slug, title, release_year, genre, description, image, end_datetime, start_price, reserve_price FROM items WHERE slug = @slug";
-    var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@slug", slug)]);
+   using var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@slug", slug)]);
 
     if (reader.Read())
     {
