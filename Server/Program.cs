@@ -1,6 +1,6 @@
 using Server;
 
-State state = new("server=localhost;uid=root;pwd=H3dv1G?!;database=nes_trader;port=3306");
+State state = new("server=localhost;uid=root;pwd=mypassword;database=nes_trader;port=3306");
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton(state);
