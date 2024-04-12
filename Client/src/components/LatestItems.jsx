@@ -10,11 +10,10 @@ const LatestItems = () => {
 
   useEffect(() => {
     async function load() {
-      const response = await fetch("/api/items");
+      const response = await fetch("/api/items/latest");
       const data = await response.json();
 
-      const sortedByLatest = data.sort((a, b) => new Date(b.startDateTime) - new Date(a.startDateTime));
-      setItems(sortedByLatest.slice(0, 5));
+      setItems(data);
     }
     load();
   }, []);
