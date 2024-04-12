@@ -68,19 +68,19 @@ public class Items
     }
 
     string insertQuery = "INSERT INTO items (slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price, user) VALUES (@slug, @title, @release_year, @genre, @description, @image, @start_datetime, @end_datetime, @start_price, @reserve_price, @user)";
-    MySqlParameter[] insertParameters = {
-    new MySqlParameter("@slug", slug),
-    new MySqlParameter("@title", item.Title),
-    new MySqlParameter("@release_year", item.ReleaseYear),
-    new MySqlParameter("@genre", item.Genre),
-    new MySqlParameter("@description", item.Description),
-    new MySqlParameter("@image", item.Img),
-    new MySqlParameter("@start_datetime", item.StartDateTime),
-    new MySqlParameter("@end_datetime", item.EndDateTime),
-    new MySqlParameter("@start_price", item.StartPrice),
-    new MySqlParameter("@reserve_price", item.ReservePrice),
-    new MySqlParameter("@user", item.User)
-  };
+    MySqlParameter[] insertParameters = [
+    new ("@slug", slug),
+    new ("@title", item.Title),
+    new ("@release_year", item.ReleaseYear),
+    new ("@genre", item.Genre),
+    new ("@description", item.Description),
+    new ("@image", item.Img),
+    new ("@start_datetime", item.StartDateTime),
+    new ("@end_datetime", item.EndDateTime),
+    new ("@start_price", item.StartPrice),
+    new ("@reserve_price", item.ReservePrice),
+    new ("@user", item.User)
+  ];
     try
     {
       
