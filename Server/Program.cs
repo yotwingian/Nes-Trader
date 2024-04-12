@@ -1,10 +1,13 @@
+using System.Security.Claims;
+
 using Server;
 
 State state = new("server=localhost;uid=root;pwd=mypassword;database=nes_trader;port=3306");
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication().AddCookie("nes-trader.user"); // Test
-builder.Services.AddAuthorizationBuilder().AddPolicy("user", policy => policy.RequireClaim("username")); // Test
+builder.Services.AddAuthorizationBuilder().AddPolicy("user", policy => policy.RequireClaim(ClaimTypes.NameIdentifier)); // Test
+
 builder.Services.AddSingleton(state);
 var app = builder.Build();
 

@@ -54,17 +54,18 @@ public class TestUsers
     {
       string username = reader.GetString("username");
       string password = reader.GetString("password");
+      Console.WriteLine("DB Username: " + username);
+      Console.WriteLine("DB Password: " + password);
 
       await ctx.SignInAsync("nes-trader.user", new ClaimsPrincipal(
           new ClaimsIdentity(
-              [
-                new Claim(ClaimTypes.NameIdentifier, username),
-               
-              ],
+              new Claim[]
+              {
+            new Claim(ClaimTypes.NameIdentifier, username),
+              },
               "nes-trader.user"
           )
       ));
-
       return TypedResults.Ok(new UserCredentials(
           username,
           password
