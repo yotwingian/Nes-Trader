@@ -56,7 +56,7 @@ app.MapGet("/mylistings", () => @"
 ");
 // ^ Mockdata, ska tas bort! Ersätts med endpoint "/items/{user}" v
 app.MapGet("/items/{user}", () => "Items.User");
-app.MapGet("/item/{slug}", Items.SingleItem);
+app.MapGet("/item/{slug}", Items.Single);
 app.MapPost("items/post", () => "Items.PostItem");
 
 app.MapGet("/bids", Bids.All); // Används ej längre, kan tas bort
