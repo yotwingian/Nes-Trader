@@ -3,21 +3,20 @@ using MySql.Data.MySqlClient;
 
 public class Items
 {
-  public record Item(int ID, string Slug, string Title, string ReleaseYear, string Genre, string Description,
+  public record Item(string Slug, string Title, string ReleaseYear, string Genre, string Description,
     string Img, string StartDateTime, string EndDateTime, int StartPrice, int ReservePrice);
 
   public static IResult All(State state)
   {
     List<Item> items = new();
-    string query = "SELECT id, slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items";
-    var reader = MySqlHelper.ExecuteReader(state.DB, query);
+    string query = "SELECT slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price FROM items";
+    using var reader = MySqlHelper.ExecuteReader(state.DB, query);
 
     if (reader.HasRows)
     {
       while (reader.Read())
       {
         items.Add(new(
-          reader.GetInt32("id"),
           reader.GetString("slug"),
           reader.GetString("title"),
           reader.GetString("release_year"),
@@ -38,19 +37,17 @@ public class Items
     }
   }
 
-  public record SingleItemRecord(int ID, string Slug, string Title, string ReleaseYear, string Genre, string Description,
-  string Img, string EndDateTime, int StartPrice, int ReservePrice);
+  public record SingleItemRecord(string Title, string ReleaseYear, string Genre, string Description,
+    string Img, string EndDateTime, int StartPrice, int ReservePrice);
 
   public static IResult SingleItem(string slug, State state)
   {
-    string query = "SELECT id, slug, title, release_year, genre, description, image, end_datetime, start_price, reserve_price FROM items WHERE slug = @slug";
-    var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@slug", slug)]);
+    string query = "SELECT title, release_year, genre, description, image, end_datetime, start_price, reserve_price FROM items WHERE slug = @slug";
+    using var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@slug", slug)]);
 
     if (reader.Read())
     {
       return TypedResults.Ok(new SingleItemRecord(
-        reader.GetInt32("id"),
-        reader.GetString("slug"),
         reader.GetString("title"),
         reader.GetString("release_year"),
         reader.GetString("genre"),
