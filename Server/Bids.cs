@@ -37,7 +37,7 @@ public class Bids
   public static IResult Item(string slug, State state)
   {
     List<Bid> bids = new();
-    string query = "SELECT bids.amount AS amount, bids.time AS time, users.username AS username FROM bids INNER JOIN users ON bids.user = users.id INNER JOIN items ON bids.item = items.id WHERE items.slug = @slug";
+    string query = "SELECT bids.amount AS amount, bids.time AS time, users.username AS username FROM bids INNER JOIN users ON bids.user = users.id INNER JOIN items ON bids.item = items.id WHERE items.slug = @slug ORDER BY amount DESC";
     using var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@slug", slug)]);
 
     if (reader.HasRows)
@@ -54,7 +54,7 @@ public class Bids
     }
     else
     {
-      return TypedResults.NotFound("Bids not found");
+      return TypedResults.Ok(bids); // bids = [], Ok istället för NotFound eftersom en tom lista är att förvänta när det inte finns några bud
     }
   }
 
