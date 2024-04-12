@@ -34,7 +34,7 @@ export default function ItemDetails() {
 
   function bid() {
     if (isLoggedIn) {
-      return <BidForm itemId={item.id} startPrice={item.startPrice} />
+      return <BidForm slug={slug} startPrice={item.startPrice} />
     }
     else {
       return <>
@@ -46,13 +46,12 @@ export default function ItemDetails() {
   }
 
   return <>
-
     <div className="item-container">
       <div className="details-container">
         <h1>{item.title}</h1>
         <img src={item.img} width="300" alt={item.title} />
         <p>
-          {item.releaseYear} | {item.genre} | <MaxBid id={item.id} startPrice={item.startPrice} /> | <TotalBids id={item.id} /> <br />
+          {item.releaseYear} | {item.genre} | <MaxBid slug={slug} startPrice={item.startPrice} /> | <TotalBids slug={slug} /> <br />
           <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />
         </p>
         {bid()}<p></p>
@@ -60,7 +59,7 @@ export default function ItemDetails() {
       </div>
       <div className="current-bid-container">
         <h6>HIGH SCORES</h6>
-        <CurrentBid id={item.id} />
+        <CurrentBid slug={slug} />
       </div>
     </div>
   </>
