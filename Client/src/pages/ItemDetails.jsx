@@ -10,14 +10,14 @@ import CurrentBid from "../components/CurrentBid.jsx"
 
 export default function ItemDetails() {
 
-  const { id } = useParams()
+  const { slug } = useParams()
   const [item, setItem] = useState()
   const { isLoggedIn } = useContext(GlobalContext)
   const navigate = useNavigate()
 
   useEffect(() => {
     async function load() {
-      const response = await fetch("/api/items/" + id)
+      const response = await fetch("/api/item/" + slug)
       const data = await response.json()
       setItem(data)
     }
@@ -34,7 +34,7 @@ export default function ItemDetails() {
 
   function bid() {
     if (isLoggedIn) {
-      return <BidForm itemId={parseInt(id)} startPrice={parseInt(item.startPrice)} />
+      return <BidForm itemId={item.id} startPrice={item.startPrice} />
     }
     else {
       return <>
@@ -52,7 +52,7 @@ export default function ItemDetails() {
         <h1>{item.title}</h1>
         <img src={item.img} width="300" alt={item.title} />
         <p>
-          {item.releaseYear} | {item.genre} | <MaxBid id={parseInt(id)} startPrice={parseInt(item.startPrice)} /> | <TotalBids id={parseInt(id)} /> <br />
+          {item.releaseYear} | {item.genre} | <MaxBid id={item.id} startPrice={item.startPrice} /> | <TotalBids id={item.id} /> <br />
           <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />
         </p>
         {bid()}<p></p>
@@ -60,7 +60,7 @@ export default function ItemDetails() {
       </div>
       <div className="current-bid-container">
         <h6>HIGH SCORES</h6>
-        <CurrentBid id={parseInt(id)} />
+        <CurrentBid id={item.id} />
       </div>
     </div>
   </>
