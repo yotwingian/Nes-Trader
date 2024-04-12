@@ -19,7 +19,7 @@ export default function Nav() {
       {isLoggedIn ? (
         <>
           <Link to="new-item" style={{ textDecoration: 'none' }}>NEW GAME</Link>
-          <Link to="my-page" style={{ textDecoration: 'none' }}>{user.userName}</Link>
+          <Link to="my-page" style={{ textDecoration: 'none' }}>{user}</Link>
           <button onClick={login} >RESET</button>
         </>
       ) : (

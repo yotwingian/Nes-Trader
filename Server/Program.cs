@@ -3,6 +3,8 @@ using Server;
 State state = new("server=localhost;uid=root;pwd=mypassword;database=nes_trader;port=3306");
 
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddAuthentication().AddCookie("nes-trader.user"); // Test
+builder.Services.AddAuthorizationBuilder().AddPolicy("user", policy => policy.RequireClaim("username")); // Test
 builder.Services.AddSingleton(state);
 var app = builder.Build();
 
@@ -106,7 +108,7 @@ app.MapGet("/mybids", () => @"
 // ^ Mockdata, ska tas bort! Ersätts med endpoint "/bids/{user}" v
 app.MapGet("/bids/{user}", () => "Bids.User");
 app.MapGet("/bids/item/{slug}", Bids.Item);
-app.MapPost("/bids/post/{slug}", () => "Bids.PostBid");
+app.MapPost("/bids/post/{slug}", () => "Bids.PostBid").RequireAuthorization("user"); // Test
 
 app.MapGet("/users", () => @"
 [
@@ -120,7 +122,7 @@ app.MapGet("/users", () => @"
 ]
 ");
 // ^ Mockdata, ska tas bort!
-app.MapPost("/users/login", Users.GetUser);
+app.MapPost("/users/login", TestUsers.Login);
 app.MapPost("/users/register", () => "Users.Register");
 
 app.Run("http://localhost:3000");
