@@ -83,19 +83,25 @@ public class Items
   ];
     try
     {
-      
-      MySqlHelper.ExecuteNonQuery(state.DB, insertQuery, insertParameters);
-      
-      return TypedResults.Ok("Data has been successfully submitted");
+      int affectedRows = MySqlHelper.ExecuteNonQuery(state.DB, insertQuery, insertParameters);
+      if (affectedRows > 0)
+      {
+        // The operation was successful
+        return TypedResults.Ok("Data has been successfully submitted");
+      }
+      else
+      {
+        // The operation did not affect any rows
+        return TypedResults.Problem("No data was inserted");
+      }
     }
     catch (Exception ex)
     {
-     
-      return TypedResults.Problem("An error occurred while submitting the data");
+      // An exception occurred during the operation
+      return TypedResults.Problem("An error occurred while submitting the data: " + ex.Message);
     }
+
 
   }
 
 }
-
-
