@@ -76,4 +76,22 @@ public class Bids
     }
   }
 
+  public record TotalBids(int? Count);
+
+  public static IResult Total(string slug, State state)
+  {
+    string query = "SELECT count(bids.amount) AS count FROM bids INNER JOIN items ON bids.item = items.id WHERE items.slug = @slug";
+    using var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@slug", slug)]);
+
+    if (reader.Read())
+    {
+      int? count = reader.IsDBNull("count") ? null : reader.GetInt32("count");
+      return TypedResults.Ok(new TotalBids(count));
+    }
+    else
+    {
+      return TypedResults.NotFound("Total bids not found");
+    }
+  }
+
 }
