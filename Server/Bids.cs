@@ -1,4 +1,5 @@
 namespace Server;
+using System.Data; // Behövs för att reader.IsDBNull("sträng") ska fungera
 using MySql.Data.MySqlClient;
 
 public class Bids
@@ -54,6 +55,24 @@ public class Bids
     else
     {
       return TypedResults.NotFound("Bids not found");
+    }
+  }
+
+  public record MaxBid(int? Amount); // int? är nullable
+
+  public static IResult Max(string slug, State state)
+  {
+    string query = "SELECT max(bids.amount) AS amount FROM bids INNER JOIN items ON bids.item = items.id WHERE items.slug = @slug";
+    using var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@slug", slug)]);
+
+    if (reader.Read())
+    {
+      int? amount = reader.IsDBNull("amount") ? null : reader.GetInt32("amount"); // om bids.amount är null, så = null, annars = värdet
+      return TypedResults.Ok(new MaxBid(amount));
+    }
+    else
+    {
+      return TypedResults.NotFound("Max bid not found");
     }
   }
 

@@ -1,6 +1,6 @@
 using Server;
 
-State state = new("server=localhost;uid=root;pwd=mypassword;database=nes_trader;port=3306");
+State state = new("server=localhost;uid=root;pwd=H3dv1G?!;database=nes_trader;port=3306");
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton(state);
@@ -106,6 +106,7 @@ app.MapGet("/mybids", () => @"
 // ^ Mockdata, ska tas bort! Ersätts med endpoint "/bids/{user}" v
 app.MapGet("/bids/{user}", () => "Bids.User");
 app.MapGet("/bids/item/{slug}", Bids.Item);
+app.MapGet("/bids/max/{slug}", Bids.Max);
 app.MapPost("/bids/post/{slug}", () => "Bids.PostBid");
 
 app.MapGet("/users", () => @"
