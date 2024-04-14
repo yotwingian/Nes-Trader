@@ -1,22 +1,21 @@
 import { useState, useEffect } from "react"
-import PropTypes from 'prop-types';
+import PropTypes from 'prop-types'
 
-export default function MaxBid({ id, startPrice }) {
+export default function MaxBid({ slug, startPrice }) {
 
   const [bids, setBids] = useState([])
 
   useEffect(() => {
     async function load() {
-      const response = await fetch("/api/bids/")
+      const response = await fetch("/api/bids/item/" + slug)
       const data = await response.json()
       setBids(data)
     }
     load()
   }, []) // bids här skapar evighetsloop pga setBids i samma useEffect
 
-  const thisItemBids = bids.filter(bid => bid.itemId.toString().includes(id))
-  const maxBid = thisItemBids.reduce((acc, bid) => {
-    return (acc = acc > parseInt(bid.amount) ? acc : parseInt(bid.amount))
+  const maxBid = bids.reduce((acc, bid) => {
+    return (acc = acc > bid.amount ? acc : bid.amount)
   }, 0)
 
   if (maxBid >= startPrice) {
@@ -30,14 +29,9 @@ export default function MaxBid({ id, startPrice }) {
     </>
   }
 
-
-  
-
 }
 
 MaxBid.propTypes = {
-  id: PropTypes.number,
+  slug: PropTypes.string,
   startPrice: PropTypes.number
-};
-
-
+}

@@ -11,15 +11,12 @@ export default function Items() {
   const [filteredItems, setFilteredItems] = useState([])
   const [sortType, setSortType] = useState('endingSoon')
 
-
   useEffect(() => {
     async function load() {
-
       const response = await fetch("/api/items")
       const data = await response.json()
       setItems(data)
       sortItems(data, sortType)
-
     }
     load()
   }, [])
@@ -72,14 +69,14 @@ export default function Items() {
     </search>
     <div className="items-container">
       {filteredItems.map(item => (
-        <section key={item.id}>
+        <section key={item.slug}>
           <div className="itemsCard">
             <Link to={{ pathname: `/item/${item.slug}` }} style={{ textDecoration: 'none' }}>
               <img src={item.img} alt={item.title} />
               <h5>{item.title}</h5>
               <div className="itemsFlex">
                 <div><p className="itemstext">{item.releaseYear} | {item.genre}</p></div>
-                <div className="items"><MaxBid id={item.id} startPrice={item.startPrice} /> | <TotalBids id={item.id} /></div>
+                <div className="items"><MaxBid slug={item.slug} startPrice={item.startPrice} /> | <TotalBids slug={item.slug} /></div>
                 <div className="items">{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}</div>
               </div>
             </Link>
