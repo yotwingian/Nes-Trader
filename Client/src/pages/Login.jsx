@@ -1,7 +1,7 @@
-import { useState, useContext } from 'react'
+import { useState, useContext } from "react"
+import { useNavigate } from "react-router-dom"
+import { GlobalContext } from "../components/GlobalContext.jsx"
 import RegisterForm from "../components/Register.jsx"
-import { GlobalContext } from '../components/GlobalContext.jsx'
-import { useNavigate } from 'react-router-dom'; // Import useHistory
 
 export default function Login() {
 
@@ -11,10 +11,10 @@ export default function Login() {
     password: ''
   })
   const { setIsLoggedIn, setUser } = useContext(GlobalContext)
-  const navigate = useNavigate();
+  const navigate = useNavigate()
 
   const handleSwitchForm = () => {
-    setLogin((login) => (!login));
+    setLogin((login) => (!login))
   }
 
   const handleSubmit = async (event) => {
@@ -26,23 +26,23 @@ export default function Login() {
         "Content-Type": "application/json"
       },
       body: JSON.stringify(loginData)
-    });
+    })
 
-    const userData = await response.json();
+    const data = await response.json();
 
-    if (loginData.userName === userData.username && loginData.password === userData.password) {
-      const user = userData.username
+    if (data.username) {
+      const user = data.username
       setUser(user)
       setTimeout(() => {
         if (user) {
           setIsLoggedIn(true)
-          console.log('Successfully logged in:', user);
-          navigate('/');
+          console.log('Successfully logged in:', user)
+          navigate('/')
         }
       })
 
     } else {
-      alert(userData)
+      alert(data)
       console.log('Invalid email or password');
     }
 
@@ -50,15 +50,15 @@ export default function Login() {
       userName: '',
       password: '',
     })
-  };
+  }
 
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     setLoginData(loginData => ({
       ...loginData,
       [name]: value
-    }));
-  };
+    }))
+  }
 
   return (
     <>
@@ -102,5 +102,6 @@ export default function Login() {
       )}
       <h3 id='gotoRegister' onClick={handleSwitchForm}>{!login ? 'Select Player' : 'New Player'}</h3>
     </>
-  );
+  )
+
 }
