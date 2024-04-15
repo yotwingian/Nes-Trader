@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 
-function RegisterForm() {
+function RegisterForm(props) {
   const [message, setMessage] = useState(null);
   useEffect(() => {
     if (message) {
@@ -29,6 +29,13 @@ function RegisterForm() {
 
     if (response.ok) {
       setMessage("User has been successfully registered.");
+      // props.onRegister({
+      //   target: {
+      //     userName: { value: info.username },
+      //     password: { value: info.password },
+      //   },
+      // });
+      
     } else {
       if (responseData && responseData.detail) {
 
@@ -102,3 +109,16 @@ function RegisterForm() {
 }
 
 export default RegisterForm;
+
+
+
+
+// const handleSubmit = async (event) => {
+//   // Check if event.preventDefault is a function before calling it
+//   if (typeof event.preventDefault === 'function') {
+//     event.preventDefault();
+//   }
+
+
+
+{/* <RegisterForm onRegister={handleSubmit} /> */}
