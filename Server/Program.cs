@@ -61,7 +61,7 @@ app.MapGet("/mylistings", () => @"
 ");
 // ^ Mockdata, ska tas bort! Ersätts med endpoint "/items/{user}" v
 app.MapGet("/items/{user}", () => "Items.User");
-app.MapGet("/item/{slug}", Items.SingleItem);
+app.MapGet("/item/{slug}", Items.Single);
 app.MapPost("items/post", () => "Items.PostItem");
 
 app.MapGet("/bids", Bids.All); // Används ej längre, kan tas bort
@@ -111,7 +111,9 @@ app.MapGet("/mybids", () => @"
 // ^ Mockdata, ska tas bort! Ersätts med endpoint "/bids/{user}" v
 app.MapGet("/bids/{user}", () => "Bids.User");
 app.MapGet("/bids/item/{slug}", Bids.Item);
-app.MapPost("/bids/post/{slug}", () => "Bids.PostBid").RequireAuthorization("user"); // Test
+app.MapGet("/bids/max/{slug}", Bids.Max);
+app.MapGet("/bids/total/{slug}", Bids.Total);
+app.MapPost("/bids/post/{slug}", () => "Bids.PostBid");
 
 app.MapGet("/users", () => @"
 [
