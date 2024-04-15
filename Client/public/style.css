@@ -267,12 +267,12 @@
 
   }
 
-  .current-bid-container {
+  .bids-list-container {
     flex-shrink: 0;
     width: 40%;
   }
 
-  .current-bid-container h6 {
+  .bids-list-container h6 {
     padding-top: 10px;
     text-align: center;
     font-size: 11pt;
@@ -280,7 +280,7 @@
     text-shadow: 1px 1px 1px black;
   }
 
-  .current-bid-container ul {
+  .bids-list-container ul {
     font-family: "Press Start 2P";
     font-size: 8pt;
   }
