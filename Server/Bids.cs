@@ -95,9 +95,9 @@ public class Bids
 
   }
 
-  public record ItemIdRecord(int ItemId);
-  public record PostBidRecord(string Amount, DateTime Timespan, string Bidder);
-  public static IResult PostBid(string slug, State state, PostBidRecord bid)
+  public record ItemID(int ItemId);
+  public record PostBid(string Amount, DateTime Timespan, string Bidder);
+  public static IResult Post(string slug, State state, PostBid bid)
   {
 
     int ItemId = 0;
@@ -113,12 +113,26 @@ public class Bids
 
     Console.WriteLine(ItemId);
 
+
+    int UserId = 0;
+
+    string queryUserId = "SELECT users.id AS user FROM users WHERE username = @username";
+
+    reader = MySqlHelper.ExecuteReader(state.DB, queryUserId, [new("@username", bid.Bidder)]);
+
+    if (reader.Read())
+    {
+      UserId = reader.GetInt32("user");
+    }
+    Console.WriteLine(reader.Read());
+    Console.WriteLine(UserId);
+
     string query = "INSERT INTO bids (amount, time, user, item) VALUES (@amount, @time, @user, @item)";
 
     var result = MySqlHelper.ExecuteNonQuery(state.DB, query, [
         new ("@amount", bid.Amount),
         new ("@time", bid.Timespan.ToLocalTime()),
-        new ("@user", 3),
+        new ("@user", UserId),
         new ("@item", ItemId)
         ]);
 

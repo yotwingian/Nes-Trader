@@ -111,7 +111,7 @@ app.MapGet("/bids/item/{slug}", Bids.Item);
 app.MapGet("/bids/max/{slug}", Bids.Max);
 app.MapGet("/bids/total/{slug}", Bids.Total);
 app.MapGet("/bids/{user}", () => "Bids.User").RequireAuthorization("user");
-app.MapPost("/bids/post/{slug}", () => "Bids.Post").RequireAuthorization("user");
+app.MapPost("/bids/post/{slug}", Bids.Post).RequireAuthorization("user");
 
 app.MapGet("/users", () => @"
 [
