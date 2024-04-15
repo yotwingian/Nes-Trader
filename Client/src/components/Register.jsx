@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 function RegisterForm() {
-  const [message, setMessage] = useState(null); // Add this line
+  const [message, setMessage] = useState(null); 
   useEffect(() => {
     if (message) {
 
@@ -25,15 +25,23 @@ function RegisterForm() {
       body: JSON.stringify(info),
     });
 
+    const responseData = await response.json();
+
     if (response.ok) {
-      setMessage("User has been successfully registered."); // Modify this line
+      setMessage("User has been successfully registered.");
     } else {
-      const errorData = await response.json();
-      setMessage("An error occurred while registering the user: " + errorData.message); // Modify this line
+      if (responseData && responseData.detail) {
+        
+        setMessage(responseData.detail);
+      } else {
+       
+        setMessage("An error occurred while registering the user.");
+      }
     }
 
     event.target.reset();
   }
+
 
   return (
     <form onSubmit={PostUser}>
@@ -88,7 +96,7 @@ function RegisterForm() {
         </div>
       </div>
       <button type="submit" id="registerButton">START</button>
-      {message && <div className="addUserMassage">{message}</div>} {/* Add this line */}
+      {message && <div className="addUserMassage">{message}</div>} 
     </form>
   );
 }
