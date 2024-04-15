@@ -140,8 +140,9 @@
   }
   .addItemMessage{
     color: rgb(0, 13, 128);
-      font-size: 25px;
+      font-size: 18px;
       font-family: "Press Start 2P";
+      padding-top: 10px;
   }
   /* ItemsDetails.jsx & items.jsx  */
 
