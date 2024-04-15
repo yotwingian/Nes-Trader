@@ -1,12 +1,13 @@
 import { useState, useEffect, useContext } from "react";
 import { GlobalContext } from "../components/GlobalContext.jsx";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Countdown from "react-countdown";
 import CountdownRenderer from "../components/CountdownRenderer.jsx";
 import TotalBids from "../components/TotalBids.jsx"
 import MaxBid from "../components/MaxBid.jsx"
 
 export default function MyBids() {
+  const { user } = useParams()
   const { isLoggedIn } = useContext(GlobalContext);
   const [userBids, setUserBids] = useState([]);
 
@@ -14,13 +15,16 @@ export default function MyBids() {
     if (isLoggedIn) {
 
       async function load() {
-        const response = await fetch("/api/mybids");
+        const response = await fetch("/api/bids" + user);
         const data = await response.json();
         setUserBids(data);
+        console.log(data)
       }
       load();
     }
   }, [isLoggedIn]);
+
+  console.log(isLoggedIn)
 
   return (
     <div>

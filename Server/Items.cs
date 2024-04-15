@@ -36,7 +36,7 @@ public class Items
     }
   }
 
-  public record SingleItem(string Title, string ReleaseYear, string Genre, 
+  public record SingleItem(string Title, string ReleaseYear, string Genre,
     string Description, string Img, string EndDateTime, int StartPrice);
 
   public static IResult Single(string slug, State state)
@@ -62,7 +62,7 @@ public class Items
     }
   }
 
-  public record FilteredItem(string Slug, string Title, string ReleaseYear, 
+  public record FilteredItem(string Slug, string Title, string ReleaseYear,
     string Genre, string Img, string EndDateTime, int StartPrice);
 
   public static IResult EndingSoon(State state)
@@ -118,6 +118,37 @@ public class Items
     else
     {
       return TypedResults.NotFound("Items not found");
+    }
+  }
+
+  public record MyBids(string Title, string ReleaseYear, string Genre,
+   string Description, string Img, string EndDateTime, int StartPrice);
+
+  public static IResult Bids(int user, State state)
+  {
+    List<FilteredItem> bids = new();
+    string query = "SELECT title, release_year, genre, description, image, end_datetime, start_price FROM items INNER JOIN users ON items.user = users.id";
+    using var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@user", user)]);
+
+    if (reader.HasRows)
+    {
+      while (reader.Read())
+      {
+        bids.Add(new(
+         reader.GetString("title"),
+         reader.GetString("release_year"),
+         reader.GetString("genre"),
+         reader.GetString("description"),
+         reader.GetString("image"),
+         reader.GetDateTime("end_datetime").ToString(),
+         reader.GetInt32("start_price")
+       ));
+      }
+      return TypedResults.Ok(bids);
+    }
+    else
+    {
+      return TypedResults.NotFound("Item not found");
     }
   }
 
