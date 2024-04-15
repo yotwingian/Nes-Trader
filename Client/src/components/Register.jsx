@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 
 function RegisterForm() {
-  const [message, setMessage] = useState(null); 
+  const [message, setMessage] = useState(null);
   useEffect(() => {
     if (message) {
 
@@ -31,10 +31,10 @@ function RegisterForm() {
       setMessage("User has been successfully registered.");
     } else {
       if (responseData && responseData.detail) {
-        
-        setMessage(responseData.detail);
+
+        setMessage(responseData.detail); // responsen som ges ifall username eller E redan finnes
       } else {
-       
+
         setMessage("An error occurred while registering the user.");
       }
     }
@@ -96,7 +96,7 @@ function RegisterForm() {
         </div>
       </div>
       <button type="submit" id="registerButton">START</button>
-      {message && <div className="addUserMassage">{message}</div>} 
+      {message && <div className="addUserMassage">{message}</div>}
     </form>
   );
 }
