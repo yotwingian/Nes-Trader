@@ -1,89 +1,70 @@
-import { useState, useEffect, useContext } from 'react'
+import { useState, useContext } from "react"
+import { useNavigate } from "react-router-dom"
+import { GlobalContext } from "../components/GlobalContext.jsx"
 import RegisterForm from "../components/Register.jsx"
-import { GlobalContext } from '../components/GlobalContext.jsx'
-import { useNavigate } from 'react-router-dom'; // Import useHistory
 
 export default function Login() {
 
-  const [users, setUsers] = useState([])
   const [login, setLogin] = useState(true)
   const [loginData, setLoginData] = useState({
     userName: '',
     password: ''
   })
-  const { setIsLoggedIn } = useContext(GlobalContext)
-  const { user, setUser } = useContext(GlobalContext)
-  const navigate = useNavigate();
-
-  useEffect(() => {
-
-    async function load() {
-      try {
-        const response = await fetch("/api/users/")
-        const userData = await response.json()
-        setUsers(userData)
-        console.log(userData)
-      } catch (error) {
-        console.error("Error message: ", error)
-      }
-    }
-    load()
-
-  }, [])
-
+  const { setIsLoggedIn, setUser } = useContext(GlobalContext)
+  const navigate = useNavigate()
 
   const handleSwitchForm = () => {
-    setLogin((login) => (!login));
-
+    setLogin((login) => (!login))
   }
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault()
 
-    if (login) {
-      const user = users.find(user => user.userName === loginData.userName && user.password === loginData.password)
+    const response = await fetch("/api/users/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(loginData)
+    })
+
+    const data = await response.json();
+
+    if (data.username) {
+      const user = data.username
       setUser(user)
       setTimeout(() => {
         if (user) {
           setIsLoggedIn(true)
-          console.log('Successfully logged in:', user);
-          navigate('/');
-
-        } else {
-
-          console.log('Invalid email or password');
-
+          console.log('Successfully logged in:', user)
+          navigate('/')
         }
       })
 
     } else {
-
-      console.log('Registering...');
-
-
+      alert(data)
+      console.log('Invalid email or password');
     }
+
     setLoginData({
       userName: '',
       password: '',
     })
+  }
 
-
-  };
   const handleInputChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value } = event.target
     setLoginData(loginData => ({
       ...loginData,
       [name]: value
-    }));
-  };
-
+    }))
+  }
 
   return (
     <>
       <h1>{login ? 'Select Player' : 'New Player'}</h1>
 
       {login ? (
-
         <form onSubmit={handleSubmit}>
           <div>
             <label htmlFor="inputEmail3" className='inputEmail3'>Player Name</label>
@@ -115,14 +96,12 @@ export default function Login() {
           <div className="col-sm-10">
             <button type="submit" id="loginButton" >SELECT</button>
           </div>
-
         </form>
       ) : (
         <RegisterForm />
       )}
       <h3 id='gotoRegister' onClick={handleSwitchForm}>{!login ? 'Select Player' : 'New Player'}</h3>
-
     </>
-  );
+  )
 
 }
