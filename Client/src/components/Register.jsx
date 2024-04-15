@@ -1,4 +1,3 @@
-
 function RegisterForm() {
 
   return <form onSubmit={PostUser}>
@@ -6,45 +5,49 @@ function RegisterForm() {
       <div>
         <label htmlFor="inputUsername">Username</label>
         <div>
-          <input type="text" name="Username" id="inputUsername" placeholder="Username" required />
+          <input type="text" name="username" id="inputUsername" placeholder="Username" required />
         </div>
       </div>
       <div>
         <label htmlFor="inputEmail4">Email</label>
         <div>
-          <input type="email" name="Email" id="inputEmail4" placeholder="Email" required />
+          <input type="email" name="email" id="inputEmail4" placeholder="Email" required />
         </div>
       </div>
       <div>
         <label htmlFor="inputPassword4">Password</label>
         <div>
-          <input type="password" name="Password" id="inputPassword4" placeholder="Password" required />
+          <input type="password" name="password" id="inputPassword4" placeholder="Password" required />
         </div>
       </div>
     </div>
     <div >
       <label htmlFor="inputName">Name</label>
       <div>
-        <input type="text" name="Name" id="inputName" placeholder="Name" required />
+        <input type="text" name="name" id="inputName" placeholder="Name" required />
       </div>
     </div>
     <div>
       <label htmlFor="inputAddress">Address</label>
       <div>
-        <input type="text" name="Address" id="inputAddress" placeholder="Address" required />
+        <input type="text" name="address" id="inputAddress" placeholder="Address" required />
       </div>
     </div>
     <div className="form-row">
       <div>
         <label htmlFor="inputCity">City</label>
         <div>
-          <input type="text" name="City" id="inputCity" placeholder="City" required />
+          <input type="text" name="city" id="inputCity" placeholder="City" required />
         </div>
       </div>
       <div id="registerFormBottom">
         <label htmlFor="inputZip">Zip</label>
         <div>
-          <input type="text" name="Zip" id="inputZip" placeholder="Zip" required />
+          <input type="text" name="zip" id="inputZip" placeholder="Zip" required />
+        </div>
+        <label htmlFor="country">Country</label>
+        <div>
+          <input type="text" name="country" id="country" placeholder="Country" required />
         </div>
       </div>
     </div>

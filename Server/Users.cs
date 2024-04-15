@@ -3,13 +3,23 @@ using MySql.Data.MySqlClient;
 
 public class Users
 {
-  public record PostUserRecord(string Username, string Email, string Password, string Name, string Address, string City, string Zip );
+  public record PostUserRecord(string Username, string Email, string Password, string Name, string Address, string City, string Zip, string Country );
 
   public static IResult Register(PostUserRecord user, State state)
   {
+    // Check if the username or email already exists in the database
+    string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @username OR email = @email";
+    MySqlParameter[] checkParameters = [ new MySqlParameter("@username", user.Username), new MySqlParameter("@email", user.Email) ];
+    long existingCount = (long)MySqlHelper.ExecuteScalar(state.DB, checkQuery, checkParameters);
+
+    // If the username or email already exists, return an error
+    if (existingCount > 0)
+    {
+      return TypedResults.Problem("A user with this username or email already exists");
+    }
 
     // Insert the new user into the database
-    string insertQuery = "INSERT INTO users (username, email, password, name, address, city, zip, country) VALUES (@username, @email, @password, @name, @address, @city, @zip )";
+    string insertQuery = "INSERT INTO users (username, email, password, name, address, city, zip, country) VALUES (@username, @email, @password, @name, @address, @city, @zip, @Country )";
     MySqlParameter[] insertParameters = [
     new ("@username", user.Username),
     new ("@email", user.Email),
@@ -17,7 +27,8 @@ public class Users
     new ("@name", user.Name),
     new ("@address", user.Address),
     new ("@city", user.City),
-    new ("@zip", user.Zip)
+    new ("@zip", user.Zip),
+    new ("@Country", user.Country)
     ];
 
     try
@@ -45,14 +56,3 @@ public class Users
 
 
 
-
-    // // Check if the username or email already exists in the database
-    // string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @username OR email = @email";
-    // MySqlParameter[] checkParameters = [ new MySqlParameter("@username", user.Username), new MySqlParameter("@email", user.Email) ];
-    // long existingCount = (long)MySqlHelper.ExecuteScalar(state.DB, checkQuery, checkParameters);
-
-    // // If the username or email already exists, return an error
-    // if (existingCount > 0)
-    // {
-    //   return TypedResults.Problem("A user with this username or email already exists");
-    // }
