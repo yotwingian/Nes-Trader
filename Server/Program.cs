@@ -1,6 +1,6 @@
 using Server;
 
-State state = new("server=localhost;uid=root;pwd=mypassword;database=nes_trader;port=3306");
+State state = new("server=localhost;uid=root;pwd=docker;database=nes_trader;port=3306");
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddSingleton(state);
@@ -121,7 +121,7 @@ app.MapGet("/users", () => @"
 ");
 // ^ Mockdata, ska tas bort!
 app.MapPost("/users/login", () => "Users.Login");
-app.MapPost("/users/register", () => "Users.Register");
+app.MapPost("/users/register", Users.Register);
 
 app.Run("http://localhost:3000");
 
