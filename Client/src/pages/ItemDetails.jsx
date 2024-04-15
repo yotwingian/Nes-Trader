@@ -6,7 +6,7 @@ import BidForm from "../components/AddBid.jsx"
 import CountdownRenderer from "../components/CountdownRenderer.jsx"
 import TotalBids from "../components/TotalBids.jsx"
 import MaxBid from "../components/MaxBid.jsx"
-import CurrentBid from "../components/CurrentBid.jsx"
+import BidsList from "../components/BidsList.jsx"
 
 export default function ItemDetails() {
 
@@ -57,9 +57,9 @@ export default function ItemDetails() {
         {bid()}<p></p>
         <p>{item.description}</p>
       </div>
-      <div className="current-bid-container">
+      <div className="bids-list-container">
         <h6>HIGH SCORES</h6>
-        <CurrentBid slug={slug} />
+        <BidsList slug={slug} />
       </div>
     </div>
   </>

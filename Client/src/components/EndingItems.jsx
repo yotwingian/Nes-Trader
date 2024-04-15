@@ -1,22 +1,22 @@
-import { useEffect, useState } from 'react';
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import Countdown from "react-countdown"
 import CountdownRenderer from "../components/CountdownRenderer.jsx"
 import MaxBid from "../components/MaxBid.jsx"
 import TotalBids from "../components/TotalBids.jsx"
 
-const EndingItems = () => {
-  const [items, setItems] = useState([]);
+export default function EndingItems() {
+
+  const [items, setItems] = useState([])
 
   useEffect(() => {
     async function load() {
-      const response = await fetch("/api/items/ending-soon");
-      const data = await response.json();
-
-      setItems(data);
+      const response = await fetch("/api/items/ending-soon")
+      const data = await response.json()
+      setItems(data)
     }
-    load();
-  }, []);
+    load()
+  }, [])
 
   return (
     <div>
@@ -37,7 +37,6 @@ const EndingItems = () => {
         ))}
       </div>
     </div>
-  );
-};
-
-export default EndingItems;
+  )
+  
+}
