@@ -1,25 +1,20 @@
 import { useState, useEffect } from "react"
-import PropTypes from 'prop-types';
+import PropTypes from "prop-types"
 
-export default function MaxBid({ id, startPrice }) {
+export default function MaxBid({ slug, startPrice }) {
 
-  const [bids, setBids] = useState([])
+  const [maxBid, setMaxBid] = useState([])
 
   useEffect(() => {
     async function load() {
-      const response = await fetch("/api/bids/")
+      const response = await fetch("/api/bids/max/" + slug)
       const data = await response.json()
-      setBids(data)
+      setMaxBid(data.amount)
     }
     load()
-  }, []) // bids här skapar evighetsloop pga setBids i samma useEffect
+  }, []) // maxBid här skapar evighetsloop pga setMaxBid i samma useEffect
 
-  const thisItemBids = bids.filter(bid => bid.itemId.toString().includes(id))
-  const maxBid = thisItemBids.reduce((acc, bid) => {
-    return (acc = acc > parseInt(bid.amount) ? acc : parseInt(bid.amount))
-  }, 0)
-
-  if (maxBid >= startPrice) {
+  if (maxBid != null) {
     return <>
       Current bid: {maxBid}
     </>
@@ -30,14 +25,9 @@ export default function MaxBid({ id, startPrice }) {
     </>
   }
 
-
-  
-
 }
 
 MaxBid.propTypes = {
-  id: PropTypes.number,
+  slug: PropTypes.string,
   startPrice: PropTypes.number
-};
-
-
+}

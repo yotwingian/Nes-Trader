@@ -1,23 +1,26 @@
 import { useState, useEffect } from "react"
 
-export default function TotalBids({ id }) {
-  
-  const [bids, setBids] = useState([])
+export default function TotalBids({ slug }) {
+
+  const [totalBids, setTotalBids] = useState([])
 
   useEffect(() => {
     async function load() {
-      const response = await fetch("/api/bids/")
+      const response = await fetch("/api/bids/total/" + slug)
       const data = await response.json()
-      setBids(data)
+      setTotalBids(data.count)
     }
     load()
-  }, []) // bids här skapar evighetsloop pga setBids i samma useEffect
-  
-  const thisItemBids = bids.filter(bid => bid.itemId.toString().includes(id))
-  const totalBids = thisItemBids.length
-  
-  return <>
-    {totalBids} bids
-  </>
+  }, []) // totalBids här skapar evighetsloop pga setTotalBids i samma useEffect
+
+  if (totalBids != null) {
+    return <>
+      {totalBids} bids
+    </>
+  } else {
+    return <>
+      0 bids
+    </>
+  }
 
 }
