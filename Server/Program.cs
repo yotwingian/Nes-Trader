@@ -106,6 +106,8 @@ app.MapGet("/mybids", () => @"
 // ^ Mockdata, ska tas bort! Ersätts med endpoint "/bids/{user}" v
 app.MapGet("/bids/{user}", () => "Bids.User");
 app.MapGet("/bids/item/{slug}", Bids.Item);
+app.MapGet("/bids/max/{slug}", Bids.Max);
+app.MapGet("/bids/total/{slug}", Bids.Total);
 app.MapPost("/bids/post/{slug}", () => "Bids.PostBid");
 
 app.MapGet("/users", () => @"

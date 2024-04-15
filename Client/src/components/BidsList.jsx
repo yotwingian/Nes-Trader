@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-export default function CurrentBid({ slug }) {
+export default function BidsList({ slug }) {
 
   const [bids, setBids] = useState([])
 
@@ -15,8 +15,6 @@ export default function CurrentBid({ slug }) {
     return () => clearInterval(intervalId) // clear after unmounting - resurskrävande!
   }, [slug]) // slug - resurskrävande!
 
-  const sortedBids = bids.sort((a, b) => b.amount - a.amount)
-
   return <>
     <ul style={{ listStyleType: 'none', padding: 0, }}>
       <li style={{ display: 'flex', justifyContent: 'space-between', fontWeight: 'bold' }}>
@@ -24,7 +22,7 @@ export default function CurrentBid({ slug }) {
         <div style={{ textAlign: 'right' }}>Bid</div>
       </li>
       <p></p>
-      {sortedBids.map((bid, index) => (
+      {bids.map((bid, index) => (
         <li key={index} style={{ display: 'flex', justifyContent: 'space-between' }}>
           <div style={{ textAlign: 'left' }}>{bid.bidder}</div>
           <div style={{ textAlign: 'right' }}>{bid.amount}</div>
@@ -32,5 +30,5 @@ export default function CurrentBid({ slug }) {
       ))}
     </ul>
   </>
-  
+
 }
