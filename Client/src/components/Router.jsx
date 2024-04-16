@@ -26,7 +26,7 @@ export default function Router() {
             <Route path="/" element={<Home />} />
             <Route path="games" element={<Games />} />
             <Route path="login" element={<Login />} />
-            <Route path="my-page/:user" element={<MyPage />} />
+            <Route path="my-page" element={<MyPage />} />
             <Route path="new-item" element={<NewItem />} />
             <Route path="item/:slug" element={<ItemDetails />} />
             <Route path="*" element={<NoPage />} />

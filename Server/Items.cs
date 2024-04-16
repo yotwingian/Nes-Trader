@@ -63,7 +63,15 @@ public class Items
   }
 
   public record FilteredItem(string Slug, string Title, string ReleaseYear,
-    string Genre, string Img, string EndDateTime, int StartPrice);
+    string Genre, string Img, string EndDateTime, int StartPrice)
+  {
+    private string v;
+
+    public FilteredItem(string Slug, string Title, string ReleaseYear, string Genre, string Img, string EndDateTime, int StartPrice, string v) : this(Slug, Title, ReleaseYear, Genre, Img, EndDateTime, StartPrice)
+    {
+      this.v = v;
+    }
+  }
 
   public static IResult EndingSoon(State state)
   {
@@ -122,12 +130,14 @@ public class Items
   }
 
   public record MyBids(string Title, string ReleaseYear, string Genre,
-   string Description, string Img, string EndDateTime, int StartPrice);
+   string Description, string Img, string EndDateTime, int StartPrice, string User, int Amount);
 
-  public static IResult Bids(int user, State state)
+
+
+  public static IResult Bids(string user, State state)
   {
-    List<FilteredItem> bids = new();
-    string query = "SELECT title, release_year, genre, description, image, end_datetime, start_price FROM items INNER JOIN users ON items.user = users.id";
+    List<MyBids> bids = new();
+    string query = "SELECT items.title, items.release_year, items.genre, items.description, items.image, items.end_datetime, items.start_price, users.username, bids.amount FROM items INNER JOIN users ON items.user = users.id INNER JOIN bids ON items.id = bids.item_id AND users.id = bids.user_id";
     using var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@user", user)]);
 
     if (reader.HasRows)
@@ -141,7 +151,9 @@ public class Items
          reader.GetString("description"),
          reader.GetString("image"),
          reader.GetDateTime("end_datetime").ToString(),
-         reader.GetInt32("start_price")
+         reader.GetInt32("start_price"),
+         reader.GetString("username"),
+         reader.GetInt32("amount")
        ));
       }
       return TypedResults.Ok(bids);
