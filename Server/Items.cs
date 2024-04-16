@@ -35,7 +35,7 @@ public class Items
     }
   }
 
-  public record SingleItem(string Title, string ReleaseYear, string Genre, 
+  public record SingleItem(string Title, string ReleaseYear, string Genre,
     string Description, string Img, string EndDateTime, int StartPrice);
 
   public static IResult Single(string slug, State state)
@@ -61,8 +61,9 @@ public class Items
     }
   }
 
-  public record FilteredItem(string Slug, string Title, string ReleaseYear, 
+  public record FilteredItem(string Slug, string Title, string ReleaseYear,
     string Genre, string Img, string EndDateTime, int StartPrice);
+
 
   public static IResult EndingSoon(State state)
   {
@@ -227,5 +228,32 @@ public class Items
 
 
   }
-}
 
+  public static IResult UserBids(string user, State state)
+  {
+    List<FilteredItem> bids = new();
+    string query = "SELECT slug, title, release_year, genre, image, end_datetime, start_price FROM items INNER JOIN bids ON items.id = bids.item INNER JOIN users ON bids.user = users.id WHERE username = @username AND DATE_SUB(end_datetime, INTERVAL 2 HOUR) > NOW() GROUP BY items.slug";
+    using var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@username", user)]);
+
+    if (reader.HasRows)
+    {
+      while (reader.Read())
+      {
+        bids.Add(new(
+          reader.GetString("slug"),
+         reader.GetString("title"),
+         reader.GetString("release_year"),
+         reader.GetString("genre"),
+         reader.GetString("image"),
+         reader.GetDateTime("end_datetime").ToString(),
+         reader.GetInt32("start_price")
+       ));
+      }
+      return TypedResults.Ok(bids);
+    }
+    else
+    {
+      return TypedResults.Ok(bids);
+    }
+  }
+}

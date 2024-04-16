@@ -10,14 +10,11 @@ export default function Home() {
 
   const { isLoggedIn } = useContext(GlobalContext)
 
-  // <MyBids />
-  // Borttagna nedan tills de är implementerade i Server och refakturerade här
-
   return (
     <div>
       {isLoggedIn && (
         <>
-          
+          <MyBids />
           <MyItems />
         </>
       )}
@@ -29,5 +26,5 @@ export default function Home() {
       <Items />
     </div>
   )
-  
+
 }
