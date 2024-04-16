@@ -1,25 +1,21 @@
 import { useContext } from "react"
+import { GlobalContext } from "../components/GlobalContext.jsx"
 import MyBids from "../components/MyBids.jsx"
 import MyItems from "../components/MyItems.jsx"
-import { GlobalContext } from "../components/GlobalContext.jsx"
-import LatestItems from '../components/LatestItems'
-import EndingItems from '../components/EndingItems'
+import EndingItems from "../components/EndingItems"
+import LatestItems from "../components/LatestItems"
 import Items from "../components/Items.jsx"
 
 export default function Home() {
 
   const { isLoggedIn } = useContext(GlobalContext)
 
-  // <MyBids />
-  // <MyItems />
-  // Borttagna nedan tills de är implementerade i Server och refakturerade här
-
   return (
     <div>
       {isLoggedIn && (
         <>
-          
-          
+          <MyBids />
+          <MyItems />
         </>
       )}
 
@@ -30,5 +26,5 @@ export default function Home() {
       <Items />
     </div>
   )
-  
+
 }
