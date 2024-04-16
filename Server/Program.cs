@@ -18,26 +18,12 @@ app.MapGet("/item/{slug}", Items.Single);
 app.MapGet("/items/{user}", Items.UserItems).RequireAuthorization("user");
 app.MapPost("/items/post/{user}", Items.Post).RequireAuthorization("user");
 
-app.MapGet("/bids", Bids.All); // Används ej längre, kan tas bort
-
 app.MapGet("/bids/item/{slug}", Bids.Item);
 app.MapGet("/bids/max/{slug}", Bids.Max);
 app.MapGet("/bids/total/{slug}", Bids.Total);
 app.MapGet("/bids/{user}", Items.UserBids).RequireAuthorization("user");
 app.MapPost("/bids/post/{slug}", Bids.Post).RequireAuthorization("user");
 
-app.MapGet("/users", () => @"
-[
-    {
-      ""userId"": 1,
-      ""userName"": ""mario"",
-      ""email"": ""mario@example.com"",
-      ""password"": ""mario123"",
-      ""id"": ""2357""
-    }
-]
-");
-// ^ Mockdata, ska tas bort!
 app.MapPost("/users/login", Users.Login);
 app.MapPost("/users/register", Users.Register);
 
