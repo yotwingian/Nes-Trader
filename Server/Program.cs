@@ -16,7 +16,7 @@ app.MapGet("/items/ending-soon", Items.EndingSoon);
 app.MapGet("/items/latest", Items.Latest);
 app.MapGet("/item/{slug}", Items.Single);
 app.MapGet("/items/{user}", Items.UserItems).RequireAuthorization("user");
-app.MapPost("items/post", () => "Items.Post").RequireAuthorization("user");
+app.MapPost("/items/post/{user}", Items.Post).RequireAuthorization("user");
 
 app.MapGet("/bids", Bids.All); // Används ej längre, kan tas bort
 app.MapGet("/mybids", () => @"
@@ -67,7 +67,7 @@ app.MapGet("/bids/item/{slug}", Bids.Item);
 app.MapGet("/bids/max/{slug}", Bids.Max);
 app.MapGet("/bids/total/{slug}", Bids.Total);
 app.MapGet("/bids/{user}", () => "Bids.User").RequireAuthorization("user");
-app.MapPost("/bids/post/{slug}", () => "Bids.Post").RequireAuthorization("user");
+app.MapPost("/bids/post/{slug}", Bids.Post).RequireAuthorization("user");
 
 app.MapGet("/users", () => @"
 [
@@ -82,7 +82,7 @@ app.MapGet("/users", () => @"
 ");
 // ^ Mockdata, ska tas bort!
 app.MapPost("/users/login", Users.Login);
-app.MapPost("/users/register", () => "Users.Register");
+app.MapPost("/users/register", Users.Register);
 
 app.Run("http://localhost:3000");
 

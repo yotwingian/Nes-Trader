@@ -92,6 +92,61 @@ public class Bids
     {
       return TypedResults.NotFound("Total bids not found");
     }
+
+  }
+
+  public record ItemID(int ItemId);
+  public record PostBid(string Amount, DateTime Timespan, string Bidder);
+  public static IResult Post(string slug, State state, PostBid bid)
+  {
+
+    int ItemId = 0;
+
+    string queryItemId = "SELECT bids.item AS itemid FROM bids INNER JOIN items ON bids.item = items.id WHERE slug = @slug";
+
+    var reader = MySqlHelper.ExecuteReader(state.DB, queryItemId, [new("@slug", slug)]);
+
+    if (reader.Read())
+    {
+      ItemId = reader.GetInt32("itemid");
+    }
+
+    Console.WriteLine(ItemId);
+
+
+    int UserId = 0;
+
+    string queryUserId = "SELECT users.id AS user FROM users WHERE username = @username";
+
+    reader = MySqlHelper.ExecuteReader(state.DB, queryUserId, [new("@username", bid.Bidder)]);
+
+    if (reader.Read())
+    {
+      UserId = reader.GetInt32("user");
+    }
+    Console.WriteLine(reader.Read());
+    Console.WriteLine(UserId);
+
+    string query = "INSERT INTO bids (amount, time, user, item) VALUES (@amount, @time, @user, @item)";
+
+    var result = MySqlHelper.ExecuteNonQuery(state.DB, query, [
+        new ("@amount", bid.Amount),
+        new ("@time", bid.Timespan.ToLocalTime()),
+        new ("@user", UserId),
+        new ("@item", ItemId)
+        ]);
+
+    if (result > 0)
+    {
+      // return to client/frontend
+      return TypedResults.Created("Post succesfull");
+    }
+    else
+    {
+      // return to client/frontend
+      return TypedResults.Problem("Something went wrong");
+    }
+
   }
 
 }
