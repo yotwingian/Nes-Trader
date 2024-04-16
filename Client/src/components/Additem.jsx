@@ -1,7 +1,8 @@
-import { useState,useEffect } from 'react';
-
+import { useState,useEffect, useContext } from 'react';
+import { GlobalContext } from '../components/GlobalContext.jsx'
 function AuctionForm() {
   const [message, setMessage] = useState(null); 
+  const { user } = useContext(GlobalContext)
   useEffect(() => {
     if (message) {
       
@@ -17,13 +18,12 @@ function AuctionForm() {
     event.preventDefault();
     const data = new FormData(event.target);
     const info = Object.fromEntries(data);
-    const infoWithUser = { ...info, user: 1 }; // tillfallig hardkodad user
-    const response = await fetch("/api/items/post", {
+    const response = await fetch("/api/items/post/" + user, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify(infoWithUser),
+      body: JSON.stringify(info),
     });
 
     if (response.ok) {
@@ -102,3 +102,5 @@ function AuctionForm() {
 
 export default AuctionForm;
 
+
+  

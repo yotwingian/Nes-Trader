@@ -1,6 +1,5 @@
 namespace Server;
 using MySql.Data.MySqlClient;
-
 public class Items
 {
   public record Item(string Slug, string Title, string ReleaseYear, string Genre, string Description,
@@ -126,10 +125,11 @@ public class Items
 
 
   
-  public record PostItemRecord(string Slug, string Title, string ReleaseYear, string Genre, string Description,
+  public record PostItem(string Slug, string Title, string ReleaseYear, string Genre, string Description,
     string Img, string StartDateTime, string EndDateTime, int StartPrice, int ReservePrice, int User);
-  public static IResult PostItem(PostItemRecord item, State state)
+  public static IResult Post(string user, PostItem item, State state)
   {
+   
     // Generate the slug from the title
     string slug = item.Title.ToLower().Replace(" ", "-");
 
@@ -156,6 +156,18 @@ public class Items
       }
     }
 
+    int UserId = 0;
+
+    string queryUserId = "SELECT users.id AS user FROM users WHERE username = @username";
+
+    using var reader = MySqlHelper.ExecuteReader(state.DB, queryUserId, [new("@username", user)]);
+
+    if (reader.Read())
+    {
+      UserId = reader.GetInt32("user");
+    }
+    
+
     string insertQuery = "INSERT INTO items (slug, title, release_year, genre, description, image, start_datetime, end_datetime, start_price, reserve_price, user) VALUES (@slug, @title, @release_year, @genre, @description, @image, @start_datetime, @end_datetime, @start_price, @reserve_price, @user)";
     MySqlParameter[] insertParameters = [
     new ("@slug", slug),
@@ -168,25 +180,25 @@ public class Items
     new ("@end_datetime", item.EndDateTime),
     new ("@start_price", item.StartPrice),
     new ("@reserve_price", item.ReservePrice),
-    new ("@user", item.User)
+    new ("@user", UserId)
   ];
     try
     {
       int affectedRows = MySqlHelper.ExecuteNonQuery(state.DB, insertQuery, insertParameters);
       if (affectedRows > 0)
       {
-        // The operation was successful
-        return TypedResults.Ok("Data has been successfully submitted");
+         
+        return TypedResults.Ok("Game has been successfully submitted");
       }
       else
       {
-        // The operation did not affect any rows
+        
         return TypedResults.Problem("No data was inserted");
       }
     }
     catch (Exception ex)
     {
-      // An exception occurred during the operation
+      
       return TypedResults.Problem("An error occurred while submitting the data: " + ex.Message);
     }
 
