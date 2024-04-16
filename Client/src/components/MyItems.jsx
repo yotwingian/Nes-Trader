@@ -25,7 +25,7 @@ export default function MyItems() {
   return (
     <div>
       <h1>Player Items</h1>
-      <div className="items-containerx">
+      <div className="items-container">
         {userItems.map(item => (
           <section key={item.slug}>
             <div >

@@ -13,22 +13,20 @@ export default function MyBids() {
 
   useEffect(() => {
     if (isLoggedIn) {
-
       async function load() {
         const response = await fetch("/api/bids/" + user)
         const data = await response.json()
         setUserBids(data)
-        console.log(data)
-      }
+         }
       load()
     }
   }, [isLoggedIn])
 
   return (
-    <div>
+    
+      <div>
       <h1>Player Bids</h1>
-
-      <div className="items-containerx">
+      <div className="items-container">
         {userBids.map(item => (
           <section key={item.slug}>
             <div >
@@ -42,7 +40,8 @@ export default function MyBids() {
             </div>
           </section>
         ))}
+        </div>
       </div>
-    </div>
+    
   )
 }

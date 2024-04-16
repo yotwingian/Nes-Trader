@@ -40,9 +40,22 @@ export default function Items() {
       case 'releaseYear':
         sortedItems.sort((a, b) => a.releaseYear - b.releaseYear)
         break
-      case 'endingSoon':
-        sortedItems.sort((a, b) => new Date(a.endDateTime) - new Date(b.endDateTime))
+      case 'endingSoon': {
+        let ongoingItems = [], endedItems = []
+
+        for (let item of sortedItems) {
+          if (new Date(item.endDateTime) < Date.now()) {
+            endedItems.push(item)
+          } else {
+            ongoingItems.push(item)
+          }
+        }
+
+        ongoingItems.sort((a, b) => new Date(a.endDateTime).getTime() - new Date(b.endDateTime).getTime())
+        endedItems.sort((a, b) => new Date(b.startDateTime).getTime() - new Date(a.startDateTime).getTime())
+        sortedItems = ongoingItems.concat(endedItems)
         break
+      }
       case 'latest':
         sortedItems.sort((a, b) => new Date(b.startDateTime) - new Date(a.startDateTime))
         break
