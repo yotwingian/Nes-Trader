@@ -63,15 +63,8 @@ public class Items
   }
 
   public record FilteredItem(string Slug, string Title, string ReleaseYear,
-    string Genre, string Img, string EndDateTime, int StartPrice)
-  {
-    private string v;
+    string Genre, string Img, string EndDateTime, int StartPrice);
 
-    public FilteredItem(string Slug, string Title, string ReleaseYear, string Genre, string Img, string EndDateTime, int StartPrice, string v) : this(Slug, Title, ReleaseYear, Genre, Img, EndDateTime, StartPrice)
-    {
-      this.v = v;
-    }
-  }
 
   public static IResult EndingSoon(State state)
   {
@@ -129,38 +122,34 @@ public class Items
     }
   }
 
-  public record MyBids(string Title, string ReleaseYear, string Genre,
-   string Description, string Img, string EndDateTime, int StartPrice, string User, int Amount);
 
 
 
-  public static IResult Bids(string user, State state)
+  public static IResult UserBids(string user, State state)
   {
-    List<MyBids> bids = new();
-    string query = "SELECT items.title, items.release_year, items.genre, items.description, items.image, items.end_datetime, items.start_price, users.username, bids.amount FROM items INNER JOIN users ON items.user = users.id INNER JOIN bids ON items.id = bids.item_id AND users.id = bids.user_id";
-    using var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@user", user)]);
+    List<FilteredItem> bids = new();
+    string query = "SELECT slug, title, release_year, genre, image, end_datetime, start_price FROM items INNER JOIN bids ON items.id = bids.item INNER JOIN users ON bids.user = users.id WHERE username = @username AND DATE_SUB(end_datetime, INTERVAL 2 HOUR) > NOW() GROUP BY items.slug";
+    using var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@username", user)]);
 
     if (reader.HasRows)
     {
       while (reader.Read())
       {
         bids.Add(new(
+          reader.GetString("slug"),
          reader.GetString("title"),
          reader.GetString("release_year"),
          reader.GetString("genre"),
-         reader.GetString("description"),
          reader.GetString("image"),
          reader.GetDateTime("end_datetime").ToString(),
-         reader.GetInt32("start_price"),
-         reader.GetString("username"),
-         reader.GetInt32("amount")
+         reader.GetInt32("start_price")
        ));
       }
       return TypedResults.Ok(bids);
     }
     else
     {
-      return TypedResults.NotFound("Item not found");
+      return TypedResults.Ok(bids);
     }
   }
 

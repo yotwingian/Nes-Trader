@@ -10,7 +10,7 @@ export default function Home() {
 
   const { isLoggedIn } = useContext(GlobalContext)
 
-  // <MyBids />
+
   // <MyItems />
   // Borttagna nedan tills de är implementerade i Server och refakturerade här
 
@@ -18,8 +18,8 @@ export default function Home() {
     <div>
       {isLoggedIn && (
         <>
-          
-          
+          <MyBids />
+
         </>
       )}
 
@@ -30,5 +30,5 @@ export default function Home() {
       <Items />
     </div>
   )
-  
+
 }

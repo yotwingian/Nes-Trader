@@ -24,13 +24,12 @@ export default function MyBids() {
     }
   }, [isLoggedIn]);
 
-  if (!userBids) {
-    return null
-  }
+
 
   return (
     <div>
       <h1>Player Bids</h1>
+
       <div className="items-containerx">
         {userBids.map(item => (
           <section key={item.id}>
