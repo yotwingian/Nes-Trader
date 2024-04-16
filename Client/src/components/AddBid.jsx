@@ -2,7 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { GlobalContext } from '../components/GlobalContext.jsx'
 
-function BidForm({ itemId, startPrice }) {
+function BidForm({ slug, startPrice }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [Bid, setBid] = useState([]);
   const [maxBidAmount, setMaxBidAmount] = useState(0);
@@ -18,7 +18,7 @@ function BidForm({ itemId, startPrice }) {
 
   useEffect(() => {
     async function load() {
-      const response = await fetch(`/api/bids?itemId=${itemId}`);
+      const response = await fetch("/api/bids/max/" + slug)
       const data = await response.json();
       setBid(data);
     }
@@ -28,8 +28,9 @@ function BidForm({ itemId, startPrice }) {
 
 
   useEffect(() => {
-    const newMaxBidAmount = Bid.reduce((max, bid) => (parseFloat(bid.amount) > max ? parseFloat(bid.amount) : max), 0);
+    const newMaxBidAmount = Bid.amount;
     setMaxBidAmount(newMaxBidAmount);
+    console.log(newMaxBidAmount)
   }, [Bid]);
 
   async function PostBid(event) {
@@ -48,27 +49,35 @@ function BidForm({ itemId, startPrice }) {
       return;
     }
 
-    await fetch("/api/bids", {
+    const response = await fetch("/api/bids/post/" + slug , {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify(info),
     });
-    alert("Your bid was successful. Your bid: " + info.amount);
-    event.target.reset();
 
+    console.log(response)
+
+    if(response.ok == true)
+    {
+      alert("Your bid was successful. Your bid: " + info.amount);
+      event.target.reset();
+    }else
+    {
+      alert("Failed to register bid, server returned: " + response.status)
+    }
+
+    setMaxBidAmount(info.amount)
   }
 
   return (
     <form onSubmit={PostBid}>
-      <input type="hidden" name="bidder" value={user.username} />
+      <input type="hidden" name="bidder" value={user} />
 
       <input type="number" placeholder="Bid" name="amount" required />
 
       <input type="hidden" name="timespan" value={currentDateTime.toISOString()} readOnly />
-
-      <input type="hidden" name="itemId" value={itemId} />
 
       <button type="submit" className='addBidButton'>SELECT</button>
     </form>
@@ -77,7 +86,8 @@ function BidForm({ itemId, startPrice }) {
 
 BidForm.propTypes = {
   itemId: PropTypes.number,
-  startPrice: PropTypes.number
+  startPrice: PropTypes.number,
+  slug: PropTypes.string
 };
 
 export default BidForm;

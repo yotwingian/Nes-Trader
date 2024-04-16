@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react"
-import { Link, useParams, useNavigate } from "react-router-dom"
+import { useParams, useNavigate } from "react-router-dom"
 import Countdown from "react-countdown"
 import { GlobalContext } from "../components/GlobalContext.jsx"
 import BidForm from "../components/AddBid.jsx"
