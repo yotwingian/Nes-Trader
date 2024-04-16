@@ -121,4 +121,32 @@ public class Items
     }
   }
 
+  public static IResult UserItems(string user, State state)
+  {
+    List<FilteredItem> userItems = new();
+    string query = "SELECT slug, title, release_year, genre, image, end_datetime, start_price FROM items INNER JOIN users ON items.user = users.id WHERE users.username = @username ORDER BY start_datetime DESC";
+    using var reader = MySqlHelper.ExecuteReader(state.DB, query, [new("@username", user)]);
+
+    if (reader.HasRows)
+    {
+      while (reader.Read())
+      {
+        userItems.Add(new(
+          reader.GetString("slug"),
+          reader.GetString("title"),
+          reader.GetString("release_year"),
+          reader.GetString("genre"),
+          reader.GetString("image"),
+          reader.GetDateTime("end_datetime").ToString(),
+          reader.GetInt32("start_price")
+        ));
+      }
+      return TypedResults.Ok(userItems);
+    }
+    else
+    {
+      return TypedResults.Ok(userItems);
+    }
+  }
+
 }
