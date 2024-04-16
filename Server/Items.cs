@@ -68,7 +68,7 @@ public class Items
   public static IResult EndingSoon(State state)
   {
     List<FilteredItem> ending = new();
-    string query = "SELECT slug, title, release_year, genre, image, end_datetime, start_price FROM items WHERE DATE_SUB(end_datetime, INTERVAL 2 HOUR) > NOW() ORDER BY end_datetime ASC LIMIT 5";
+    string query = "SELECT slug, title, release_year, genre, image, end_datetime, start_price FROM items WHERE DATE_SUB(end_datetime, INTERVAL 2 HOUR) > NOW() ORDER BY end_datetime LIMIT 5";
     using var reader = MySqlHelper.ExecuteReader(state.DB, query);
 
     if (reader.HasRows)

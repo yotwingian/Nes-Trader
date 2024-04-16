@@ -22,25 +22,27 @@ export default function MyItems() {
     }
   }, [isLoggedIn])
 
-  return (
-    <div>
-      <h1>Player Items</h1>
-      <div className="items-containerx">
-        {userItems.map(item => (
-          <section key={item.slug}>
-            <div >
-              <Link to={{ pathname: `/item/${item.slug}` }} style={{ textDecoration: 'none' }}>
-                <img src={item.img} alt={item.title} />
-                <h5>{item.title}</h5>
-                <div><p className="itemstext">{item.releaseYear} | {item.genre}</p></div>
-                <div className="items"><MaxBid slug={item.slug} startPrice={item.startPrice} /> | <TotalBids slug={item.slug} /></div>
-                <div className="items">{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}</div>
-              </Link>
-            </div>
-          </section>
-        ))}
+  return <>
+    {userItems != "" ? (
+      <div>
+        <h1 id="myitems">Player Items</h1>
+        <div className="items-container">
+          {userItems.map(item => (
+            <section key={item.slug}>
+              <div >
+                <Link to={{ pathname: `/item/${item.slug}` }} style={{ textDecoration: 'none' }}>
+                  <img src={item.img} alt={item.title} />
+                  <h5>{item.title}</h5>
+                  <div><p className="itemstext">{item.releaseYear} | {item.genre}</p></div>
+                  <div className="items"><MaxBid slug={item.slug} startPrice={item.startPrice} /> | <TotalBids slug={item.slug} /></div>
+                  <div className="items">{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}</div>
+                </Link>
+              </div>
+            </section>
+          ))}
+        </div>
       </div>
-    </div>
-  )
+    ) : (null)}
+  </>
   
 }
