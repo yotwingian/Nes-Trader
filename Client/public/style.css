@@ -136,6 +136,7 @@
       padding-bottom: 20px;
   }
 
+
   /*AddItems*/
 
   .newGameButton {
@@ -169,6 +170,7 @@
     /* box-shadow: 2px 2px 3px 0px rgb(44, 44, 44); */
   }
 
+
   section img {
     width: 100%;
     height: 250px;
@@ -186,7 +188,6 @@
     text-shadow: 1px 1px 1px black;
     font-size: 1em;
     padding: 10px;
-    height: 50px;
   }
 
 
@@ -199,14 +200,6 @@
     
   }
 
-  .items-containerx {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    justify-content: flex-start;
-    gap: 30px;
-
-  }
 
   .itemsCard {
     margin-bottom: 1px;
@@ -306,3 +299,17 @@
     background-color: rgb(219, 58, 58);
     color: white;
   }
+
+h1#mypage {
+  margin-bottom: 20px;
+  margin-left: 20px;
+}
+
+h1#mybids {
+  margin-left: 20px;
+}
+
+h1#mypage {
+  text-align: center;
+  font-size: 2vw;
+}
