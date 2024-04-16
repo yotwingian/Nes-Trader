@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using Server;
 
-State state = new("server=localhost;uid=root;pwd=mypassword;database=nes_trader;port=3306");
+State state = new("server=localhost;uid=root;pwd=docker;database=nes_trader;port=3306");
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication().AddCookie("nes-trader.user");
@@ -111,7 +111,7 @@ app.MapGet("/bids/item/{slug}", Bids.Item);
 app.MapGet("/bids/max/{slug}", Bids.Max);
 app.MapGet("/bids/total/{slug}", Bids.Total);
 app.MapGet("/bids/{user}", () => "Bids.User").RequireAuthorization("user");
-app.MapPost("/bids/post/{slug}", () => "Bids.Post").RequireAuthorization("user");
+app.MapPost("/bids/post/{slug}", Bids.Post).RequireAuthorization("user");
 
 app.MapGet("/users", () => @"
 [
@@ -126,7 +126,7 @@ app.MapGet("/users", () => @"
 ");
 // ^ Mockdata, ska tas bort!
 app.MapPost("/users/login", Users.Login);
-app.MapPost("/users/register", () => "Users.Register");
+app.MapPost("/users/register", Users.Register);
 
 app.Run("http://localhost:3000");
 
