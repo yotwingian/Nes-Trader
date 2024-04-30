@@ -48,6 +48,8 @@ Testa inloggning - lyckad (username i Header)/misslyckad, inmatning/Select-knapp
 
 Testa länk till New Player
 
+Testa utloggning med Reset-knappen
+
 Register:
 
 Testa inmatning för alla fält i formuläret
