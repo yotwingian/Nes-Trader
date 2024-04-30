@@ -6,14 +6,92 @@ Lucidchart (ER diagram): https://lucid.app/lucidchart/c6fdff53-cc62-4ee0-9914-ba
 
 ## Testning
 
-### Home
+### Home (ej inloggad)
+Header:
+
+Testa länkar till andra sidor
+
+Testa knapp till Power/Login
+
+Games Over Soon:
+
+Testa länk till Item - ett eller alla?
+
+New Games:
+
+Testa länk till Item - ett eller alla?
+
+Footer:
+
+Testa länkar till andra sidor
 
 ### Games
+(Kanske testa spelinfo?)
 
-### Login
+Testa länk till Item - ett eller alla?
 
-### Register
+Testa sökning
+
+Testa sortering (bra att börja nerifrån i listan)
+
+### Item (ej inloggad)
+(Kanske testa spelinfo?)
+
+Testa High Scores
+
+Testa att knappen Power finns och länkar rätt
+
+### Power
+Login:
+
+Testa inloggning - lyckad (username i Header)/misslyckad, inmatning/Select-knapp (submit)
+
+Testa länk till New Player
+
+Register:
+
+Testa inmatning för alla fält i formuläret
+
+Testa Start/submit-knapp
+
+Testa länk tillbaka till Select Player
+
+### Home (inloggad)
+Header:
+
+Testa nya länkar till andra sidor
+
+Player Bids:
+
+Testa om bids finns
+
+Testa länk till Item - ett eller alla?
+
+Player Items:
+
+Testa om items finns
+
+Testa länk till Item - ett eller alla?
+
+### Item (inloggad)
+Testa budgivning - inmatning/Select-knapp (submit)/gränsvärden
+
+Testa High Scores om budet går igenom
 
 ### New Game
+Testa inmatning för alla fält i formuläret
 
-### MyPage
+Testa Start/submit-knapp
+
+### Player Page
+Player Bids:
+
+Testa om bids finns
+
+Testa länk till Item - ett eller alla?
+
+Player Items:
+
+Testa om items finns
+
+Testa länk till Item - ett eller alla?
