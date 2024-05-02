@@ -42,7 +42,7 @@ export default function MyItems() {
           ))}
         </div>
       </div>
-    ) : (null)}
+    ) : <div className="my-items"></div>}
   </>
-  
+
 }

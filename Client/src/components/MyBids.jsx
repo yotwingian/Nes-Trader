@@ -43,7 +43,7 @@ export default function MyBids() {
           ))}
         </div>
       </div>
-    ) : (null)}
+    ) : <div className="my-bids"></div>}
   </>
-  
+
 }

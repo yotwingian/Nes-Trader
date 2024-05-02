@@ -313,3 +313,13 @@ h1#mypage {
   text-align: center;
   font-size: 2vw;
 }
+
+.NoItems {
+      color: rgb(136, 132, 139);
+        font-size: 18px;
+        font-family: "Press Start 2P";
+        padding-top: 20px;
+        padding-bottom: 20px;
+
+
+}
