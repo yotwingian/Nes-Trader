@@ -63,18 +63,6 @@ Header:
 
 Testa nya länkar till andra sidor
 
-Player Bids:
-
-Testa om bids finns
-
-Testa länk till Item - ett eller alla?
-
-Player Items:
-
-Testa om items finns
-
-Testa länk till Item - ett eller alla?
-
 ### Item (inloggad)
 Testa budgivning - inmatning/Select-knapp (submit)/gränsvärden
 
