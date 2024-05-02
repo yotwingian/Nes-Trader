@@ -20,7 +20,7 @@ export default function LatestItems() {
 
   return (
     <div>
-      <h1>New Games</h1>
+      <h1 className="main-h1-2">New Games</h1>
       <div className="items-container">
         {items.map(item => (
           <section key={item.slug}>

@@ -22,7 +22,6 @@ export default function Home() {
       <EndingItems />
       <LatestItems />
 
-      <h1>Select Game</h1>
       <Items />
     </div>
   )

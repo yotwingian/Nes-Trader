@@ -73,6 +73,7 @@ export default function Items() {
   }
 
   return <>
+    <h1 className="main-h1-3">Select Game</h1>
     <search >
       <input type="text" onChange={filter} placeholder="Search..." />
       <select onChange={handleSortChange} className="btn btn-outline-seconda">
