@@ -20,7 +20,7 @@ export default function EndingItems() {
 
   return (
     <div>
-      <h1 className="main-h1">Games Over Soon</h1>
+      <h1 id="h1-ending-items">Games Over Soon</h1>
       <div className="items-container">
         {items.map(item => (
           <section key={item.slug}>

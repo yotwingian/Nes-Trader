@@ -1,7 +1,7 @@
 export default function HowTo() {
 
   return (
-    <h1>How to</h1>
+    <h1 id="h1-how-to">How to</h1>
   )
   
 }

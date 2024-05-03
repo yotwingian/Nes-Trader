@@ -38,9 +38,9 @@ export default function Router() {
         </main>
         <footer>
           <div>
-            <Link to="about" style={{ textDecoration: 'none' }}>About</Link>
-            <Link to="contact" style={{ textDecoration: 'none' }}>Contact</Link>
-            <Link to="how-to" style={{ textDecoration: 'none' }}>How to</Link>
+            <Link id='about' to="about" style={{ textDecoration: 'none' }}>About</Link>
+            <Link id='contact' to="contact" style={{ textDecoration: 'none' }}>Contact</Link>
+            <Link id='how-to' to="how-to" style={{ textDecoration: 'none' }}>How to</Link>
             <img src="../../img/controller.png" alt="controller"></img>
           </div>
         </footer>

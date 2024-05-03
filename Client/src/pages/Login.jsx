@@ -62,7 +62,7 @@ export default function Login() {
 
   return (
     <>
-      <h1>{login ? 'Select Player' : 'New Player'}</h1>
+      <h1 id="h1-login">{login ? 'Select Player' : 'New Player'}</h1>
 
       {login ? (
         <form onSubmit={handleSubmit}>
