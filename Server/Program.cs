@@ -1,7 +1,7 @@
 using System.Security.Claims;
 using Server;
 
-State state = new("server=localhost;uid=root;pwd=mypassword;database=nes_trader;port=3306");
+State state = new("server=localhost;uid=root;pwd=docker;database=nes_trader;port=3306");
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAuthentication().AddCookie("nes-trader.user");

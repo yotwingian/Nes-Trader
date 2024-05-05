@@ -23,5 +23,6 @@ Feature: Home
         | #contact | Contact | #h1-contact |
         | #how-to| How to | #h1-how-to |
         | #home| Games Over Soon | #h1-ending-items |
+        | #login | Select Player | #gotoRegister |
 
     

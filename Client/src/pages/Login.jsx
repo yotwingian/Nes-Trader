@@ -72,6 +72,7 @@ export default function Login() {
               <input
                 type="text"
                 className="inputEmail3"
+                id="userName"
                 placeholder="Player Name"
                 name="userName"
                 value={loginData.userName}
@@ -85,6 +86,7 @@ export default function Login() {
               <input
                 type="password"
                 className="inputPassword3"
+                id="password"
                 placeholder="Password"
                 name="password"
                 value={loginData.password}
@@ -93,9 +95,9 @@ export default function Login() {
             </div>
           </div>
 
-          <div className="col-sm-10">
+          
             <button type="submit" id="loginButton" >SELECT</button>
-          </div>
+          
         </form>
       ) : (
         <RegisterForm />
