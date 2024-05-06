@@ -11,7 +11,7 @@ module.exports = defineConfig(
       specPattern: '**/*.feature',
       baseUrl,
       video: false,
-      supportFile: false,
+      supportFile: "support/commands.js",
       screenshotOnRunFailure: false,
       setupNodeEvents(on, config) {
         // implement node event listeners here

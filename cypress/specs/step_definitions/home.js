@@ -1,5 +1,6 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor"
 
+
 Given('I am on the {string} page', (url) => {
   cy.visit(url)
 })
@@ -12,6 +13,10 @@ Then('I should see the {string} title in the {string} element', (header, selecto
   cy.get(selector).should('have.text', header)
 })
 
-Then('the element {string} should containg text', (title) => {
+Then('the element {string} should contain text', (title) => {
   cy.get(title).should('not.have.text', "")
+});
+
+When('I am logged in as {string} with password {string}', (username, password) => {
+  cy.login(username, password);
 });
