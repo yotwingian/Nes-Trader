@@ -2,8 +2,8 @@ Feature: Login and Register
 
   Scenario: Successful Login
     Given I am on the "/Login" page
-    When I fill in the "userName" with "testUser"
-    And I fill in the "password" with "testPassword"
+    When I fill in the "userName" with "mario"
+    And I fill in the "password" with "mario123"
     And I click the "loginButton" button
     Then I should be redirected to the home page
 
@@ -12,7 +12,7 @@ Feature: Login and Register
     When I fill in the "userName" with "wrongUser"
     And I fill in the "password" with "wrongPassword"
     And I click the "loginButton" button
-    Then I should see an alert with the text "Invalid email or password"
+    Then I should see an alert with the text "Wrong username or password!"
 
 
   Scenario: Successful Registration
@@ -32,8 +32,8 @@ Feature: Login and Register
   Scenario: Failed Registration
     Given I am on the "/login" page
     When I click on the "#gotoRegister" link
-    And I fill in the "inputUsername" with "existingUser"
-    And I fill in the "inputEmail4" with "existingUser@example.com"
+    And I fill in the "inputUsername" with "mario"
+    And I fill in the "inputEmail4" with "mario@example.com"
     And I fill in the "inputPassword4" with "existingPassword"
     And I fill in the "inputName" with "Existing User"
     And I fill in the "inputAddress" with "123 Existing St"
@@ -41,7 +41,7 @@ Feature: Login and Register
     And I fill in the "inputZip" with "54321"
     And I fill in the "country" with "Existing Country"
     And I click the "registerButton" button
-    Then I should see a notification "An error occurred while registering the user."
+    Then I should see a notification "A user with this username or email already exists"
 
 
 

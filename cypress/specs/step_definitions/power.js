@@ -1,10 +1,10 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-
+/*
 beforeEach(() => {
   // Successful login
   cy.intercept('POST', '/api/users/login', {
     statusCode: 200,
-    body: { username: 'testUser' }
+    body: { username: 'mario', password: 'mario123' }
   })
 
   // Failed login
@@ -24,7 +24,7 @@ beforeEach(() => {
     body: { detail: 'An error occurred while registering the user.' }
   })
 })
-
+*/
 
 When('I fill in the {string} with {string}', (fieldId, value) => {
   cy.get(`input#${fieldId}`).type(value);
