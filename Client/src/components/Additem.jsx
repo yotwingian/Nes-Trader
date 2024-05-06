@@ -93,9 +93,9 @@ function AuctionForm() {
         <div>
           <input type="number" name="reservePrice" placeholder="Reserve Price" required />
         </div>
-        <button type="submit" className="newGameButton">START</button>
+        <button id="newGameButton" type="submit" >START</button>
       </div>
-      {message && <div className="addItemMessage">{message}</div>} 
+      {message && <div id="notificationMessage">{message}</div>} 
     </form>
   );
 }
