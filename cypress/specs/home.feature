@@ -23,6 +23,19 @@ Feature: Home
         | #contact | Contact | #h1-contact |
         | #how-to| How to | #h1-how-to |
         | #home| Games Over Soon | #h1-ending-items |
+
+
+    Scenario Outline: Click on item
+        Given I am on the "/" page
+        When I click on the "<pathname>" link
+        Then the element "<selector>" should containg text
+
+    Examples:
+        | pathname | selector |
+        | :nth-child(1) > :nth-child(1) > .items-container > :nth-child(1) | h1 |
+        | :nth-child(2) > .items-container > :nth-child(1) | h1 |
+        | main > :nth-child(1) > :nth-child(5) > :nth-child(1) | h1 |
+
         
 
     

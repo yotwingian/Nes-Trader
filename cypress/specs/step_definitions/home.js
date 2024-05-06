@@ -12,4 +12,6 @@ Then('I should see the {string} title in the {string} element', (header, selecto
   cy.get(selector).should('have.text', header)
 })
 
-
+Then('the element {string} should containg text', (title) => {
+  cy.get(title).should('not.have.text', "")
+});
