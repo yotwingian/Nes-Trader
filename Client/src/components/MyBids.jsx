@@ -26,14 +26,14 @@ export default function MyBids() {
   return <>
     {userBids != "" ? (
       <div>
-        <h1 id="mybids">Player Bids</h1>
+        <h1 id="h1-mybids">Player Bids</h1>
         <div className="items-container">
           {userBids.map(item => (
             <section key={item.slug}>
               <div >
                 <Link to={{ pathname: `/item/${item.slug}` }} style={{ textDecoration: 'none' }}>
                   <img src={item.img} alt={item.title} />
-                  <h5>{item.title}</h5>
+                  <h5 id="test">{item.title}</h5>
                   <div><p className="itemstext">{item.releaseYear} | {item.genre}</p></div>
                   <div className="items"><MaxBid slug={item.slug} startPrice={item.startPrice} /> | <TotalBids slug={item.slug} /></div>
                   <div className="items">{" "} <Countdown date={new Date(item.endDateTime)} renderer={CountdownRenderer} />{" "}</div>
@@ -43,7 +43,7 @@ export default function MyBids() {
           ))}
         </div>
       </div>
-    ) : <div className="my-bids"></div>}
+    ) : <div><h1 id="h1-mybids"></h1></div>}
   </>
 
 }
