@@ -43,6 +43,13 @@ Feature: Login and Register
     And I click the "registerButton" button
     Then I should see a notification "A user with this username or email already exists"
 
+  Scenario: Testing link Select Player in Registerform page
+    Given I am on the "/login" page
+    When I click on the "#gotoRegister" link
+    And I click on the "#gotoRegister" link
+    Then I should see "Select Player" as the title
+
+
 
 
 

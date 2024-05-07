@@ -48,3 +48,8 @@ Then('I should see an alert with the text {string}', (alertText) => {
 Then('I should see a notification {string}', (notificationText) => {
   cy.get('#notificationMessage').should('contain', notificationText);
 });
+
+Then('I should see {string} as the title', (title) => {
+  cy.get('#h1-login').should('have.text', title)
+});
+
