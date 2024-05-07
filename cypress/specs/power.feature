@@ -49,6 +49,17 @@ Feature: Login and Register
     And I click on the "#gotoRegister" link
     Then I should see "Select Player" as the title
 
+ 
+  Scenario: Testing Resetbutton
+    Given I am logged in as "mario" with password "mario123"
+    When i click on the "logout" link
+    Then I should not see mypage link anymore
+
+
+
+
+
+
 
 
 

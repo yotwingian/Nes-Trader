@@ -34,6 +34,9 @@ When('I click the {string} button', (buttonId) => {
   cy.get(`#${buttonId}`).click();
 });
 
+When('i click on the {string} link', (linkId) => {
+  cy.get(`#${linkId}`).click();
+});
 
 Then('I should be redirected to the home page', () => {
   cy.url().should('include', '/'); 
@@ -52,4 +55,10 @@ Then('I should see a notification {string}', (notificationText) => {
 Then('I should see {string} as the title', (title) => {
   cy.get('#h1-login').should('have.text', title)
 });
+
+Then('I should not see mypage link anymore', () => {
+  cy.get('#my-page').should('not.exist');
+});
+
+
 
