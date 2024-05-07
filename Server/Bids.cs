@@ -72,9 +72,17 @@ public class Bids
   public static IResult Post(string slug, State state, PostBid bid)
   {
 
+
+
     int ItemId = 0;
 
-    string queryItemId = "SELECT bids.item AS itemid FROM bids INNER JOIN items ON bids.item = items.id WHERE slug = @slug";
+    Console.WriteLine("Slug " + slug);
+
+    Console.WriteLine("ItemID" + ItemId);
+
+    string queryItemId = "SELECT id AS itemid FROM items WHERE slug = @slug";
+
+    Console.WriteLine("QueryItemID" + queryItemId);
 
     var reader = MySqlHelper.ExecuteReader(state.DB, queryItemId, [new("@slug", slug)]);
 
@@ -83,7 +91,7 @@ public class Bids
       ItemId = reader.GetInt32("itemid");
     }
 
-    Console.WriteLine(ItemId);
+
 
 
     int UserId = 0;
@@ -97,7 +105,7 @@ public class Bids
       UserId = reader.GetInt32("user");
     }
     Console.WriteLine(reader.Read());
-    Console.WriteLine(UserId);
+    Console.WriteLine("Itemid: " + ItemId);
 
     string query = "INSERT INTO bids (amount, time, user, item) VALUES (@amount, @time, @user, @item)";
 
