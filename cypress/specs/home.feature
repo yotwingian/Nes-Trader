@@ -32,9 +32,9 @@
 
         Examples:
             | pathname | selector |
-            | :nth-child(1) > :nth-child(1) > .items-container > :nth-child(1) | h1 |
-            | :nth-child(2) > .items-container > :nth-child(1) | h1 |
-            | main > :nth-child(1) > :nth-child(5) > :nth-child(1) | h1 |
+            | :nth-child(1) > :nth-child(1) > .items-container > :nth-child(1) | #h1-item |
+            | :nth-child(2) > .items-container > :nth-child(1) | #h1-item |
+            | main > :nth-child(1) > :nth-child(5) > :nth-child(1) | #h1-item |
 
 
         Scenario Outline: Log in and visit page

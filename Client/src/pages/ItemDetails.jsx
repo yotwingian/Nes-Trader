@@ -48,7 +48,7 @@ export default function ItemDetails() {
   return <>
     <div className="item-container">
       <div className="details-container">
-        <h1>{item.title}</h1>
+        <h1 id="h1-item">{item.title}</h1>
         <img src={item.img} width="300" alt={item.title} />
         <p>
           {item.releaseYear} | {item.genre} | <MaxBid slug={slug} startPrice={item.startPrice} /> | <TotalBids slug={slug} /> <br />
@@ -57,10 +57,7 @@ export default function ItemDetails() {
         {bid()}<p></p>
         <p>{item.description}</p>
       </div>
-      <div className="bids-list-container">
-        <h6>HIGH SCORES</h6>
         <BidsList slug={slug} />
-      </div>
     </div>
   </>
 
