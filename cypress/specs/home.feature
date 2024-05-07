@@ -18,7 +18,7 @@
         Examples:
             | pathname | title | selector |
             | #games | Select Game | #h1-items |
-            | #login | Select Player | #h1-login |
+            | #btn-login | Select Player | #h1-login |
             | #about | About | #h1-about |
             | #contact | Contact | #h1-contact |
             | #how-to| How to | #h1-how-to |
