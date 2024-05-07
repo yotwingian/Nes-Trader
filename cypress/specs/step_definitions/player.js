@@ -6,6 +6,7 @@ Then('I should see {string} as the title', (title) => {
 
 
 Then("I should see items in Player Bids if it's not empty", () => {
+  cy.wait(1000)
   cy.get('#my-bids').then(($bids) => {
     if ($bids.find('section').length > 0) {
       cy.log('Items found!');
