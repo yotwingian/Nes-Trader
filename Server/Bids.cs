@@ -74,7 +74,7 @@ public class Bids
 
     int ItemId = 0;
 
-    string queryItemId = "SELECT bids.item AS itemid FROM bids INNER JOIN items ON bids.item = items.id WHERE slug = @slug";
+    string queryItemId = "SELECT id AS itemid FROM items WHERE slug = @slug";
 
     var reader = MySqlHelper.ExecuteReader(state.DB, queryItemId, [new("@slug", slug)]);
 

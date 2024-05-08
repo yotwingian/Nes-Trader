@@ -27,6 +27,7 @@ beforeEach(() => {
 */
 
 When('I fill in the {string} with {string}', (fieldId, value) => {
+  cy.wait(700)
   cy.get(`input#${fieldId}`).type(value);
 });
 
@@ -36,7 +37,7 @@ When('I click the {string} button', (buttonId) => {
 
 
 Then('I should be redirected to the home page', () => {
-  cy.url().should('include', '/'); 
+  cy.url().should('include', '/');
 });
 
 Then('I should see an alert with the text {string}', (alertText) => {
@@ -48,3 +49,4 @@ Then('I should see an alert with the text {string}', (alertText) => {
 Then('I should see a notification {string}', (notificationText) => {
   cy.get('#notificationMessage').should('contain', notificationText);
 });
+

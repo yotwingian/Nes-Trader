@@ -5,7 +5,7 @@ import { GlobalContext } from '../components/GlobalContext.jsx'
 function BidForm({ slug, startPrice }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [Bid, setBid] = useState([]);
-  const [maxBidAmount, setMaxBidAmount] = useState(0);
+  const [maxBidAmount, setMaxBidAmount] = useState();
   const { user } = useContext(GlobalContext)
 
   useEffect(() => {
@@ -40,12 +40,12 @@ function BidForm({ slug, startPrice }) {
     info.timespan = new Date(info.timespan).toISOString();
     info.itemId = parseInt(info.itemId);
 
-    if (parseFloat(info.amount) <= maxBidAmount) {
-      alert("The new bid must be greater than the existing bid. Current bid: " + maxBidAmount);
+    if (maxBidAmount == null && parseFloat(info.amount) < startPrice) {
+      alert("The new bid must be equal to or greater than the start price. Start price: " + startPrice);
       return;
     }
-    else if (parseFloat(info.amount) < startPrice) {
-      alert("The new bid must be equal to or greater than the start price. Current start price: " + startPrice);
+    else if (maxBidAmount != null && parseFloat(info.amount) <= maxBidAmount) {
+      alert("The new bid must be greater than the existing bid. Current bid: " + maxBidAmount);
       return;
     }
 
@@ -75,11 +75,11 @@ function BidForm({ slug, startPrice }) {
     <form onSubmit={PostBid}>
       <input type="hidden" name="bidder" value={user} />
 
-      <input type="number" placeholder="Bid" name="amount" required />
+      <input id="input-amount" type="number" placeholder="Bid" name="amount" required />
 
       <input type="hidden" name="timespan" value={currentDateTime.toISOString()} readOnly />
 
-      <button type="submit" className='addBidButton'>SELECT</button>
+      <button id="btn-select" type="submit" className='addBidButton'>SELECT</button>
     </form>
   );
 }
