@@ -7,7 +7,7 @@ Feature: Games
 
   Examples:
     | searchTerm |
-    | Mario |
+    | mario |
     | Donkey Kong |
 
 Scenario: Sorting items by Title
