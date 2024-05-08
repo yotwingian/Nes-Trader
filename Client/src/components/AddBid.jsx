@@ -5,6 +5,7 @@ import { GlobalContext } from '../components/GlobalContext.jsx'
 function BidForm({ slug, startPrice }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [Bid, setBid] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   const [maxBidAmount, setMaxBidAmount] = useState();
   const { user } = useContext(GlobalContext)
 
@@ -21,6 +22,7 @@ function BidForm({ slug, startPrice }) {
       const response = await fetch("/api/bids/max/" + slug)
       const data = await response.json();
       setBid(data);
+      setIsLoading(false);
     }
     load();
 
@@ -71,6 +73,10 @@ function BidForm({ slug, startPrice }) {
     setMaxBidAmount(info.amount)
   }
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
   return (
     <form onSubmit={PostBid}>
       <input type="hidden" name="bidder" value={user} />
@@ -79,7 +85,7 @@ function BidForm({ slug, startPrice }) {
 
       <input type="hidden" name="timespan" value={currentDateTime.toISOString()} readOnly />
 
-      <button id="btn-select" type="submit" className='addBidButton'>SELECT</button>
+      <button id="btn-select-bid" type="submit" className='addBidButton'>SELECT</button>
     </form>
   );
 }
