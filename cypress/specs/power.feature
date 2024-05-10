@@ -12,7 +12,7 @@ Feature: Login and Register
     When I fill in the "userName" with "wrongUser"
     And I fill in the "password" with "wrongPassword"
     And I click the "loginButton" button
-    Then I should see an alert with the text "Wrong username or password!"
+    Then I should see a notification "Wrong username or password!"
 
 
   Scenario: Successful Registration
@@ -67,4 +67,3 @@ Feature: Login and Register
 
 
 
-    

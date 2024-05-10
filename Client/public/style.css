@@ -1,5 +1,14 @@
   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+  .notificationMessage{
+    color: rgb(136, 132, 139);
+    font-size: 18px;
+    font-family: "Press Start 2P";
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+
+  }
   button {
     margin-left: '10px';
     font-family: "Press Start 2P";
@@ -104,6 +113,14 @@
     font-family: "Press Start 2P";
     cursor: pointer;
   }
+  
+  .loginMessage{
+      color: rgb(136, 132, 139);
+        font-size: 18px;
+        font-family: "Press Start 2P";
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
 
   #gotoRegister:hover {
     color: rgb(219, 58, 58);
