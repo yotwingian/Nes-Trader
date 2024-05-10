@@ -95,7 +95,7 @@ function AuctionForm() {
         </div>
         <button type="submit" className="newGameButton">START</button>
       </div>
-      {message && <div className="addItemMessage">{message}</div>} 
+      {message && <div className="notificationMessage1">{message}</div>} 
     </form>
   );
 }
