@@ -76,13 +76,7 @@ public class Bids
 
     int ItemId = 0;
 
-    Console.WriteLine("Slug " + slug);
-
-    Console.WriteLine("ItemID" + ItemId);
-
     string queryItemId = "SELECT id AS itemid FROM items WHERE slug = @slug";
-
-    Console.WriteLine("QueryItemID" + queryItemId);
 
     var reader = MySqlHelper.ExecuteReader(state.DB, queryItemId, [new("@slug", slug)]);
 

@@ -97,7 +97,7 @@ function RegisterForm(props) {
         </div>
       </div>
       <button type="submit" id="registerButton">START</button>
-      {message && <div className="addUserMassage" id="notificationMessage">{message}</div>}
+      {message && <div className="notificationMessage1" id="addUserMessage">{message}</div>}
     </form>
   );
 }

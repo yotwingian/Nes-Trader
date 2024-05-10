@@ -1,5 +1,14 @@
   @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 
+  .notificationMessage{
+    color: rgb(136, 132, 139);
+    font-size: 18px;
+    font-family: "Press Start 2P";
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+
+  }
   button {
     margin-left: '10px';
     font-family: "Press Start 2P";
@@ -91,7 +100,7 @@
     transition-duration: 0.4s;
     font-family: "Press Start 2P";
   }
-  
+
 
   #loginButton:hover {
     background-color: rgb(219, 58, 58);
@@ -104,6 +113,14 @@
     font-family: "Press Start 2P";
     cursor: pointer;
   }
+  
+  .loginMessage{
+      color: rgb(136, 132, 139);
+        font-size: 18px;
+        font-family: "Press Start 2P";
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
 
   #gotoRegister:hover {
     color: rgb(219, 58, 58);
@@ -128,16 +145,17 @@
     color: white;
   }
 
-  .addUserMassage{
-      color:rgb(136, 132, 139);
-      font-size: 18px;
-      font-family: "Press Start 2P";
-      padding-top: 20px;
-      padding-bottom: 20px;
-  }
+  /* .addUserMassage {
+    color: rgb(136, 132, 139);
+    font-size: 18px;
+    font-family: "Press Start 2P";
+    padding-top: 20px;
+    padding-bottom: 20px;
+  } */
 
 
   /*AddItems*/
+
 
   .newGameButton {
     margin-top: 10px;
@@ -149,13 +167,7 @@
     background-color: #04AA6D;
     color: white;
   }
-  .addItemMessage{
-      color: rgb(136, 132, 139);
-        font-size: 18px;
-        font-family: "Press Start 2P";
-        padding-top: 20px;
-        padding-bottom: 20px;
-  }
+
   /* ItemsDetails.jsx & items.jsx  */
 
   section {
@@ -197,7 +209,7 @@
     flex-wrap: wrap;
     align-content: space-between;
     justify-content: space-evenly;
-    
+
   }
 
 
@@ -223,7 +235,7 @@
     margin-left: auto;
     margin-right: auto;
     color: white;
-    
+
   }
 
   .item-container a {
@@ -267,7 +279,7 @@
     outline-color: rgb(44, 44, 44);
     background-color: rgb(214, 214, 217);
     color: rgb(219, 58, 58);
-    
+
   }
 
   .bid-text {
@@ -300,26 +312,44 @@
     color: white;
   }
 
-h1#mypage {
-  margin-bottom: 20px;
-  margin-left: 20px;
-}
+  h1#mypage {
+    margin-bottom: 20px;
+    margin-left: 20px;
+  }
 
-h1#mybids {
-  margin-left: 20px;
-}
+  h1#mybids {
+    margin-left: 20px;
+  }
 
-h1#mypage {
-  text-align: center;
-  font-size: 2vw;
-}
+  h1#mypage {
+    text-align: center;
+    font-size: 2vw;
+  }
 
-.NoItems {
-      color: rgb(136, 132, 139);
-        font-size: 18px;
-        font-family: "Press Start 2P";
-        padding-top: 20px;
-        padding-bottom: 20px;
+  .NoItems {
+    color: rgb(136, 132, 139);
+    font-size: 18px;
+    font-family: "Press Start 2P";
+    padding-top: 20px;
+    padding-bottom: 20px;
 
 
-}
+  }
+
+  .notificationMessage1 {
+    color: rgb(136, 132, 139);
+    font-size: 18px;
+    font-family: "Press Start 2P";
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+  }
+
+  #addBidsMessage {
+    color: rgb(255, 255, 255);
+    font-size: 13px;
+    font-family: "Press Start 2P";
+    padding-top: 20px;
+    padding-bottom: 20px;
+
+  }
