@@ -9,7 +9,7 @@ export default function MyPage() {
   return <>
     {isLoggedIn ? (
       <div>
-        <h1 id="mypage">Player Page</h1>
+        <h1 id="h1-mypage">Player Page</h1>
         <MyBids />
         <MyItems />
       </div>

@@ -25,6 +25,7 @@ export default function MyBids() {
 
 
   return <>
+    
     {userBids != "" ? (
       <div>
         <h1 id="h1-mybids">Player Bids</h1>
@@ -45,10 +46,9 @@ export default function MyBids() {
         </div>
       </div>
     ) : <div>
-          <h1 id="h1-mybids">Player Bids</h1>
-        <div id="my-bids" style={{ height:'300px' }} className="items-container">
-          </div>
-          </div>}
+      <div id="my-bids" style={{ height: '300px' }} className="items-container">
+      </div>
+    </div>}
   </>
 
 }

@@ -14,6 +14,7 @@ Then('I should see the {string} title in the {string} element', (header, selecto
 })
 
 Then('the element {string} should contain text', (title) => {
+  cy.wait(1500)
   cy.get(title).should('not.have.text', "")
 });
 

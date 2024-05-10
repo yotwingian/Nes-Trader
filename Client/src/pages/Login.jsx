@@ -110,7 +110,7 @@ export default function Login() {
 
 
           <button type="submit" id="loginButton" >SELECT</button>
-          {message && <div className="notificationMessage" id="loginMessage">{message}</div>}
+          {message && <div className="notificationMessage1" id="loginMessage">{message}</div>}
         </form>
       ) : (
         <RegisterForm />
