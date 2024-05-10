@@ -40,11 +40,11 @@ Then('I should be redirected to the home page', () => {
   cy.url().should('include', '/');
 });
 
-Then('I should see an alert with the text {string}', (alertText) => {
-  cy.on('window:alert', (str) => {
-    expect(str).to.equal(alertText);
-  });
-});
+// Then('I should see an alert with the text {string}', (alertText) => {
+//   cy.on('window:alert', (str) => {
+//     expect(str).to.equal(alertText);
+//   });
+// });
 
 Then('I should see a notification {string}', (notificationText) => {
   cy.wait(700)

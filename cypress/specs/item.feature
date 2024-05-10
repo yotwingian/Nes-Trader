@@ -25,3 +25,8 @@ Feature: Item
       | :nth-child(2) > .items-container > section > :nth-child(1) | 0     | The new bid must be greater than the existing bid. Current bid: 1            |
       | :nth-child(2) > .items-container > section > :nth-child(1) | 1     | The new bid must be greater than the existing bid. Current bid: 1            |
       | :nth-child(2) > .items-container > section > :nth-child(1) | 2     | Your bid was successful. Your bid: 2                                         |
+
+  Scenario: See a placed bid
+    Given I am logged in as "testuser" with password "test1234"
+    When I click on the ":nth-child(2) > .items-container > section > :nth-child(1)" link
+    Then I should see, in the top entry of the HIGH SCORES list, "testuser" in the Player column and "2" in the Bid column of the element "#root > main > div > div.bids-list-container > ul > li:nth-child(3)"
