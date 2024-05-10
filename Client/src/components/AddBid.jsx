@@ -8,6 +8,18 @@ function BidForm({ slug, startPrice }) {
   const [isLoading, setIsLoading] = useState(true);
   const [maxBidAmount, setMaxBidAmount] = useState();
   const { user } = useContext(GlobalContext)
+  const [message, setMessage] = useState(null);
+
+  useEffect(() => {
+    if (message) {
+
+      const timer = setTimeout(() => {
+        setMessage(null);
+      }, 7000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -43,15 +55,15 @@ function BidForm({ slug, startPrice }) {
     info.itemId = parseInt(info.itemId);
 
     if (maxBidAmount == null && parseFloat(info.amount) < startPrice) {
-      alert("The new bid must be equal to or greater than the start price. Start price: " + startPrice);
+      setMessage("The new bid must be equal to or greater than the start price. Start price: " + startPrice);
       return;
     }
     else if (maxBidAmount != null && parseFloat(info.amount) <= maxBidAmount) {
-      alert("The new bid must be greater than the existing bid. Current bid: " + maxBidAmount);
+      setMessage("The new bid must be greater than the existing bid. Current bid: " + maxBidAmount);
       return;
     }
 
-    const response = await fetch("/api/bids/post/" + slug , {
+    const response = await fetch("/api/bids/post/" + slug, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -61,13 +73,11 @@ function BidForm({ slug, startPrice }) {
 
     console.log(response)
 
-    if(response.ok == true)
-    {
-      alert("Your bid was successful. Your bid: " + info.amount);
+    if (response.ok == true) {
+      setMessage("Your bid was successful. Your bid: " + info.amount);
       event.target.reset();
-    }else
-    {
-      alert("Failed to register bid, server returned: " + response.status)
+    } else {
+      setMessage("Failed to register bid, server returned: " + response.status)
     }
 
     setMaxBidAmount(info.amount)
@@ -86,6 +96,7 @@ function BidForm({ slug, startPrice }) {
       <input type="hidden" name="timespan" value={currentDateTime.toISOString()} readOnly />
 
       <button id="btn-select-bid" type="submit" className='addBidButton'>SELECT</button>
+      {message && <div className="notificationMessage1" id="addBidsMessage">{message}</div>}
     </form>
   );
 }

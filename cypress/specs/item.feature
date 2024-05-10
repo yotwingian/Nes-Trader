@@ -14,7 +14,7 @@ Feature: Item
     When I click on the "<pathname>" link
     And I fill in the "input-amount" with "<value>"
     And I click the "btn-select-bid" button
-    Then I should see an alert with the text "<message>"
+    Then I should see a notification "<message>"
 
     Examples:
       | pathname                                                   | value | message                                                                      |
