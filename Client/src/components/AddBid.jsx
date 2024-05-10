@@ -5,8 +5,21 @@ import { GlobalContext } from '../components/GlobalContext.jsx'
 function BidForm({ slug, startPrice }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [Bid, setBid] = useState([]);
-  const [maxBidAmount, setMaxBidAmount] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
+  const [maxBidAmount, setMaxBidAmount] = useState();
   const { user } = useContext(GlobalContext)
+  const [message, setMessage] = useState(null);
+
+  useEffect(() => {
+    if (message) {
+
+      const timer = setTimeout(() => {
+        setMessage(null);
+      }, 7000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [message]);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -21,6 +34,7 @@ function BidForm({ slug, startPrice }) {
       const response = await fetch("/api/bids/max/" + slug)
       const data = await response.json();
       setBid(data);
+      setIsLoading(false);
     }
     load();
 
@@ -40,16 +54,16 @@ function BidForm({ slug, startPrice }) {
     info.timespan = new Date(info.timespan).toISOString();
     info.itemId = parseInt(info.itemId);
 
-    if (parseFloat(info.amount) <= maxBidAmount) {
-      alert("The new bid must be greater than the existing bid. Current bid: " + maxBidAmount);
+    if (maxBidAmount == null && parseFloat(info.amount) < startPrice) {
+      setMessage("The new bid must be equal to or greater than the start price. Start price: " + startPrice);
       return;
     }
-    else if (parseFloat(info.amount) < startPrice) {
-      alert("The new bid must be equal to or greater than the start price. Current start price: " + startPrice);
+    else if (maxBidAmount != null && parseFloat(info.amount) <= maxBidAmount) {
+      setMessage("The new bid must be greater than the existing bid. Current bid: " + maxBidAmount);
       return;
     }
 
-    const response = await fetch("/api/bids/post/" + slug , {
+    const response = await fetch("/api/bids/post/" + slug, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -59,27 +73,30 @@ function BidForm({ slug, startPrice }) {
 
     console.log(response)
 
-    if(response.ok == true)
-    {
-      alert("Your bid was successful. Your bid: " + info.amount);
+    if (response.ok == true) {
+      setMessage("Your bid was successful. Your bid: " + info.amount);
       event.target.reset();
-    }else
-    {
-      alert("Failed to register bid, server returned: " + response.status)
+    } else {
+      setMessage("Failed to register bid, server returned: " + response.status)
     }
 
     setMaxBidAmount(info.amount)
+  }
+
+  if (isLoading) {
+    return <div>Loading...</div>;
   }
 
   return (
     <form onSubmit={PostBid}>
       <input type="hidden" name="bidder" value={user} />
 
-      <input type="number" placeholder="Bid" name="amount" required />
+      <input id="input-amount" type="number" placeholder="Bid" name="amount" required />
 
       <input type="hidden" name="timespan" value={currentDateTime.toISOString()} readOnly />
 
-      <button type="submit" className='addBidButton'>SELECT</button>
+      <button id="btn-select-bid" type="submit" className='addBidButton'>SELECT</button>
+      {message && <div className="notificationMessage1" id="addBidsMessage">{message}</div>}
     </form>
   );
 }

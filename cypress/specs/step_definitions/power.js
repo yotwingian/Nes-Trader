@@ -27,24 +27,24 @@ beforeEach(() => {
 */
 
 When('I fill in the {string} with {string}', (fieldId, value) => {
-  cy.get(`input#${fieldId}`).type(value);
+  cy.wait(700)
+  cy.get(`#${fieldId}`).type(value);
 });
 
 When('I click the {string} button', (buttonId) => {
   cy.get(`#${buttonId}`).click();
 });
 
-
-Then('I should be redirected to the home page', () => {
-  cy.url().should('include', '/'); 
+When('i click on the {string} link', (linkId) => {
+  cy.get(`#${linkId}`).click();
 });
 
-Then('I should see an alert with the text {string}', (alertText) => {
-  cy.on('window:alert', (str) => {
-    expect(str).to.equal(alertText);
-  });
+Then('I should be redirected to the home page', () => {
+  cy.url().should('include', '/');
 });
 
 Then('I should see a notification {string}', (notificationText) => {
-  cy.get('#notificationMessage').should('contain', notificationText);
+  cy.wait(700)
+  cy.get('.notificationMessage1').should('contain', notificationText);
 });
+

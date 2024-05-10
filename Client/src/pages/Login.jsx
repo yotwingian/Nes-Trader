@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { GlobalContext } from "../components/GlobalContext.jsx"
 import RegisterForm from "../components/Register.jsx"
@@ -12,6 +12,18 @@ export default function Login() {
   })
   const { setIsLoggedIn, setUser } = useContext(GlobalContext)
   const navigate = useNavigate()
+  const [message, setMessage] = useState()
+
+  useEffect(() => {
+    if (message) {
+
+      const timer = setTimeout(() => {
+        setMessage(null)
+      }, 7000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [message])
 
   const handleSwitchForm = () => {
     setLogin((login) => (!login))
@@ -42,8 +54,9 @@ export default function Login() {
       })
 
     } else {
-      alert(data)
-      console.log('Invalid email or password');
+      console.log('Invalid email or password')
+      setMessage(data)
+      console.log(data)
     }
 
     setLoginData({
@@ -95,9 +108,9 @@ export default function Login() {
             </div>
           </div>
 
-          
-            <button type="submit" id="loginButton" >SELECT</button>
-          
+
+          <button type="submit" id="loginButton" >SELECT</button>
+          {message && <div className="notificationMessage" id="loginMessage">{message}</div>}
         </form>
       ) : (
         <RegisterForm />

@@ -25,8 +25,8 @@ export default function MyItems() {
   return <>
     {userItems != "" ? (
       <div>
-        <h1 id="myitems">Player Items</h1>
-        <div className="items-container">
+        <h1 id="h1-myitems">Player Items</h1>
+        <div id="my-items" className="items-container">
           {userItems.map(item => (
             <section key={item.slug}>
               <div >
@@ -42,7 +42,15 @@ export default function MyItems() {
           ))}
         </div>
       </div>
-    ) : <div className="my-items"></div>}
+    ) :
+    <div>
+
+      <h1 id="h1-myitems">Player Bids</h1>
+      <div id="my-items" style={{ height:'300px' }} className="items-container">
+      </div>
+          
+    </div>
+  }
   </>
 
 }
