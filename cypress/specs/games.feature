@@ -19,3 +19,8 @@ Scenario: Sorting items by Title
     Given I am on the "/games" page
     When I select #Release Year
     Then the year of the first item should be the same or earlier than the year of the second item
+
+  Scenario: Sorting items by Ending Soon
+    Given I am on the "/games" page
+    And I select #Ending Soon
+    Then the date and time of the first item should be the same or earlier than the date and time of the second item
