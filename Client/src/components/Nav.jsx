@@ -24,7 +24,7 @@ export default function Nav() {
         </>
       ) : (
         <>
-          <button id="login" onClick={loginReg} >POWER</button>
+          <button id="btn-login" onClick={loginReg} >POWER</button>
         </>
       )}
     </nav>

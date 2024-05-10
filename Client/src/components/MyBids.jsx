@@ -16,6 +16,7 @@ export default function MyBids() {
       async function load() {
         const response = await fetch("/api/bids/" + user)
         const data = await response.json()
+        console.log(data)
         setUserBids(data)
       }
       load()
@@ -26,8 +27,8 @@ export default function MyBids() {
   return <>
     {userBids != "" ? (
       <div>
-        <h1 id="mybids">Player Bids</h1>
-        <div className="items-container">
+        <h1 id="h1-mybids">Player Bids</h1>
+        <div id="my-bids" className="items-container">
           {userBids.map(item => (
             <section key={item.slug}>
               <div >
@@ -43,7 +44,11 @@ export default function MyBids() {
           ))}
         </div>
       </div>
-    ) : <div className="my-bids"></div>}
+    ) : <div>
+          <h1 id="h1-mybids">Player Bids</h1>
+        <div id="my-bids" style={{ height:'300px' }} className="items-container">
+          </div>
+          </div>}
   </>
 
 }

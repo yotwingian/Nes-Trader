@@ -12,7 +12,7 @@ Feature: Login and Register
     When I fill in the "userName" with "wrongUser"
     And I fill in the "password" with "wrongPassword"
     And I click the "loginButton" button
-    Then I should see an alert with the text "Wrong username or password!"
+    Then I should see a notification "Wrong username or password!"
 
 
   Scenario: Successful Registration
@@ -43,10 +43,27 @@ Feature: Login and Register
     And I click the "registerButton" button
     Then I should see a notification "A user with this username or email already exists"
 
+  Scenario: Testing link Select Player in Registerform page
+    Given I am on the "/login" page
+    When I click on the "#gotoRegister" link
+    And I click on the "#gotoRegister" link
+    Then I should see "Select Player" as the title
+
+ 
+  Scenario: Testing Resetbutton
+    Given I am logged in as "mario" with password "mario123"
+    When i click on the "logout" link
+    Then I should not see mypage link anymore
 
 
 
 
 
 
-    
+
+
+
+
+
+
+
