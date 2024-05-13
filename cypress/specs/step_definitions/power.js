@@ -25,6 +25,15 @@ beforeEach(() => {
   })
 })
 */
+/*
+before(() => {
+  cy.request({
+    method: 'DELETE',
+    url: '/api/bids/delete/testuser',
+    failOnStatusCode: false,
+  })
+})
+*/
 
 When('I fill in the {string} with {string}', (fieldId, value) => {
   cy.wait(1500)
@@ -55,5 +64,3 @@ Then('I should see {string} as the title', (title) => {
 Then('I should not see mypage link anymore', () => {
   cy.get('#my-page').should('not.exist');
 });
-
-

@@ -67,60 +67,60 @@ public class Bids
 
   }
 
-  public record ItemID(int ItemId);
   public record PostBid(string Amount, DateTime Timespan, string Bidder);
+
   public static IResult Post(string slug, State state, PostBid bid)
   {
-
-
-
-    int ItemId = 0;
-
+    int itemId = 0;
     string queryItemId = "SELECT id AS itemid FROM items WHERE slug = @slug";
-
     var reader = MySqlHelper.ExecuteReader(state.DB, queryItemId, [new("@slug", slug)]);
 
     if (reader.Read())
     {
-      ItemId = reader.GetInt32("itemid");
+      itemId = reader.GetInt32("itemid");
     }
 
-
-
-
-    int UserId = 0;
-
+    int userId = 0;
     string queryUserId = "SELECT users.id AS user FROM users WHERE username = @username";
-
     reader = MySqlHelper.ExecuteReader(state.DB, queryUserId, [new("@username", bid.Bidder)]);
 
     if (reader.Read())
     {
-      UserId = reader.GetInt32("user");
+      userId = reader.GetInt32("user");
     }
-    Console.WriteLine(reader.Read());
-    Console.WriteLine("Itemid: " + ItemId);
 
     string query = "INSERT INTO bids (amount, time, user, item) VALUES (@amount, @time, @user, @item)";
-
     var result = MySqlHelper.ExecuteNonQuery(state.DB, query, [
         new ("@amount", bid.Amount),
         new ("@time", bid.Timespan.ToLocalTime()),
-        new ("@user", UserId),
-        new ("@item", ItemId)
+        new ("@user", userId),
+        new ("@item", itemId)
         ]);
 
     if (result > 0)
     {
-      // return to client/frontend
-      return TypedResults.Created("Post succesfull");
+      return TypedResults.Created("Post successful");
     }
     else
     {
-      // return to client/frontend
       return TypedResults.Problem("Something went wrong");
     }
 
+  }
+
+  public static IResult Delete(string user, State state)
+  {
+    string query = "DELETE FROM bids WHERE user = (SELECT id FROM users WHERE username = @username)";
+    var result = MySqlHelper.ExecuteNonQuery(state.DB, query, [new("@username", user)]);
+
+    if (result > 0)
+    {
+      return TypedResults.Ok("User bids have been successfully deleted");
+    }
+    else
+    {
+      return TypedResults.NotFound("No bids were found and deleted");
+    }
   }
 
 }

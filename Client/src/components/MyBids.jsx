@@ -46,7 +46,7 @@ export default function MyBids() {
         </div>
       </div>
     ) : <div>
-      <div id="my-bids" style={{ height: '300px' }} className="items-container">
+      <div id="my-bids" className="items-container">
       </div>
     </div>}
   </>
