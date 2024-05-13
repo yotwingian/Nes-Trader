@@ -236,11 +236,11 @@ public class Items
 
     if (result > 0)
     {
-      return TypedResults.Ok("User items have been successfully deleted");
+      return TypedResults.Ok("User items were successfully deleted");
     }
     else
     {
-      return TypedResults.NotFound("No items were found and deleted");
+      return TypedResults.NotFound("No items were deleted because no items were found");
     }
   }
 

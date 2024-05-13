@@ -115,11 +115,11 @@ public class Bids
 
     if (result > 0)
     {
-      return TypedResults.Ok("User bids have been successfully deleted");
+      return TypedResults.Ok("User bids were successfully deleted");
     }
     else
     {
-      return TypedResults.NotFound("No bids were found and deleted");
+      return TypedResults.NotFound("No bids were deleted because no bids were found");
     }
   }
 
