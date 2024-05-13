@@ -23,6 +23,7 @@ app.MapGet("/bids/max/{slug}", Bids.Max);
 app.MapGet("/bids/total/{slug}", Bids.Total);
 app.MapGet("/bids/{user}", Items.UserBids).RequireAuthorization("user");
 app.MapPost("/bids/post/{slug}", Bids.Post).RequireAuthorization("user");
+app.MapDelete("/bids/delete/{user}", Bids.Delete);
 
 app.MapPost("/users/login", Users.Login);
 app.MapPost("/users/register", Users.Register);
