@@ -8,6 +8,7 @@ module.exports = defineConfig(
   {
     e2e:
     {
+      experimentalInteractiveRunEvents: true,
       specPattern: '**/*.feature',
       baseUrl,
       video: false,
@@ -57,6 +58,19 @@ module.exports = defineConfig(
             },
           }
         );
+
+        on('before:run', async () => {
+          try {
+            const response = await fetch(`${config.baseUrl}/api/users/delete/testuser`, {
+              method: 'DELETE',
+            });
+            const text = await response.text();
+            const data = JSON.parse(text);
+            console.log('Delete operation response:', data);
+          } catch (error) {
+            console.error('Failed to delete test user:', error);
+          }
+        });
 
         // Make sure to return the config object as it might have been modified by the plugin.
         return config;
