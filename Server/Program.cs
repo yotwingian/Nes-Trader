@@ -17,6 +17,7 @@ app.MapGet("/items/latest", Items.Latest);
 app.MapGet("/item/{slug}", Items.Single);
 app.MapGet("/items/{user}", Items.UserItems).RequireAuthorization("user");
 app.MapPost("/items/post/{user}", Items.Post).RequireAuthorization("user");
+app.MapDelete("/items/delete/{user}", Items.Delete);
 
 app.MapGet("/bids/item/{slug}", Bids.Item);
 app.MapGet("/bids/max/{slug}", Bids.Max);
