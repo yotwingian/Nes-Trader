@@ -42,5 +42,5 @@ Feature: Home
 
         Examples:
             | pathname  | title       | selector |
-            | #new-item | New Game    | h1-newgame  |
+            | #new-item | New Game    | #h1-newgame  |
             | #my-page  | Player Page | #h1-mypage  |
