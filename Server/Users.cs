@@ -41,7 +41,7 @@ public class Users
   {
     string checkQuery = "SELECT COUNT(*) FROM users WHERE username = @username OR email = @email";
     MySqlParameter[] checkParameters = [new MySqlParameter("@username", user.Username), new MySqlParameter("@email", user.Email)];
-    int existingCount = (int)MySqlHelper.ExecuteScalar(state.DB, checkQuery, checkParameters);
+    long existingCount = (long)MySqlHelper.ExecuteScalar(state.DB, checkQuery, checkParameters);
 
     if (existingCount > 0)
     {
