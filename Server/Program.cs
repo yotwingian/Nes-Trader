@@ -27,6 +27,7 @@ app.MapPost("/bids/post/{slug}", Bids.Post).RequireAuthorization("user");
 
 app.MapPost("/users/login", Users.Login);
 app.MapPost("/users/register", Users.Register);
+app.MapDelete("/users/delete/{user}", Users.Delete);
 
 app.Run("http://localhost:3000");
 
