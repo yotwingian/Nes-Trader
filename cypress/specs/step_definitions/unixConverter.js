@@ -7,35 +7,29 @@ export default function unixConverter(string) {
   let unixTime = null;
 
   let editedString = string.replace(":", ' ')
-  console.log(editedString);
   let array = editedString.split(" ");
-  console.log(array);
 
   if (array.length == 4) {
     if (array[1] == "h") {
-      console.log("Hours format")
+      // Hours format
       const hours = parseInt(array[0]);
       const minutes = parseInt(array[2]);
-      console.log(hours + " hours " + minutes + " minutes")
       unixTime = now + (hours * 60 * 60 * 1000) + (minutes * 60 * 1000);
-      console.log(unixTime)
 
     
     }
 
     else if (array[1] == "m") {
-      console.log("Minutes format")
+      // Minutes format
       const minutes = parseInt(array[0]);
       const seconds = parseInt(array[2]);
-      console.log(minutes + " minutes " + seconds + " seconds");
       unixTime = now + (minutes * 60 * 1000) + (seconds * 1000);
-      console.log(unixTime)
 
 
     }
 
     else {
-      console.log("Date format")
+      // Date format
       const day = parseInt(array[0]);
       const month = array[1];
       const hours = parseInt(array[2]);
@@ -45,13 +39,11 @@ export default function unixConverter(string) {
       if (yearDiff >= 0) {
         const futureDate = new Date(thisYear, monthIndex, day, hours, minutes);
         unixTime = futureDate.getTime();
-        console.log(unixTime)
 
       }
       else {
         const futureDate = new Date(thisYear + Math.abs(yearDiff), monthIndex, day, hours, minutes);
         unixTime = futureDate.getTime();
-        console.log(unixTime)
 
       }
 
@@ -59,7 +51,7 @@ export default function unixConverter(string) {
   }
 
   else if (array.length == 3) {
-    console.log("Day format");
+    // Day format
     const dayOfWeek = array[0];
     const hours = array[1];
     const minutes = array[2];
@@ -70,7 +62,6 @@ export default function unixConverter(string) {
       futureDate.setHours(hours);
       futureDate.setMinutes(minutes);
       unixTime = futureDate.getTime();
-      console.log(unixTime);
 
     }
     else {
@@ -78,17 +69,14 @@ export default function unixConverter(string) {
       futureDate.setHours(hours);
       futureDate.setMinutes(minutes);
       unixTime = futureDate.getTime();
-      console.log(unixTime);
 
     }
   }
 
   else if (array.length == 2){
-    console.log("Seconds format")
+    // Seconds format
     const seconds = parseInt(array[0]);
-    console.log(seconds + " seconds")
     unixTime = now + (seconds * 1000);
-    console.log(unixTime)
 
   }
   return unixTime
