@@ -9,7 +9,7 @@ module.exports = defineConfig(
     e2e:
     {
       experimentalInteractiveRunEvents: true,
-      specPattern: '**/*.feature',
+      specPattern: ['specs/power.feature', 'specs/home.feature', 'specs/games.feature', 'specs/newgame.feature', 'specs/item.feature', 'specs/player.feature'],
       baseUrl,
       video: false,
       supportFile: "support/commands.js",
@@ -61,29 +61,17 @@ module.exports = defineConfig(
 
         on('before:run', async () => {
           try {
-            // Delete user bids
-            const responseBids = await fetch(`${config.baseUrl}/api/bids/delete/testuser`, {
+            await fetch(`${config.baseUrl}/api/bids/delete/testuser`, {
               method: 'DELETE',
             });
-            const textBids = await responseBids.text();
-            const dataBids = JSON.parse(textBids);
-            console.log('Delete bids response:', dataBids);
 
-            // Delete user items
-            const responseItems = await fetch(`${config.baseUrl}/api/items/delete/testuser`, {
+            await fetch(`${config.baseUrl}/api/items/delete/testuser`, {
               method: 'DELETE',
             });
-            const textItems = await responseItems.text();
-            const dataItems = JSON.parse(textItems);
-            console.log('Delete items response:', dataItems);
 
-            // Delete the user
-            const responseUser = await fetch(`${config.baseUrl}/api/users/delete/testuser`, {
+            await fetch(`${config.baseUrl}/api/users/delete/testuser`, {
               method: 'DELETE',
             });
-            const textUser = await responseUser.text();
-            const dataUser = JSON.parse(textUser);
-            console.log('Delete user operation response:', dataUser);
 
           } catch (error) {
             console.error('Failed to complete operations:', error);
