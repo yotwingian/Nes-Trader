@@ -1,4 +1,4 @@
-import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor"
+import { Before ,Given, When, Then } from "@badeball/cypress-cucumber-preprocessor"
 
 Before(() => {
   cy.request('/api/bids/max/test-game').as('getMaxBid');
