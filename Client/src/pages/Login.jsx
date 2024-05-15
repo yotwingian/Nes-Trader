@@ -1,4 +1,4 @@
-import { useState, useContext } from "react"
+import { useState, useContext, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { GlobalContext } from "../components/GlobalContext.jsx"
 import RegisterForm from "../components/Register.jsx"
@@ -12,6 +12,18 @@ export default function Login() {
   })
   const { setIsLoggedIn, setUser } = useContext(GlobalContext)
   const navigate = useNavigate()
+  const [message, setMessage] = useState()
+
+  useEffect(() => {
+    if (message) {
+
+      const timer = setTimeout(() => {
+        setMessage(null)
+      }, 7000)
+
+      return () => clearTimeout(timer)
+    }
+  }, [message])
 
   const handleSwitchForm = () => {
     setLogin((login) => (!login))
@@ -42,8 +54,9 @@ export default function Login() {
       })
 
     } else {
-      alert(data)
-      console.log('Invalid email or password');
+      console.log('Invalid email or password')
+      setMessage(data)
+      console.log(data)
     }
 
     setLoginData({
@@ -62,7 +75,7 @@ export default function Login() {
 
   return (
     <>
-      <h1>{login ? 'Select Player' : 'New Player'}</h1>
+      <h1 id="h1-login">{login ? 'Select Player' : 'New Player'}</h1>
 
       {login ? (
         <form onSubmit={handleSubmit}>
@@ -72,6 +85,7 @@ export default function Login() {
               <input
                 type="text"
                 className="inputEmail3"
+                id="userName"
                 placeholder="Player Name"
                 name="userName"
                 value={loginData.userName}
@@ -85,6 +99,7 @@ export default function Login() {
               <input
                 type="password"
                 className="inputPassword3"
+                id="password"
                 placeholder="Password"
                 name="password"
                 value={loginData.password}
@@ -93,9 +108,9 @@ export default function Login() {
             </div>
           </div>
 
-          <div className="col-sm-10">
-            <button type="submit" id="loginButton" >SELECT</button>
-          </div>
+
+          <button type="submit" id="loginButton" >SELECT</button>
+          {message && <div className="notificationMessage1" id="loginMessage">{message}</div>}
         </form>
       ) : (
         <RegisterForm />

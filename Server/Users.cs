@@ -77,8 +77,20 @@ public class Users
       return TypedResults.Problem("An error occurred while registering the user: " + ex.Message);
     }
   }
+
+  public static IResult Delete(string user, State state)
+  {
+    string query = "DELETE FROM users WHERE username = @username";
+    var result = MySqlHelper.ExecuteNonQuery(state.DB, query, [new("@username", user)]);
+
+    if (result > 0)
+    {
+      return TypedResults.Ok("User was successfully deleted");
+    }
+    else
+    {
+      return TypedResults.NotFound("No user was deleted because no user was found");
+    }
+  }
+
 }
-
-
-
-

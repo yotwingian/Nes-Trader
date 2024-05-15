@@ -1,15 +1,16 @@
-import { useState,useEffect, useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { GlobalContext } from '../components/GlobalContext.jsx'
-function AuctionForm() {
-  const [message, setMessage] = useState(null); 
+
+export default function AuctionForm() {
+  const [message, setMessage] = useState(null);
   const { user } = useContext(GlobalContext)
   useEffect(() => {
     if (message) {
-      
+
       const timer = setTimeout(() => {
         setMessage(null);
       }, 7000);
-      
+
       return () => clearTimeout(timer);
     }
   }, [message]);
@@ -27,10 +28,10 @@ function AuctionForm() {
     });
 
     if (response.ok) {
-      
+
       setMessage("Your auction has been posted successfully.");
     } else {
-      
+
       const errorData = await response.json();
       setMessage("An error occurred while submitting the data: " + errorData.message);
     }
@@ -38,7 +39,8 @@ function AuctionForm() {
     event.target.reset();
   }
 
-  return (
+  return <>
+    <h1 id="h1-newgame">New Game</h1>
     <form onSubmit={PostAuction}>
       <div>
         <label>Title:</label>
@@ -93,14 +95,10 @@ function AuctionForm() {
         <div>
           <input type="number" name="reservePrice" placeholder="Reserve Price" required />
         </div>
-        <button type="submit" className="newGameButton">START</button>
+        <button id="newGameButton" type="submit" >START</button>
       </div>
-      {message && <div className="addItemMessage">{message}</div>} 
+      {message && <div className="notificationMessage1">{message}</div>}
     </form>
-  );
+  </>
+
 }
-
-export default AuctionForm;
-
-
-  

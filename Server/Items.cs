@@ -229,6 +229,21 @@ public class Items
 
   }
 
+  public static IResult Delete(string user, State state)
+  {
+    string query = "DELETE FROM items WHERE user = (SELECT id FROM users WHERE username = @username)";
+    var result = MySqlHelper.ExecuteNonQuery(state.DB, query, [new("@username", user)]);
+
+    if (result > 0)
+    {
+      return TypedResults.Ok("User items were successfully deleted");
+    }
+    else
+    {
+      return TypedResults.NotFound("No items were deleted because no items were found");
+    }
+  }
+
   public static IResult UserBids(string user, State state)
   {
     List<FilteredItem> bids = new();

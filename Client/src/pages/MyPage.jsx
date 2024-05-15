@@ -7,14 +7,13 @@ export default function MyPage() {
   const { isLoggedIn } = useContext(GlobalContext)
 
   return <>
-    {isLoggedIn && (
+    {isLoggedIn ? (
       <div>
-        <h1 id="mypage">Player Page</h1>
+        <h1 id="h1-mypage">Player Page</h1>
         <MyBids />
         <MyItems />
       </div>
-    )}
-    <h1>Please sign in!</h1>
+    ) : <h1>Please sign in!</h1>}
   </>
    
 }
