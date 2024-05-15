@@ -2,7 +2,7 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor"
 
 
 Given('I am on the {string} page', (url) => {
-  cy.visit(url)
+  cy.visit(url, { headers: { "Accept-Encoding": "gzip, deflate" } })
 })
 
 When('I click on the {string} link', (pathname) => {

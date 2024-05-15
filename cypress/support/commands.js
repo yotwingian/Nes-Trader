@@ -1,5 +1,5 @@
 Cypress.Commands.add('login', (email, password) => {
-  cy.visit('/login')
+  cy.visit('/login', { headers: { "Accept-Encoding": "gzip, deflate" } })
   cy.wait(200)
   cy.get('input#userName').type(email);
   cy.wait(200)
