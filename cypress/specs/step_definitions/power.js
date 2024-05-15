@@ -36,8 +36,7 @@ before(() => {
 */
 
 When('I fill in the {string} with {string}', (fieldId, value) => {
-  cy.intercept('GET', '/api/bids/max/test-game').as('getMaxBid');
-  cy.wait('@getMaxBid');
+  cy.wait(5000)
   cy.get(`#${fieldId}`).type(value);
 });
 
