@@ -56,6 +56,8 @@ app.MapPost("/api/users/register", Users.Register);
 app.MapDelete("/api/users/delete/{user}", Users.Delete);
 
 app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapFallback(async context =>
 {
