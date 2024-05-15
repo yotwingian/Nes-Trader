@@ -1,7 +1,7 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor"
 
 When('I fill in bid {string} with {string}', (fieldId, value) => {
-  cy.wait(5000)
+  cy.wait(2000)
   cy.get(`#${fieldId}`).type(value);
 });
 
