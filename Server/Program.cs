@@ -44,15 +44,15 @@ app.MapGet("/api/items", Items.All);
 app.MapGet("/api/items/ending-soon", Items.EndingSoon);
 app.MapGet("/api/items/latest", Items.Latest);
 app.MapGet("/api/item/{slug}", Items.Single);
-app.MapGet("/api/items/{user}", Items.UserItems).RequireAuthorization("user");
-app.MapPost("/api/items/post/{user}", Items.Post).RequireAuthorization("user");
+app.MapGet("/api/items/{user}", Items.UserItems);
+app.MapPost("/api/items/post/{user}", Items.Post);
 app.MapDelete("/api/items/delete/{user}", Items.Delete);
 
 app.MapGet("/api/bids/item/{slug}", Bids.Item);
 app.MapGet("/api/bids/max/{slug}", Bids.Max);
 app.MapGet("/api/bids/total/{slug}", Bids.Total);
-app.MapGet("/api/bids/{user}", Items.UserBids).RequireAuthorization("user");
-app.MapPost("/api/bids/post/{slug}", Bids.Post).RequireAuthorization("user");
+app.MapGet("/api/bids/{user}", Items.UserBids);
+app.MapPost("/api/bids/post/{slug}", Bids.Post);
 app.MapDelete("/api/bids/delete/{user}", Bids.Delete);
 
 app.MapPost("/api/users/login", Users.Login);
