@@ -1,11 +1,7 @@
-import { Before ,Given, When, Then } from "@badeball/cypress-cucumber-preprocessor"
-
-Before(() => {
-  cy.request('/api/bids/max/test-game').as('getMaxBid');
-});
+import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor"
 
 When('I fill in bid {string} with {string}', (fieldId, value) => {
-  cy.wait('@getMaxBid');
+  cy.wait(5000)
   cy.get(`#${fieldId}`).type(value);
 });
 
