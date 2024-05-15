@@ -34,9 +34,9 @@ app.UseStaticFiles(new StaticFileOptions
   RequestPath = ""
 });
 
-app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
+app.UseRouting();  // Ensure routing is set up before auth
+app.UseAuthentication();  // Add authentication middleware
+app.UseAuthorization();  // Add authorization middleware
 
 app.MapGet("/", () => "NES Trader Server");
 
@@ -58,8 +58,6 @@ app.MapDelete("/api/bids/delete/{user}", Bids.Delete);
 app.MapPost("/api/users/login", Users.Login);
 app.MapPost("/api/users/register", Users.Register);
 app.MapDelete("/api/users/delete/{user}", Users.Delete);
-
-
 
 app.MapFallback(async context =>
 {
