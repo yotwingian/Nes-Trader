@@ -1,0 +1,57 @@
+name: Test Deploy
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  # cypress_tests:
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v2
+  #     - name: Setup Node.js
+  #       uses: actions/setup-node@v2
+  #       with:
+  #         node-version: '20'
+  #     - name: Install dependencies
+  #       run: npm ci
+  #     - name: Build
+  #       run: npm run build
+  #     - name: Start server
+  #       run: nohup node index.js &
+  #     - name: Install Cypress Dependencies
+  #       run: cd ./cypress && npm ci
+
+  #     - name: Run Cypress tests
+  #       run: cd ./cypress && npm run test
+
+  deploy:
+    # needs: cypress_tests
+    runs-on:
+      ubuntu-latest
+    steps:
+      - name: Doing a deploy
+        uses: appleboy/ssh-action@v0.1.10
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          password: ${{ secrets.PASSWORD }}
+          port: ${{ secrets.PORT }}
+          script: |
+            echo "Deploying to the server"
+            source /root/.nvm/nvm.sh
+            nvm use v20.12.2
+            echo "Checking node and npm versions"
+            node -v
+            npm -v
+            cd /var/www/Nes-Trader
+            git pull
+            cd /var/www/Nes-Trader/Client
+            npm ci
+            npm run build
+            cd /var/www/Nes-Trader/Server
+            pm2 delete nes-trader
+            pm2 start --name nes-trader "dotnet run"
