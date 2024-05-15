@@ -16,12 +16,12 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Install dependencies
-        run: npm ci
-      - name: Build
-        run: npm run build
-      - name: Start server
-        run: nohup node index.js &
+      # - name: Install dependencies
+      #   run: npm ci
+      # - name: Build
+      #   run: npm run build
+      # - name: Start server
+      #   run: nohup node index.js &
       - name: Install Cypress Dependencies
         run: cd ./cypress && npm ci
 
