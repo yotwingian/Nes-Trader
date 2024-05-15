@@ -34,6 +34,10 @@ app.UseStaticFiles(new StaticFileOptions
   RequestPath = ""
 });
 
+app.UseRouting();
+app.UseAuthentication();
+app.UseAuthorization();
+
 app.MapGet("/", () => "NES Trader Server");
 
 app.MapGet("/api/items", Items.All);
@@ -55,9 +59,7 @@ app.MapPost("/api/users/login", Users.Login);
 app.MapPost("/api/users/register", Users.Register);
 app.MapDelete("/api/users/delete/{user}", Users.Delete);
 
-app.UseRouting();
-app.UseAuthentication();
-app.UseAuthorization();
+
 
 app.MapFallback(async context =>
 {
