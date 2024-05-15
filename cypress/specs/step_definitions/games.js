@@ -2,15 +2,16 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import unixConverter from "./unixConverter.js";
 
 When('I type {string} in the search input', (searchTerm) => {
+  cy.wait(5000)
   cy.get('input').type(searchTerm);
 });
 
 Then('I should see only items with titles containing {string}', (searchTerm) => {
-  cy.wait(500)
+  cy.wait(5000)
   cy.get('.items-container section').each(($item) => {
-    cy.wait(500)
+    cy.wait(5000)
     cy.wrap($item).within(() => {
-      cy.wait(500)
+      cy.wait(5000)
       cy.get('h5').contains(searchTerm, {matchCase: false})
     });
   });
