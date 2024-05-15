@@ -36,7 +36,7 @@ before(() => {
 */
 
 When('I fill in the {string} with {string}', (fieldId, value) => {
-  cy.wait(5000)
+  cy.wait(2000)
   cy.get(`#${fieldId}`).type(value);
 });
 
