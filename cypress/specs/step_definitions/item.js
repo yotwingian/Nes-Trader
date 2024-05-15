@@ -1,6 +1,7 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor"
 
   When('I fill in bid {string} with {string}', (fieldId, value) => {
+    cy.wait(1000)
     cy.intercept('GET', '/api/bids/max/test-game').as('getMaxBid');
     cy.wait('@getMaxBid');
     cy.get(`#${fieldId}`).type(value);
