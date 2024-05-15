@@ -7,11 +7,8 @@ When('I type {string} in the search input', (searchTerm) => {
 });
 
 Then('I should see only items with titles containing {string}', (searchTerm) => {
-  cy.wait(5000)
   cy.get('.items-container section').each(($item) => {
-    cy.wait(5000)
     cy.wrap($item).within(() => {
-      cy.wait(5000)
       cy.get('h5').contains(searchTerm, {matchCase: false})
     });
   });
