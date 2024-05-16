@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, useCallback } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import PropTypes from 'prop-types';
 import { GlobalContext } from '../components/GlobalContext.jsx'
 
@@ -21,16 +21,24 @@ function BidForm({ slug, startPrice }) {
     }
   }, [message]);
 
-  const load = useCallback(async () => {
-    const response = await fetch("/api/bids/max/" + slug);
-    const data = await response.json();
-    setBid(data);
-    setIsLoading(false);
-  }, [slug]); // slug is a dependency
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentDateTime(new Date());
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
+    async function load() {
+      const response = await fetch("/api/bids/max/" + slug)
+      const data = await response.json();
+      setBid(data);
+      setIsLoading(false);
+    }
     load();
-  }, [load]); // load is a dependency
+
+  }, []); // Bid här skapar evighetsloop pga setBid i samma useEffect. itemId verkar inte behövas eller påverka något här.
 
 
   useEffect(() => {
@@ -90,7 +98,7 @@ function BidForm({ slug, startPrice }) {
       <button id="btn-select-bid" type="submit" className='addBidButton'>SELECT</button>
       {message && <div className="notificationMessage1" id="addBidsMessage">{message}</div>}
     </form>
-  );  
+  );
 }
 
 BidForm.propTypes = {
