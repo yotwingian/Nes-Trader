@@ -7,6 +7,7 @@ import CountdownRenderer from "../components/CountdownRenderer.jsx"
 import TotalBids from "../components/TotalBids.jsx"
 import MaxBid from "../components/MaxBid.jsx"
 import BidsList from "../components/BidsList.jsx"
+import "../../public/style.css"
 
 export default function ItemDetails() {
 
