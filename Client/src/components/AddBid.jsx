@@ -4,8 +4,8 @@ import { GlobalContext } from '../components/GlobalContext.jsx'
 
 function BidForm({ slug, startPrice }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
-  const [Bid, setBid] = useState([]);
-  const { user } = useContext(GlobalContext)
+  const [bid, setBid] = useState([]);
+  const { user} = useContext(GlobalContext)
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
@@ -43,12 +43,12 @@ function BidForm({ slug, startPrice }) {
     info.timespan = new Date(info.timespan).toISOString();
     info.itemId = parseInt(info.itemId);
 
-    if (Bid.amount == null && parseFloat(info.amount) < startPrice) {
+    if (bid.amount == null && parseFloat(info.amount) < startPrice) {
       setMessage("The new bid must be equal to or greater than the start price. Start price: " + startPrice);
       return;
     }
-    else if (Bid.amount != null && parseFloat(info.amount) <= Bid.amount) {
-      setMessage("The new bid must be greater than the existing bid. Current bid: " + Bid.amount);
+    else if (bid.amount != null && parseFloat(info.amount) <= bid.amount) {
+      setMessage("The new bid must be greater than the existing bid. Current bid: " + bid.amount);
       return;
     } else {
 
@@ -75,6 +75,9 @@ function BidForm({ slug, startPrice }) {
     
   }
 
+  if (!bid) {
+    return <div>Loading...</div>;
+  }
 
 
   return (

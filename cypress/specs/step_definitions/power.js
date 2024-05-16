@@ -54,6 +54,7 @@ Then('I should be redirected to the home page', () => {
 
 Then('I should see a notification {string}', (notificationText) => {
   cy.wait(1500)
+  cy.get('.notificationMessage1').should('have.text', notificationText);
   cy.get('.notificationMessage1').should('contain', notificationText);
 });
 
