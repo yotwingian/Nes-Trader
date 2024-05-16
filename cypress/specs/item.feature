@@ -12,7 +12,7 @@ Feature: Item
   Scenario Outline: Place a bid
     Given I am logged in as "testuser" with password "test1234"
     When I click on the "<pathname>" link
-    And I fill in the "input-amount" with "<value>"
+    And I fill in bid "input-amount" with "<value>"
     And I click the "btn-select-bid" button
     Then I should see a notification "<message>"
 
