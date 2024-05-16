@@ -40,6 +40,7 @@ jobs:
             node -v
             npm -v
             cd /var/www/Nes-Trader
+            git checkout main
             git pull
             cd /var/www/Nes-Trader/Client
             npm ci
