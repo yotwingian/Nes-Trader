@@ -18,7 +18,7 @@ function BidForm({ slug, startPrice }) {
       return () => clearTimeout(timer);
     }
   }, [message]);
-
+  
   useEffect(() => {
     const intervalId = setInterval(() => {
 
@@ -35,6 +35,11 @@ function BidForm({ slug, startPrice }) {
 
     return () => clearInterval(intervalId);
   }, []);
+
+  if (!bid) {
+    return <div>Loading...</div>;
+  }
+
 
   async function PostBid(event) {
     event.preventDefault();
@@ -75,9 +80,6 @@ function BidForm({ slug, startPrice }) {
     
   }
 
-  if (!bid) {
-    return <div>Loading...</div>;
-  }
 
 
   return (
