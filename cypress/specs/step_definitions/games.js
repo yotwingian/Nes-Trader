@@ -2,8 +2,7 @@ import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import unixConverter from "./unixConverter.js";
 
 When('I type {string} in the search input', (searchTerm) => {
-  cy.intercept('GET', '/api/items').as('getItems');
-  cy.wait('@getItems');
+  cy.wait(1000)
   cy.get('input').type(searchTerm);
 });
 

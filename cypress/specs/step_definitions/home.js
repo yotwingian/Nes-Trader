@@ -14,8 +14,8 @@ Then('I should see the {string} title in the {string} element', (header, selecto
 })
 
 Then('the element {string} should contain text', (title) => {
-  cy.wait(1000)
-  cy.get(title).should('not.have.text', "")
+  //cy.wait(1000)
+  cy.get(title).should('be.visible').should('not.have.text', "")
 });
 
 When('I am logged in as {string} with password {string}', (username, password) => {
