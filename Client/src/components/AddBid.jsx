@@ -1,11 +1,13 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useCallback } from 'react';
 import PropTypes from 'prop-types';
 import { GlobalContext } from '../components/GlobalContext.jsx'
 
 function BidForm({ slug, startPrice }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
-  const [bid, setBid] = useState([]);
-  const { user} = useContext(GlobalContext)
+  const [Bid, setBid] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [maxBidAmount, setMaxBidAmount] = useState();
+  const { user } = useContext(GlobalContext)
   const [message, setMessage] = useState(null);
 
   useEffect(() => {
@@ -18,28 +20,24 @@ function BidForm({ slug, startPrice }) {
       return () => clearTimeout(timer);
     }
   }, [message]);
-  
+
+  const load = useCallback(async () => {
+    const response = await fetch("/api/bids/max/" + slug);
+    const data = await response.json();
+    setBid(data);
+    setIsLoading(false);
+  }, [slug]); // slug is a dependency
+
   useEffect(() => {
-    const intervalId = setInterval(() => {
-
-      async function load() {
-        const response = await fetch("/api/bids/max/" + slug)
-        const data = await response.json();
-        setBid(data);
-      }
-      load();
+    load();
+  }, [load]); // load is a dependency
 
 
-      setCurrentDateTime(new Date());
-    }, 1000);
-
-    return () => clearInterval(intervalId);
-  }, []);
-
-  if (!bid) {
-    return <div>Loading...</div>;
-  }
-
+  useEffect(() => {
+    const newMaxBidAmount = Bid.amount;
+    setMaxBidAmount(newMaxBidAmount);
+    console.log(newMaxBidAmount)
+  }, [Bid]);
 
   async function PostBid(event) {
     event.preventDefault();
@@ -48,39 +46,38 @@ function BidForm({ slug, startPrice }) {
     info.timespan = new Date(info.timespan).toISOString();
     info.itemId = parseInt(info.itemId);
 
-    if (bid.amount == null && parseFloat(info.amount) < startPrice) {
+    if (maxBidAmount == null && parseFloat(info.amount) < startPrice) {
       setMessage("The new bid must be equal to or greater than the start price. Start price: " + startPrice);
       return;
     }
-    else if (bid.amount != null && parseFloat(info.amount) <= bid.amount) {
-      setMessage("The new bid must be greater than the existing bid. Current bid: " + bid.amount);
+    else if (maxBidAmount != null && parseFloat(info.amount) <= maxBidAmount) {
+      setMessage("The new bid must be greater than the existing bid. Current bid: " + maxBidAmount);
       return;
-    } else {
-
-      const response = await fetch("/api/bids/post/" + slug, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(info),
-      });
-
-      console.log(response)
-
-      if (response.ok == true) {
-        setMessage("Your bid was successful. Your bid: " + info.amount);
-        event.target.reset();
-      } else {
-        setMessage("Failed to register bid, server returned: " + response.status)
-      }
-
     }
 
+    const response = await fetch("/api/bids/post/" + slug, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(info),
+    });
 
-    
+    console.log(response)
+
+    if (response.ok == true) {
+      setMessage("Your bid was successful. Your bid: " + info.amount);
+      event.target.reset();
+    } else {
+      setMessage("Failed to register bid, server returned: " + response.status)
+    }
+
+    setMaxBidAmount(info.amount)
   }
 
-
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <form onSubmit={PostBid}>
@@ -93,7 +90,7 @@ function BidForm({ slug, startPrice }) {
       <button id="btn-select-bid" type="submit" className='addBidButton'>SELECT</button>
       {message && <div className="notificationMessage1" id="addBidsMessage">{message}</div>}
     </form>
-  );
+  );  
 }
 
 BidForm.propTypes = {
