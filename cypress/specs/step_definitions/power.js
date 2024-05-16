@@ -37,7 +37,7 @@ before(() => {
 
 When('I fill in the {string} with {string}', (fieldId, value) => {
   //cy.wait(500)
-  cy.get(`#${fieldId}`).type(value);
+  cy.get(`#${fieldId}`).should('be.visible').type(value);
 });
 
 When('I click the {string} button', (buttonId) => {
@@ -53,7 +53,7 @@ Then('I should be redirected to the home page', () => {
 });
 
 Then('I should see a notification {string}', (notificationText) => {
-  cy.get('.notificationMessage1').should('contain', notificationText);
+  cy.get('.notificationMessage1').should('be.visible').should('contain', notificationText);
 });
 
 Then('I should see {string} as the title', (title) => {

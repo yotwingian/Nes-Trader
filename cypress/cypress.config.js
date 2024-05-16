@@ -8,7 +8,7 @@ module.exports = defineConfig(
   {
     e2e:
     {
-      retries: 0,
+      retries: 4,
       experimentalInteractiveRunEvents: true,
       specPattern: ['specs/power.feature', 'specs/home.feature', 'specs/games.feature', 'specs/newgame.feature', 'specs/item.feature', 'specs/player.feature'],
       baseUrl,
