@@ -5,7 +5,6 @@ import { GlobalContext } from '../components/GlobalContext.jsx'
 function BidForm({ slug, startPrice }) {
   const [currentDateTime, setCurrentDateTime] = useState(new Date());
   const [Bid, setBid] = useState([]);
-  const [maxBidAmount, setMaxBidAmount] = useState();
   const { user } = useContext(GlobalContext)
   const [message, setMessage] = useState(null);
 
@@ -14,7 +13,7 @@ function BidForm({ slug, startPrice }) {
 
       const timer = setTimeout(() => {
         setMessage(null);
-      }, 1000);
+      }, 7000);
 
       return () => clearTimeout(timer);
     }
@@ -22,28 +21,20 @@ function BidForm({ slug, startPrice }) {
 
   useEffect(() => {
     const intervalId = setInterval(() => {
+
+      async function load() {
+        const response = await fetch("/api/bids/max/" + slug)
+        const data = await response.json();
+        setBid(data);
+      }
+      load();
+
+
       setCurrentDateTime(new Date());
     }, 1000);
 
     return () => clearInterval(intervalId);
   }, []);
-
-  useEffect(() => {
-    async function load() {
-      const response = await fetch("/api/bids/max/" + slug)
-      const data = await response.json();
-      setBid(data);
-    }
-    load();
-
-  }, []); // Bid här skapar evighetsloop pga setBid i samma useEffect. itemId verkar inte behövas eller påverka något här.
-
-
-  useEffect(() => {
-    const newMaxBidAmount = Bid.amount;
-    setMaxBidAmount(newMaxBidAmount);
-    console.log(newMaxBidAmount)
-  }, [Bid]);
 
   async function PostBid(event) {
     event.preventDefault();
@@ -52,33 +43,36 @@ function BidForm({ slug, startPrice }) {
     info.timespan = new Date(info.timespan).toISOString();
     info.itemId = parseInt(info.itemId);
 
-    if (maxBidAmount == null && parseFloat(info.amount) < startPrice) {
+    if (Bid.amount == null && parseFloat(info.amount) < startPrice) {
       setMessage("The new bid must be equal to or greater than the start price. Start price: " + startPrice);
       return;
     }
-    else if (maxBidAmount != null && parseFloat(info.amount) <= maxBidAmount) {
-      setMessage("The new bid must be greater than the existing bid. Current bid: " + maxBidAmount);
+    else if (Bid.amount != null && parseFloat(info.amount) <= Bid.amount) {
+      setMessage("The new bid must be greater than the existing bid. Current bid: " + Bid.amount);
       return;
-    }
-
-    const response = await fetch("/api/bids/post/" + slug, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(info),
-    });
-
-    console.log(response)
-
-    if (response.ok == true) {
-      setMessage("Your bid was successful. Your bid: " + info.amount);
-      event.target.reset();
     } else {
-      setMessage("Failed to register bid, server returned: " + response.status)
+
+      const response = await fetch("/api/bids/post/" + slug, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(info),
+      });
+
+      console.log(response)
+
+      if (response.ok == true) {
+        setMessage("Your bid was successful. Your bid: " + info.amount);
+        event.target.reset();
+      } else {
+        setMessage("Failed to register bid, server returned: " + response.status)
+      }
+
     }
 
-    setMaxBidAmount(info.amount)
+
+    
   }
 
 
