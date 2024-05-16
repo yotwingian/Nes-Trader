@@ -14,7 +14,7 @@ function BidForm({ slug, startPrice }) {
 
       const timer = setTimeout(() => {
         setMessage(null);
-      }, 7000);
+      }, 1000);
 
       return () => clearTimeout(timer);
     }
