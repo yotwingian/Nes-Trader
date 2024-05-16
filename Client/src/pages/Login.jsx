@@ -48,15 +48,12 @@ export default function Login() {
       setTimeout(() => {
         if (user) {
           setIsLoggedIn(true)
-          console.log('Successfully logged in:', user)
           navigate('/')
         }
       })
 
     } else {
-      console.log('Invalid email or password')
       setMessage(data)
-      console.log(data)
     }
 
     setLoginData({

@@ -1,6 +1,5 @@
 using System.Security.Claims;
 using Microsoft.Extensions.FileProviders;
-using System.IO;
 using Server;
 
 State state = new("server=localhost;uid=root;pwd=mypassword;database=nes_trader;port=3306");

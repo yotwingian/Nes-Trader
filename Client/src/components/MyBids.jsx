@@ -16,7 +16,6 @@ export default function MyBids() {
       async function load() {
         const response = await fetch("/api/bids/" + user)
         const data = await response.json()
-        console.log(data)
         setUserBids(data)
       }
       load()

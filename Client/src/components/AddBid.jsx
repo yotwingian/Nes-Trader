@@ -44,7 +44,6 @@ function BidForm({ slug, startPrice }) {
   useEffect(() => {
     const newMaxBidAmount = Bid.amount;
     setMaxBidAmount(newMaxBidAmount);
-    console.log(newMaxBidAmount)
   }, [Bid]);
 
   async function PostBid(event) {
@@ -71,7 +70,6 @@ function BidForm({ slug, startPrice }) {
       body: JSON.stringify(info),
     });
 
-    console.log(response)
 
     if (response.ok == true) {
       setMessage("Your bid was successful. Your bid: " + info.amount);
